@@ -3,10 +3,6 @@ dependencies {
     testImplementation "org.junit.jupiter:junit-jupiter-api:${versions.junit_jupiter}"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${versions.junit_jupiter}"
 
-    // ------- instrumentation
-    androidTestImplementation "androidx.test.ext:junit:${versions.androidx_junit}"
-    androidTestImplementation "androidx.test.espresso:espresso-core:${versions.espresso}"
-
     // ------- mock
     testImplementation "io.mockk:mockk:${versions.mockk}"
 

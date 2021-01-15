@@ -5,6 +5,7 @@ plugins {
 }
 
 apply from: '../dependencies/shared.gradle'
+apply from: '../dependencies/unit_test.gradle'
 
 sourceCompatibility = "8"
 targetCompatibility = "8"
@@ -32,11 +33,4 @@ dependencies {
     // ------- dagger
     implementation "com.google.dagger:dagger:${versions.dagger}"
     kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
-
-    // ------- logger
-    implementation "com.jakewharton.timber:timber:${versions.timber}"
-
-    // ------- junit
-    testImplementation "org.junit.jupiter:junit-jupiter-api:${versions.junit_jupiter}"
-    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${versions.junit_jupiter}"
 }

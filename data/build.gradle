@@ -5,7 +5,7 @@ plugins {
 }
 
 apply from: '../dependencies/shared.gradle'
-apply from: '../dependencies/test.gradle'
+apply from: '../dependencies/unit_test.gradle'
 
 android {
     compileSdkVersion versions.compileSdk
@@ -38,15 +38,11 @@ android {
 
 dependencies {
     // ------- architecture
-    implementation project(':model')
     implementation project(':domain')
 
     // ------- coroutine
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.coroutine}"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.coroutine}"
-
-    // ------- androidx
-    implementation "androidx.core:core-ktx:${versions.androidx_core}"
 
     // ------- dagger
     implementation "com.google.dagger:dagger:${versions.dagger}"
