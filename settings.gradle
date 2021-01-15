@@ -1,3 +1,4 @@
 include ':app'
+include ':domain'
 include ':model'
 rootProject.name = "WorldCitiesApp"
