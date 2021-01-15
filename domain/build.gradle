@@ -1,6 +1,7 @@
 plugins {
     id 'java-library'
     id 'kotlin'
+    id 'kotlin-kapt'
 }
 
 apply from: '../dependencies/shared.gradle'
@@ -23,6 +24,17 @@ compileTestKotlin {
 dependencies {
     // ------- architecture
     api project(':model')
+
+    // ------- coroutine
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.coroutine}"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.coroutine}"
+
+    // ------- dagger
+    implementation "com.google.dagger:dagger:${versions.dagger}"
+    kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
+
+    // ------- logger
+    implementation "com.jakewharton.timber:timber:${versions.timber}"
 
     // ------- junit
     testImplementation "org.junit.jupiter:junit-jupiter-api:${versions.junit_jupiter}"

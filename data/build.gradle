@@ -1,5 +1,5 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'kotlin-android'
     id 'kotlin-kapt'
 }
@@ -15,12 +15,8 @@ android {
         minSdkVersion versions.minSdk
         targetSdkVersion versions.targetSdk
 
-        applicationId "com.aminography.archapp"
-
-        versionCode appVersionCode
-        versionName appVersionName
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -42,38 +38,22 @@ android {
 
 dependencies {
     // ------- architecture
+    implementation project(':model')
     implementation project(':domain')
 
     // ------- coroutine
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.coroutine}"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.coroutine}"
 
-    // ------- material
-    implementation "com.google.android.material:material:${versions.material}"
-
     // ------- androidx
     implementation "androidx.core:core-ktx:${versions.androidx_core}"
-    implementation "androidx.appcompat:appcompat:${versions.appcompat}"
-    implementation "androidx.fragment:fragment-ktx:${versions.fragment_ktx}"
-    implementation "androidx.constraintlayout:constraintlayout:${versions.constraintlayout}"
-    implementation "androidx.recyclerview:recyclerview:${versions.recyclerview}"
 
     // ------- dagger
     implementation "com.google.dagger:dagger:${versions.dagger}"
     kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
 
-    // ------- annotation
-    implementation "javax.annotation:javax.annotation-api:${versions.annotation}"
-
-    // ------- lifecycle
-    implementation "androidx.lifecycle:lifecycle-extensions:${versions.lifecycle}"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.lifecycle}"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:${versions.lifecycle}"
-    implementation "androidx.lifecycle:lifecycle-runtime-ktx:${versions.lifecycle}"
-
-    // ------- navigation
-    implementation "androidx.navigation:navigation-fragment-ktx:${versions.navigation}"
-    implementation "androidx.navigation:navigation-ui-ktx:${versions.navigation}"
+    // ------- gson
+    implementation "com.google.code.gson:gson:${versions.gson}"
 
     // ------- logger
     implementation "com.jakewharton.timber:timber:${versions.timber}"
