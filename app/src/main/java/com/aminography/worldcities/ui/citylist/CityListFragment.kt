@@ -3,7 +3,7 @@ package com.aminography.worldcities.ui.citylist
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.lifecycleScope
-import com.aminography.domain.city.GetCitiesFlowUseCase
+import com.aminography.domain.city.GetCityTreeFlowUseCase
 import com.aminography.model.common.onLoading
 import com.aminography.model.common.onSuccess
 import com.aminography.worldcities.R
@@ -18,7 +18,8 @@ import javax.inject.Inject
 class CityListFragment : BaseFragment(R.layout.fragment_city_list) {
 
     @Inject
-    lateinit var useCase: GetCitiesFlowUseCase
+    lateinit var useCase: GetCityTreeFlowUseCase
+//    lateinit var useCase: GetCityListFlowUseCase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

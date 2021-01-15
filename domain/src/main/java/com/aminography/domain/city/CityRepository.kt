@@ -1,5 +1,6 @@
 package com.aminography.domain.city
 
+import com.aminography.domain.ds.RadixTree
 import com.aminography.model.City
 
 /**
@@ -7,5 +8,7 @@ import com.aminography.model.City
  */
 interface CityRepository {
 
-    suspend fun loadAllCities(): List<City>
+    suspend fun loadCityList(): List<City>
+
+    suspend fun loadCityRadixTree(): RadixTree<City>
 }

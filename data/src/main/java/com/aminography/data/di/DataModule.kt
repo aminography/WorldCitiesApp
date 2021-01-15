@@ -18,14 +18,18 @@ import javax.inject.Singleton
 class DataModule {
 
     @Provides
+    fun providesFileName(): String = "cities.json"
+
+    @Provides
     @Singleton
     fun providesGson(): Gson = GsonBuilder().create()
 
     @Provides
     fun providesCityDataSource(
         context: Context,
-        gson: Gson
-    ): CityDataSource = CityDataSourceImpl(context, gson)
+        gson: Gson,
+        fileName: String
+    ): CityDataSource = CityDataSourceImpl(context, gson, fileName)
 
     @Provides
     fun providesCityRepository(

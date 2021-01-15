@@ -12,13 +12,13 @@ import javax.inject.Inject
 /**
  * @author aminography
  */
-class GetCitiesFlowUseCase @Inject constructor(
+class GetCityListFlowUseCase @Inject constructor(
     private val repository: CityRepository,
     @IoDispatcher dispatcher: CoroutineDispatcher
 ) : BaseFlowUseCase<Unit, List<City>>(dispatcher) {
 
     override fun execute(parameters: Unit): Flow<Result<List<City>>> = flow {
         emit(Result.Loading)
-        emit(Result.Success(repository.loadAllCities()))
+        emit(Result.Success(repository.loadCityList()))
     }
 }
