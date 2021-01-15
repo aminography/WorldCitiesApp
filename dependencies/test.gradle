@@ -1,5 +1,5 @@
 dependencies {
-    // ------- junit jupiter
+    // ------- junit
     testImplementation "org.junit.jupiter:junit-jupiter-api:${versions.junit_jupiter}"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${versions.junit_jupiter}"
 

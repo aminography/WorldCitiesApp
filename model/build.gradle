@@ -1,0 +1,30 @@
+plugins {
+    id 'java-library'
+    id 'kotlin'
+}
+
+apply from: '../dependencies/shared.gradle'
+
+sourceCompatibility = "8"
+targetCompatibility = "8"
+
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+}
+
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    // ------- gson
+    implementation "com.google.code.gson:gson:${versions.gson}"
+
+    // ------- junit
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${versions.junit_jupiter}"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${versions.junit_jupiter}"
+}
