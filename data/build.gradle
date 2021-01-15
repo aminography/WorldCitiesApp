@@ -52,8 +52,8 @@ dependencies {
     implementation "com.google.dagger:dagger:${versions.dagger}"
     kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
 
-    // ------- gson
-    implementation "com.google.code.gson:gson:${versions.gson}"
+    // ------- annotation
+    implementation "javax.annotation:javax.annotation-api:${versions.annotation}"
 
     // ------- logger
     implementation "com.jakewharton.timber:timber:${versions.timber}"

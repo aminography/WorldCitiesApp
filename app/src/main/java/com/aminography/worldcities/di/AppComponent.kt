@@ -1,40 +1,34 @@
 package com.aminography.worldcities.di
 
+import com.aminography.data.di.DataModule
 import com.aminography.domain.di.CoroutinesModule
-import com.aminography.domain.di.DomainComponent
 import com.aminography.worldcities.MainApplication
 import com.aminography.worldcities.di.context.ContextComponent
 import com.aminography.worldcities.ui.citylist.CityListFragment
 import dagger.BindsInstance
 import dagger.Component
+import javax.inject.Singleton
 
 /**
  * @author aminography
  */
 @Component(
-    modules = [CoroutinesModule::class],
-//    dependencies = [DomainComponent::class]
+    modules = [
+        CoroutinesModule::class,
+        DataModule::class
+    ]
 )
-@AppScope
+@Singleton
 interface AppComponent {
 
     fun inject(app: MainApplication)
 
     fun inject(fragment: CityListFragment)
 
-    @Component.Builder
-    interface Builder {
-
-        fun build(): AppComponent
-
-        @BindsInstance
-        fun contextComponent(
-            component: ContextComponent
-        ): Builder
-
-        @BindsInstance
-        fun domainComponent(
-            component: DomainComponent
-        ): Builder
+    @Component.Factory
+    interface Factory {
+        fun create(
+            @BindsInstance contextComponent: ContextComponent
+        ): AppComponent
     }
 }

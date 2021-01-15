@@ -2,7 +2,6 @@ package com.aminography.worldcities
 
 import android.app.Application
 import android.os.StrictMode
-import com.aminography.domain.di.DaggerDomainComponent
 import com.aminography.worldcities.di.AppComponent
 import com.aminography.worldcities.di.AppComponentProvider
 import com.aminography.worldcities.di.DaggerAppComponent
@@ -19,17 +18,10 @@ class MainApplication : Application(), AppComponentProvider {
         if (BuildConfig.DEBUG) enableStrictMode()
         super.onCreate()
 
-        val contextComponent = DaggerContextComponent.builder()
-            .application(this)
-            .build()
+        val contextComponent = DaggerContextComponent.factory().create(this)
 
-        val domainComponent = DaggerDomainComponent.builder()
-            .build()
-
-        appComponent = DaggerAppComponent.builder()
-            .contextComponent(contextComponent)
-            .domainComponent(domainComponent)
-            .build()
+        appComponent = DaggerAppComponent.factory()
+            .create(contextComponent)
             .also { it.inject(this) }
     }
 

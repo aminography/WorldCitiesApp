@@ -2,6 +2,7 @@ package com.aminography.domain.city
 
 import com.aminography.domain.base.BaseFlowUseCase
 import com.aminography.domain.di.DefaultDispatcher
+import com.aminography.model.City
 import com.aminography.model.common.Result
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
@@ -12,11 +13,12 @@ import javax.inject.Inject
  * @author aminography
  */
 class GetCitiesFlowUseCase @Inject constructor(
+    private val repository: CityRepository,
     @DefaultDispatcher dispatcher: CoroutineDispatcher
-) : BaseFlowUseCase<Unit, List<String>>(dispatcher) {
+) : BaseFlowUseCase<Unit, List<City>>(dispatcher) {
 
-    override fun execute(parameters: Unit): Flow<Result<List<String>>> = flow {
+    override fun execute(parameters: Unit): Flow<Result<List<City>>> = flow {
         emit(Result.Loading)
-        emit(Result.Success(listOf("Amsterdam", "Berlin", "Zurich")))
+        emit(Result.Success(repository.getAllCities()))
     }
 }

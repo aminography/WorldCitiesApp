@@ -22,7 +22,7 @@ compileTestKotlin {
 
 dependencies {
     // ------- gson
-    implementation "com.google.code.gson:gson:${versions.gson}"
+    api "com.google.code.gson:gson:${versions.gson}"
 
     // ------- junit
     testImplementation "org.junit.jupiter:junit-jupiter-api:${versions.junit_jupiter}"
