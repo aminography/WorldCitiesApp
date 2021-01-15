@@ -7,5 +7,5 @@ import com.aminography.model.City
  */
 interface CityRepository {
 
-    fun getAllCities(): List<City>
+    suspend fun loadAllCities(): List<City>
 }

@@ -7,5 +7,5 @@ import com.aminography.model.City
  */
 interface CityDataSource {
 
-    fun getAllCities(): List<City>
+    suspend fun loadAllCities(): List<City>
 }

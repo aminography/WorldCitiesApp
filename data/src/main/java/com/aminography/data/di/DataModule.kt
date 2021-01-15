@@ -1,5 +1,6 @@
 package com.aminography.data.di
 
+import android.content.Context
 import com.aminography.data.CityRepositoryImpl
 import com.aminography.data.datasource.CityDataSource
 import com.aminography.data.datasource.CityDataSourceImpl
@@ -22,8 +23,9 @@ class DataModule {
 
     @Provides
     fun providesCityDataSource(
+        context: Context,
         gson: Gson
-    ): CityDataSource = CityDataSourceImpl(gson)
+    ): CityDataSource = CityDataSourceImpl(context, gson)
 
     @Provides
     fun providesCityRepository(

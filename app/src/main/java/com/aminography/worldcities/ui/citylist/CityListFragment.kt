@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.lifecycleScope
 import com.aminography.domain.city.GetCitiesFlowUseCase
+import com.aminography.model.common.onLoading
+import com.aminography.model.common.onSuccess
 import com.aminography.worldcities.R
 import com.aminography.worldcities.ui.base.BaseFragment
 import kotlinx.coroutines.flow.collect
@@ -26,7 +28,8 @@ class CityListFragment : BaseFragment(R.layout.fragment_city_list) {
     override fun onInitViews(rootView: View, savedInstanceState: Bundle?) {
         lifecycleScope.launch {
             useCase(Unit).collect {
-                println("XXXXXXXXXXXXXXXXX  $it")
+                it.onLoading { println("XXXXXXXXXXXXXXXXX  $it") }
+                    .onSuccess { println("XXXXXXXXXXXXXXXXX  ${it?.size}") }
             }
         }
     }

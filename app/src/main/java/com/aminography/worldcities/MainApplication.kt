@@ -5,7 +5,6 @@ import android.os.StrictMode
 import com.aminography.worldcities.di.AppComponent
 import com.aminography.worldcities.di.AppComponentProvider
 import com.aminography.worldcities.di.DaggerAppComponent
-import com.aminography.worldcities.di.context.DaggerContextComponent
 
 /**
  * @author aminography
@@ -18,10 +17,8 @@ class MainApplication : Application(), AppComponentProvider {
         if (BuildConfig.DEBUG) enableStrictMode()
         super.onCreate()
 
-        val contextComponent = DaggerContextComponent.factory().create(this)
-
         appComponent = DaggerAppComponent.factory()
-            .create(contextComponent)
+            .create(applicationContext)
             .also { it.inject(this) }
     }
 

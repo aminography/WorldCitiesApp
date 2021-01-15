@@ -8,10 +8,10 @@ import javax.inject.Inject
 /**
  * @author aminography
  */
-class CityRepositoryImpl @Inject constructor(
+internal class CityRepositoryImpl @Inject constructor(
     private val dataSource: CityDataSource
 ) : CityRepository {
 
-    override fun getAllCities(): List<City> =
-        dataSource.getAllCities()
+    override suspend fun loadAllCities(): List<City> =
+        dataSource.loadAllCities()
 }
