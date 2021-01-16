@@ -14,7 +14,8 @@ class MinimalRadixTree<T> : RadixTree<T> {
         private set
 
     override fun insert(key: String, value: T, replace: Boolean) {
-        if (insert(key, value, replace, root)) size++
+        size++
+        insert(key, value, replace, root)
     }
 
     private fun insert(key: String, value: T, replace: Boolean, node: TreeNode<T>): Boolean {
@@ -56,6 +57,7 @@ class MinimalRadixTree<T> : RadixTree<T> {
         } else if (lcs == key.length && lcs == node.key.length) {
             if (node.value != null) {
                 if (replace) node.value = value
+                size--
                 return false
             }
             node.value = value

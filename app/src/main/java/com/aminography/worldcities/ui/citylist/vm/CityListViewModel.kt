@@ -8,6 +8,7 @@ import com.aminography.model.common.onError
 import com.aminography.model.common.onLoading
 import com.aminography.model.common.onSuccess
 import com.aminography.worldcities.MainApplication
+import com.aminography.worldcities.R
 import com.aminography.worldcities.ui.citylist.adapter.CityItemDataHolder
 import com.aminography.worldcities.ui.citylist.adapter.toCityItemDataHolder
 import kotlinx.coroutines.CoroutineDispatcher
@@ -31,6 +32,9 @@ class CityListViewModel(
     private val _errorMessage = MutableLiveData<String>()
     val errorMessage: LiveData<String> = _errorMessage
 
+    private val _resultMessage = MutableLiveData<String>()
+    val resultMessage: LiveData<String> = _resultMessage
+
     val queryCities: LiveData<List<CityItemDataHolder>> =
         queryLiveData.switchMap { query ->
             liveData {
@@ -38,12 +42,25 @@ class CityListViewModel(
                     .mapListInResult { it.toCityItemDataHolder() }
                     .flowOn(defaultDispatcher)
                     .collect { result ->
-                        result.onLoading { _loading.postValue(true) }
-                            .onError { _errorMessage.postValue(it?.message ?: it.toString()) }
-                            .onSuccess {
-                                _loading.postValue(false)
-                                emit(it ?: listOf<CityItemDataHolder>())
-                            }
+                        result.onLoading {
+                            _loading.postValue(true)
+                            _resultMessage.postValue(
+                                getApplication<Application>().getString(
+                                    R.string.loading
+                                )
+                            )
+                        }.onError {
+                            _errorMessage.postValue(it?.message ?: it.toString())
+                        }.onSuccess {
+                            _loading.postValue(false)
+                            _resultMessage.postValue(
+                                getApplication<Application>().getString(
+                                    R.string.x_results_found,
+                                    it?.size ?: 0
+                                )
+                            )
+                            emit(it ?: listOf<CityItemDataHolder>())
+                        }
                     }
             }
         }

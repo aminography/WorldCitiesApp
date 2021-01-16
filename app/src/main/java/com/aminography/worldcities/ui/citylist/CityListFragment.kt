@@ -41,9 +41,11 @@ class CityListFragment : BaseFragment<FragmentCityListBinding>(), OnListItemClic
     ): FragmentCityListBinding = FragmentCityListBinding.inflate(inflater, container, false)
 
     override fun onInitViews(rootView: View, savedInstanceState: Bundle?) {
-        viewModel.queryCities.observe(viewLifecycleOwner) { adapter.submitList(it) }
-        viewModel.loading.observe(viewLifecycleOwner) { binding.progressBar.run { if (it) show() else hide() } }
-        viewModel.errorMessage.observe(viewLifecycleOwner) { context?.toast(it) }
+        val owner = viewLifecycleOwner
+        viewModel.queryCities.observe(owner) { adapter.submitList(it) }
+        viewModel.errorMessage.observe(owner) { context?.toast(it) }
+        viewModel.loading.observe(owner) { binding.progressBar.run { if (it) show() else hide() } }
+        viewModel.resultMessage.observe(owner) { binding.resultsTextView.text = it }
 
         binding.searchEditText.addTextChangedListener {
             viewModel.setQuery(it.toString())
