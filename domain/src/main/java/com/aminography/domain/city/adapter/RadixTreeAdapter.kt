@@ -1,7 +1,7 @@
 package com.aminography.domain.city.adapter
 
-import com.aminography.domain.ds.RadixTree
-import com.aminography.model.City
+import com.aminography.domain.city.ds.RadixTree
+import com.aminography.model.city.City
 import java.util.*
 
 /**

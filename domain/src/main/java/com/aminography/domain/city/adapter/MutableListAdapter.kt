@@ -1,6 +1,6 @@
 package com.aminography.domain.city.adapter
 
-import com.aminography.model.City
+import com.aminography.model.city.City
 
 /**
  * @author aminography

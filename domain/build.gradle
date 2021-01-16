@@ -25,6 +25,7 @@ compileTestKotlin {
 dependencies {
     // ------- architecture
     api project(':model')
+    implementation project(':scope')
 
     // ------- coroutine
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.coroutine}"

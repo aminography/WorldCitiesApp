@@ -1,4 +1,4 @@
-package com.aminography.model
+package com.aminography.model.city
 
 import com.google.gson.annotations.SerializedName
 

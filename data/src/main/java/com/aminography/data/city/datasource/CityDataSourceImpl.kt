@@ -5,9 +5,9 @@ import com.aminography.data.util.*
 import com.aminography.domain.city.adapter.Inserter
 import com.aminography.domain.city.adapter.MutableListAdapter
 import com.aminography.domain.city.adapter.RadixTreeAdapter
-import com.aminography.domain.ds.MinimalRadixTree
-import com.aminography.domain.ds.RadixTree
-import com.aminography.model.City
+import com.aminography.domain.city.ds.MinimalRadixTree
+import com.aminography.domain.city.ds.RadixTree
+import com.aminography.model.city.City
 import com.google.gson.Gson
 import javax.inject.Inject
 

@@ -1,7 +1,7 @@
 package com.aminography.data.city.datasource
 
-import com.aminography.domain.ds.RadixTree
-import com.aminography.model.City
+import com.aminography.domain.city.ds.RadixTree
+import com.aminography.model.city.City
 
 /**
  * @author aminography

@@ -2,8 +2,8 @@ package com.aminography.data.city
 
 import com.aminography.data.city.datasource.CityDataSource
 import com.aminography.domain.city.CityRepository
-import com.aminography.domain.ds.RadixTree
-import com.aminography.model.City
+import com.aminography.domain.city.ds.RadixTree
+import com.aminography.model.city.City
 import javax.inject.Inject
 
 /**

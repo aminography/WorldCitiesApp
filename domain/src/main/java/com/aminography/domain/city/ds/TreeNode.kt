@@ -1,4 +1,4 @@
-package com.aminography.domain.ds
+package com.aminography.domain.city.ds
 
 /**
  * @author aminography

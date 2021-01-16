@@ -27,9 +27,5 @@ interface CityListComponent {
 
         @BindsInstance
         fun cityListFragment(fragment: CityListFragment): Builder
-
-        fun cityListModule(module: CityListModule): Builder
-
-        fun cityDataModule(module: CityDataModule): Builder
     }
 }
