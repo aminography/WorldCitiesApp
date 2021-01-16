@@ -1,26 +1,25 @@
 package com.aminography.domain.city
 
-import com.aminography.domain.base.BaseFlowUseCase
+import com.aminography.domain.base.BaseUseCase
 import com.aminography.domain.di.IoDispatcher
 import com.aminography.model.city.City
 import com.aminography.model.common.Result
 import com.aminography.scope.CityListScope
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 /**
  * @author aminography
  */
 @CityListScope
-class GetCityListFlowUseCase @Inject constructor(
+class GetCityListUseCase @Inject constructor(
     private val repository: CityRepository,
     @IoDispatcher dispatcher: CoroutineDispatcher
-) : BaseFlowUseCase<Unit, List<City>>(dispatcher) {
+) : BaseUseCase<Unit, List<City>>(dispatcher) {
 
-    override fun execute(parameters: Unit): Flow<Result<List<City>>> = flow {
-        emit(Result.Loading)
-        emit(Result.Success(repository.loadCityList()))
-    }
+    private var cache: List<City>? = null
+
+    override suspend fun execute(parameters: Unit): Result<List<City>> =
+        (cache ?: repository.loadCityList().also { cache = it })
+            .let { Result.Success(it) }
 }

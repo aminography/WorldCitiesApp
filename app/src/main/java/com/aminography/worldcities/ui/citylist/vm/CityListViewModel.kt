@@ -2,8 +2,7 @@ package com.aminography.worldcities.ui.citylist.vm
 
 import android.app.Application
 import androidx.lifecycle.*
-import com.aminography.domain.city.GetCityTreeFlowUseCase
-import com.aminography.domain.city.ds.RadixTree
+import com.aminography.domain.city.SearchCityRadixUseCase
 import com.aminography.model.city.City
 import com.aminography.model.common.onError
 import com.aminography.model.common.onLoading
@@ -19,7 +18,7 @@ import kotlinx.coroutines.flow.flowOn
 class CityListViewModel(
     application: Application,
     defaultDispatcher: CoroutineDispatcher,
-    getCityTreeFlowUseCase: GetCityTreeFlowUseCase
+    searchCityRadixUseCase: SearchCityRadixUseCase
 ) : AndroidViewModel(application) {
 
     private val queryLiveData = MutableLiveData<String>()
@@ -30,10 +29,10 @@ class CityListViewModel(
     private val _errorMessage = MutableLiveData<String>()
     val errorMessage: LiveData<String> = _errorMessage
 
-    val queryCities: LiveData<RadixTree<City>> =
+    val queryCities: LiveData<List<City>> =
         queryLiveData.switchMap { query ->
             liveData {
-                getCityTreeFlowUseCase(Unit) // query
+                searchCityRadixUseCase(query)
                     .flowOn(defaultDispatcher)
                     .collect { result ->
                         result.onLoading { _loadingMessage.postValue(true) }

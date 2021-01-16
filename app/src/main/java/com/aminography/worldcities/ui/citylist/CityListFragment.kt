@@ -22,10 +22,12 @@ class CityListFragment : BaseFragment(R.layout.fragment_city_list) {
     }
 
     override fun onInitViews(rootView: View, savedInstanceState: Bundle?) {
-        viewModel.queryCities.observe(viewLifecycleOwner) { println("XXX Success:  ${it?.size}") }
-        viewModel.loadingMessage.observe(viewLifecycleOwner) { println("XXX Loading:  $it") }
-        viewModel.errorMessage.observe(viewLifecycleOwner) { println("XXX Error:  $it") }
+        viewModel.queryCities.observe(viewLifecycleOwner) { println("XXX Success: ${it?.size} : ${it.random()}") }
+        viewModel.loadingMessage.observe(viewLifecycleOwner) { println("XXX Loading: $it") }
+        viewModel.errorMessage.observe(viewLifecycleOwner) { println("XXX Error: $it") }
 
-        viewModel.setQuery("")
+        viewModel.setQuery("*")
+
+        viewModel.setQuery("Rio")
     }
 }

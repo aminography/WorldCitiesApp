@@ -12,6 +12,7 @@ import com.aminography.worldcities.ui.citylist.di.CityListComponent
 class MainApplication : Application() {
 
     lateinit var appComponent: AppComponent
+        private set
 
     var cityListComponent: CityListComponent? = null
 
