@@ -1,4 +1,4 @@
-package com.aminography.data.util
+package com.aminography.data.city
 
 /**
  * @author aminography
