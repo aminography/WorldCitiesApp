@@ -18,8 +18,8 @@ import kotlinx.coroutines.flow.flowOn
  */
 class CityListViewModel(
     application: Application,
-    private val defaultDispatcher: CoroutineDispatcher,
-    private val getCityTreeFlowUseCase: GetCityTreeFlowUseCase
+    defaultDispatcher: CoroutineDispatcher,
+    getCityTreeFlowUseCase: GetCityTreeFlowUseCase
 ) : AndroidViewModel(application) {
 
     private val queryLiveData = MutableLiveData<String>()
