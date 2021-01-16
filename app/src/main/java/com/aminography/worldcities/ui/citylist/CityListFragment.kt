@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
 import com.aminography.worldcities.databinding.FragmentCityListBinding
 import com.aminography.worldcities.ui.base.BaseFragment
 import com.aminography.worldcities.ui.base.adapter.BaseDataHolder
@@ -11,6 +12,7 @@ import com.aminography.worldcities.ui.base.adapter.OnListItemClickListener
 import com.aminography.worldcities.ui.citylist.adapter.CityListAdapter
 import com.aminography.worldcities.ui.citylist.di.injectComponent
 import com.aminography.worldcities.ui.citylist.vm.CityListViewModel
+import com.aminography.worldcities.ui.util.toast
 import javax.inject.Inject
 
 /**
@@ -40,12 +42,12 @@ class CityListFragment : BaseFragment<FragmentCityListBinding>(), OnListItemClic
 
     override fun onInitViews(rootView: View, savedInstanceState: Bundle?) {
         viewModel.queryCities.observe(viewLifecycleOwner) { adapter.submitList(it) }
-        viewModel.loadingMessage.observe(viewLifecycleOwner) { println("XXX Loading: $it") }
-        viewModel.errorMessage.observe(viewLifecycleOwner) { println("XXX Error: $it") }
+        viewModel.loading.observe(viewLifecycleOwner) { binding.progressBar.run { if (it) show() else hide() } }
+        viewModel.errorMessage.observe(viewLifecycleOwner) { context?.toast(it) }
 
-        viewModel.setQuery("*")
-
-        viewModel.setQuery("Rio")
+        binding.searchEditText.addTextChangedListener {
+            viewModel.setQuery(it.toString())
+        }
     }
 
     override fun onItemClicked(dataHolder: BaseDataHolder) {

@@ -25,8 +25,8 @@ class CityListViewModel(
 
     private val queryLiveData = MutableLiveData<String>()
 
-    private val _loadingMessage = MutableLiveData<Boolean>()
-    val loadingMessage: LiveData<Boolean> = _loadingMessage
+    private val _loading = MutableLiveData<Boolean>()
+    val loading: LiveData<Boolean> = _loading
 
     private val _errorMessage = MutableLiveData<String>()
     val errorMessage: LiveData<String> = _errorMessage
@@ -38,9 +38,12 @@ class CityListViewModel(
                     .mapListInResult { it.toCityItemDataHolder() }
                     .flowOn(defaultDispatcher)
                     .collect { result ->
-                        result.onLoading { _loadingMessage.postValue(true) }
-                            .onSuccess { emit(it ?: listOf<CityItemDataHolder>()) }
+                        result.onLoading { _loading.postValue(true) }
                             .onError { _errorMessage.postValue(it?.message ?: it.toString()) }
+                            .onSuccess {
+                                _loading.postValue(false)
+                                emit(it ?: listOf<CityItemDataHolder>())
+                            }
                     }
             }
         }
@@ -52,5 +55,9 @@ class CityListViewModel(
     override fun onCleared() {
         super.onCleared()
         getApplication<MainApplication>().cityListComponent = null
+    }
+
+    init {
+        setQuery("")
     }
 }
