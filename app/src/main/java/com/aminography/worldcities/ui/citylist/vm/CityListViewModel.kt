@@ -3,11 +3,13 @@ package com.aminography.worldcities.ui.citylist.vm
 import android.app.Application
 import androidx.lifecycle.*
 import com.aminography.domain.city.SearchCityRadixUseCase
-import com.aminography.model.city.City
+import com.aminography.domain.util.mapListInResult
 import com.aminography.model.common.onError
 import com.aminography.model.common.onLoading
 import com.aminography.model.common.onSuccess
 import com.aminography.worldcities.MainApplication
+import com.aminography.worldcities.ui.citylist.adapter.CityItemDataHolder
+import com.aminography.worldcities.ui.citylist.adapter.toCityItemDataHolder
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flowOn
@@ -29,14 +31,15 @@ class CityListViewModel(
     private val _errorMessage = MutableLiveData<String>()
     val errorMessage: LiveData<String> = _errorMessage
 
-    val queryCities: LiveData<List<City>> =
+    val queryCities: LiveData<List<CityItemDataHolder>> =
         queryLiveData.switchMap { query ->
             liveData {
                 searchCityRadixUseCase(query)
+                    .mapListInResult { it.toCityItemDataHolder() }
                     .flowOn(defaultDispatcher)
                     .collect { result ->
                         result.onLoading { _loadingMessage.postValue(true) }
-                            .onSuccess { emit(it!!) }
+                            .onSuccess { emit(it ?: listOf<CityItemDataHolder>()) }
                             .onError { _errorMessage.postValue(it?.message ?: it.toString()) }
                     }
             }

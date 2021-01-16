@@ -33,10 +33,7 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
         _binding = null
     }
 
-    abstract fun inflateBinding(
-        inflater: LayoutInflater,
-        container: ViewGroup?
-    ): VB
+    abstract fun inflateBinding(inflater: LayoutInflater, container: ViewGroup?): VB
 
     /**
      * Called when the view hierarchy is created.
