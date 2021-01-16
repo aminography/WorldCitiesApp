@@ -1,8 +1,10 @@
 package com.aminography.worldcities.ui.citylist
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
-import com.aminography.worldcities.R
+import android.view.ViewGroup
+import com.aminography.worldcities.databinding.FragmentCityListBinding
 import com.aminography.worldcities.ui.base.BaseFragment
 import com.aminography.worldcities.ui.citylist.di.injectComponent
 import com.aminography.worldcities.ui.citylist.vm.CityListViewModel
@@ -11,7 +13,7 @@ import javax.inject.Inject
 /**
  * @author aminography
  */
-class CityListFragment : BaseFragment(R.layout.fragment_city_list) {
+class CityListFragment : BaseFragment<FragmentCityListBinding>() {
 
     @Inject
     lateinit var viewModel: CityListViewModel
@@ -20,6 +22,11 @@ class CityListFragment : BaseFragment(R.layout.fragment_city_list) {
         super.onCreate(savedInstanceState)
         injectComponent()
     }
+
+    override fun inflateBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ): FragmentCityListBinding = FragmentCityListBinding.inflate(inflater, container, false)
 
     override fun onInitViews(rootView: View, savedInstanceState: Bundle?) {
         viewModel.queryCities.observe(viewLifecycleOwner) { println("XXX Success: ${it?.size} : ${it.random()}") }
