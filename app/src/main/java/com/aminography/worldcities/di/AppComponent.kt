@@ -13,6 +13,7 @@ import dagger.Component
 @AppScope
 @Component(
     modules = [
+        AppModule::class,
         CoroutinesModule::class
     ]
 )

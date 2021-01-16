@@ -17,7 +17,3 @@ fun CityListFragment.injectComponent() {
             .inject(this)
     }
 }
-
-fun CityListFragment.clearComponent() {
-    application?.cityListComponent = null
-}
