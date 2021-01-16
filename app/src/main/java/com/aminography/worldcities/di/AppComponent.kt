@@ -1,10 +1,8 @@
 package com.aminography.worldcities.di
 
 import android.content.Context
-import com.aminography.data.di.DataModule
 import com.aminography.domain.di.CoroutinesModule
-import com.aminography.worldcities.MainApplication
-import com.aminography.worldcities.ui.citylist.CityListFragment
+import com.aminography.worldcities.ui.citylist.di.CityListComponent
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -12,18 +10,15 @@ import javax.inject.Singleton
 /**
  * @author aminography
  */
+@Singleton
 @Component(
     modules = [
-        CoroutinesModule::class,
-        DataModule::class
+        CoroutinesModule::class
     ]
 )
-@Singleton
 interface AppComponent {
 
-    fun inject(app: MainApplication)
-
-    fun inject(fragment: CityListFragment)
+    fun plusCityListComponent(): CityListComponent.Builder
 
     @Component.Factory
     interface Factory {

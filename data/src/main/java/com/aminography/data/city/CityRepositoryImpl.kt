@@ -1,6 +1,6 @@
-package com.aminography.data
+package com.aminography.data.city
 
-import com.aminography.data.datasource.CityDataSource
+import com.aminography.data.city.datasource.CityDataSource
 import com.aminography.domain.city.CityRepository
 import com.aminography.domain.ds.RadixTree
 import com.aminography.model.City

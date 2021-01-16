@@ -45,6 +45,7 @@ dependencies {
     // ------- architecture
     implementation project(':domain')
     implementation project(':data')
+    implementation project(':scope')
 
     // ------- coroutine
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.coroutine}"
@@ -63,9 +64,6 @@ dependencies {
     // ------- dagger
     implementation "com.google.dagger:dagger:${versions.dagger}"
     kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
-
-    // ------- annotation
-    implementation "javax.annotation:javax.annotation-api:${versions.annotation}"
 
     // ------- lifecycle
     implementation "androidx.lifecycle:lifecycle-extensions:${versions.lifecycle}"

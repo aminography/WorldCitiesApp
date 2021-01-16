@@ -1,4 +1,4 @@
-package com.aminography.data.datasource
+package com.aminography.data.city.datasource
 
 import com.aminography.domain.ds.RadixTree
 import com.aminography.model.City

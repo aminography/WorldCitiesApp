@@ -6,8 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
-import com.aminography.worldcities.di.AppComponent
-import com.aminography.worldcities.di.appComponent
 
 /**
  * @author aminography
@@ -15,9 +13,6 @@ import com.aminography.worldcities.di.appComponent
 abstract class BaseFragment(
     @LayoutRes private val layoutResId: Int
 ) : Fragment() {
-
-    protected val appComponent: AppComponent
-        get() = requireActivity().appComponent
 
     protected lateinit var rootView: View
 
