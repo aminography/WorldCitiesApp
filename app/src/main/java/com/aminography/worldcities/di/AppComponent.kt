@@ -2,15 +2,15 @@ package com.aminography.worldcities.di
 
 import android.content.Context
 import com.aminography.domain.di.CoroutinesModule
+import com.aminography.scope.AppScope
 import com.aminography.worldcities.ui.citylist.di.CityListComponent
 import dagger.BindsInstance
 import dagger.Component
-import javax.inject.Singleton
 
 /**
  * @author aminography
  */
-@Singleton
+@AppScope
 @Component(
     modules = [
         CoroutinesModule::class
