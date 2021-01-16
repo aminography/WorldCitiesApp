@@ -13,13 +13,13 @@ import javax.inject.Inject
  */
 class CityListViewModelFactory @Inject constructor(
     private val application: Application,
-    @DefaultDispatcher private val defaultDispatcher: CoroutineDispatcher,
-    private val searchCityRadixUseCase: SearchCityRadixUseCase
+    private val searchCityRadixUseCase: SearchCityRadixUseCase,
+    @DefaultDispatcher private val defaultDispatcher: CoroutineDispatcher
 ) : ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")
-    override fun <VM : ViewModel?> create(modelClass: Class<VM>): VM {
-        if (modelClass != CityListViewModel::class.java) {
+    override fun <VM : ViewModel> create(clazz: Class<VM>): VM {
+        if (clazz != CityListViewModel::class.java) {
             throw IllegalArgumentException("Unknown ViewModel class")
         }
         return CityListViewModel(application, defaultDispatcher, searchCityRadixUseCase) as VM

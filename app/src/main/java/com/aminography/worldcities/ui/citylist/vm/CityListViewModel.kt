@@ -43,7 +43,7 @@ class CityListViewModel(
         }
 
     fun setQuery(query: String) {
-        queryLiveData.postValue(query)
+        queryLiveData.postValue(if (query.isBlank()) "*" else query)
     }
 
     override fun onCleared() {
