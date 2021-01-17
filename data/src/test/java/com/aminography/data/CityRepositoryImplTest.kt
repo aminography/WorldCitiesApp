@@ -6,7 +6,6 @@ import com.aminography.data.city.CityRepositoryImpl
 import com.aminography.data.city.datasource.CityDataSource
 import com.aminography.data.city.paging.PagingFactory
 import com.aminography.model.city.City
-import com.aminography.model.city.Coordination
 import com.aminography.model.city.key
 import io.mockk.coEvery
 import io.mockk.coVerifySequence
@@ -29,14 +28,6 @@ class CityRepositoryImplTest : CoroutineTest() {
 
     private val cityDataSource: CityDataSource = mockk()
     private val pagingFactory: PagingFactory<City> = mockk()
-
-    private val cities = arrayListOf(
-        City(0, "Alabama", "US", Coordination(0.0, 0.0)),
-        City(1, "Albuquerque", "US", Coordination(0.0, 0.0)),
-        City(2, "Anaheim", "US", Coordination(0.0, 0.0)),
-        City(3, "Arizona", "US", Coordination(0.0, 0.0)),
-        City(4, "Sydney", "AU", Coordination(0.0, 0.0)),
-    )
 
     @Test
     fun `loading distinct cities should insert all of them into tree`() = runBlockingTest {

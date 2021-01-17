@@ -5,7 +5,6 @@ import com.aminography.data.city.datasource.CityDataSourceImpl
 import com.aminography.data.city.datasource.JsonRetriever
 import com.aminography.domain.city.adapter.Inserter
 import com.aminography.model.city.City
-import com.aminography.model.city.Coordination
 import io.mockk.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.jupiter.api.Assertions
@@ -21,14 +20,6 @@ class CityDataSourceImplTest : CoroutineTest() {
 
     private val jsonRetriever: JsonRetriever = mockk()
     private val fileName: String = "test"
-
-    private val cities = arrayListOf(
-        City(0, "Alabama", "US", Coordination(0.0, 0.0)),
-        City(1, "Albuquerque", "US", Coordination(0.0, 0.0)),
-        City(2, "Anaheim", "US", Coordination(0.0, 0.0)),
-        City(3, "Arizona", "US", Coordination(0.0, 0.0)),
-        City(4, "Sydney", "AU", Coordination(0.0, 0.0)),
-    )
 
     @Test
     fun `load list of cities`() = runBlockingTest {
