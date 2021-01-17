@@ -33,7 +33,7 @@ class MinimalRadixTreeTest {
         // When
         tree.insert("1", 1)
         tree.insert("1", 2)
-        val result = tree.searchPrefix("")
+        val result = tree.toList()
 
         // Then
         assertEquals(tree.size, 1)
@@ -49,7 +49,7 @@ class MinimalRadixTreeTest {
         // When
         tree.insert("1", 1)
         tree.insert("1", 2, true)
-        val result = tree.searchPrefix("")
+        val result = tree.toList()
 
         // Then
         assertEquals(tree.size, 1)
@@ -64,7 +64,7 @@ class MinimalRadixTreeTest {
 
         // When
         expected.forEach { tree.insert(it, it) }
-        val result = tree.searchPrefix("")
+        val result = tree.toList()
 
         // Then
         assertEquals(result, expected)

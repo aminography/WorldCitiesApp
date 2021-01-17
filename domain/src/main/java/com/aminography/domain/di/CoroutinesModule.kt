@@ -13,13 +13,13 @@ class CoroutinesModule {
 
     @Provides
     @DefaultDispatcher
-    fun providesDefaultDispatcher(): CoroutineDispatcher = Dispatchers.Default
+    internal fun providesDefaultDispatcher(): CoroutineDispatcher = Dispatchers.Default
 
     @Provides
     @IoDispatcher
-    fun providesIoDispatcher(): CoroutineDispatcher = Dispatchers.IO
+    internal fun providesIoDispatcher(): CoroutineDispatcher = Dispatchers.IO
 
     @Provides
     @MainDispatcher
-    fun providesMainDispatcher(): CoroutineDispatcher = Dispatchers.Main
+    internal fun providesMainDispatcher(): CoroutineDispatcher = Dispatchers.Main
 }

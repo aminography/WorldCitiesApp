@@ -13,4 +13,6 @@ interface CityRepository {
     suspend fun loadCities(): RadixTree<City>
 
     fun searchCities(query: String): Flow<PagingData<City>>
+
+    fun clearCache()
 }

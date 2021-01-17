@@ -8,7 +8,7 @@ import kotlin.collections.HashSet
 /**
  * @author aminography
  */
-class MinimalRadixTree<T> : RadixTree<T> {
+class MinimalRadixTree<T>() : RadixTree<T> {
 
     private var root: TreeNode<T> = TreeNode()
 
@@ -76,6 +76,8 @@ class MinimalRadixTree<T> : RadixTree<T> {
         }
         return true
     }
+
+    override fun toList(): List<T> = searchPrefix("")
 
     override fun searchPrefix(prefix: String, offset: Int, limit: Int): List<T> {
         return findPrefixRoot(prefix)?.let {

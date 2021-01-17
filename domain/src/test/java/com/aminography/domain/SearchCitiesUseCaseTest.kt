@@ -30,9 +30,9 @@ class SearchCitiesUseCaseTest : CoroutineTest() {
         // Given
         val queryLowerCase = "test"
         val queryMixedCase = "TeSt"
-        val pagingData = PagingData.empty<City>()
+        val expected = PagingData.empty<City>()
 
-        every { cityRepository.searchCities(queryLowerCase) } returns flowOf(pagingData)
+        every { cityRepository.searchCities(queryLowerCase) } returns flowOf(expected)
 
         val useCase = SearchCitiesUseCase(cityRepository, testDispatcher)
 
@@ -41,7 +41,7 @@ class SearchCitiesUseCaseTest : CoroutineTest() {
 
         // Then
         assertEquals(result.size, 1)
-        assertSame(result[0], pagingData)
+        assertSame(result[0], expected)
 
         verifySequence {
             cityRepository.searchCities(queryLowerCase)

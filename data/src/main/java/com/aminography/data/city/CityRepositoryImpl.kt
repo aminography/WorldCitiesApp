@@ -1,9 +1,8 @@
 package com.aminography.data.city
 
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.aminography.data.city.datasource.CityDataSource
+import com.aminography.data.city.paging.PagingFactory
 import com.aminography.domain.city.CityRepository
 import com.aminography.domain.city.ds.MinimalRadixTree
 import com.aminography.domain.city.ds.RadixTree
@@ -18,8 +17,7 @@ import javax.inject.Inject
  */
 internal class CityRepositoryImpl @Inject constructor(
     private val dataSource: CityDataSource,
-    private val pageSize: Int,
-    private val initialLoadSize: Int
+    private val pagingFactory: PagingFactory<City>
 ) : CityRepository {
 
     private var cache: RadixTree<City>? = null
@@ -38,8 +36,10 @@ internal class CityRepositoryImpl @Inject constructor(
 
     override fun searchCities(query: String): Flow<PagingData<City>> {
         return if (cache == null) flowOf(PagingData.empty())
-        else Pager(PagingConfig(pageSize = pageSize, initialLoadSize = initialLoadSize)) {
-            SearchTreePagingSource(cache!!, query)
-        }.flow
+        else pagingFactory.createPagingDataFlow(cache!!, query)
+    }
+
+    override fun clearCache() {
+        cache = null
     }
 }
