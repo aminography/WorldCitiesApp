@@ -1,4 +1,4 @@
-package com.aminography.data.city
+package com.aminography.data.city.paging
 
 import androidx.paging.PagingSource
 import com.aminography.domain.city.ds.RadixTree
@@ -6,7 +6,7 @@ import com.aminography.domain.city.ds.RadixTree
 /**
  * @author aminography
  */
-class SearchTreePagingSource<T : Any>(
+internal class SearchTreePagingSource<T : Any>(
     private val radixTree: RadixTree<T>,
     private val query: String
 ) : PagingSource<Int, T>() {

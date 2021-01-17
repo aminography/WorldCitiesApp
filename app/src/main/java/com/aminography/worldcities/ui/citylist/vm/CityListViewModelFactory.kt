@@ -3,6 +3,7 @@ package com.aminography.worldcities.ui.citylist.vm
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.aminography.domain.city.ClearCitiesCacheUseCase
 import com.aminography.domain.city.LoadCitiesUseCase
 import com.aminography.domain.city.SearchCitiesUseCase
 import com.aminography.domain.di.DefaultDispatcher
@@ -16,6 +17,7 @@ class CityListViewModelFactory @Inject constructor(
     private val application: Application,
     private val loadCitiesUseCase: LoadCitiesUseCase,
     private val searchCitiesUseCase: SearchCitiesUseCase,
+    private val clearCitiesCacheUseCase: ClearCitiesCacheUseCase,
     @DefaultDispatcher private val defaultDispatcher: CoroutineDispatcher
 ) : ViewModelProvider.Factory {
 
@@ -28,7 +30,8 @@ class CityListViewModelFactory @Inject constructor(
             application,
             defaultDispatcher,
             loadCitiesUseCase,
-            searchCitiesUseCase
+            searchCitiesUseCase,
+            clearCitiesCacheUseCase
         ) as VM
     }
 }

@@ -6,7 +6,7 @@ import com.aminography.model.city.City
 /**
  * @author aminography
  */
-interface CityDataSource {
+internal interface CityDataSource {
 
     suspend fun loadCityList(): List<City>
 

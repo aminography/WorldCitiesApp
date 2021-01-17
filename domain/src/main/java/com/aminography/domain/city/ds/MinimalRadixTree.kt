@@ -1,12 +1,14 @@
 package com.aminography.domain.city.ds
 
+import androidx.annotation.VisibleForTesting
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.collections.HashSet
 
 /**
  * @author aminography
  */
-class MinimalRadixTree<T> : RadixTree<T> {
+class MinimalRadixTree<T>() : RadixTree<T> {
 
     private var root: TreeNode<T> = TreeNode()
 
@@ -75,17 +77,12 @@ class MinimalRadixTree<T> : RadixTree<T> {
         return true
     }
 
+    override fun toList(): List<T> = searchPrefix("")
+
     override fun searchPrefix(prefix: String, offset: Int, limit: Int): List<T> {
-        var skipped = 0
-        val result = ArrayList<T>()
-        findPrefixRoot(prefix)?.run {
-            value?.let {
-                if (skipped < offset) skipped++
-                else result.add(it)
-            }
-            exploreChildrenValuesViaBFS(this, result, offset, limit, skipped)
-        }
-        return result
+        return findPrefixRoot(prefix)?.let {
+            exploreChildrenValuesViaDFS(it, offset, limit)
+        } ?: listOf()
     }
 
     private fun findPrefixRoot(key: String): TreeNode<T>? {
@@ -114,26 +111,33 @@ class MinimalRadixTree<T> : RadixTree<T> {
         return result
     }
 
-    private fun exploreChildrenValuesViaBFS(
+    private fun exploreChildrenValuesViaDFS(
         root: TreeNode<T>,
-        result: MutableList<T>,
         offset: Int,
-        limit: Int,
-        skippedUntil: Int
-    ) {
-        var skipped = skippedUntil
-        val queue = LinkedList<TreeNode<T>>()
-        root.children?.let { queue.addAll(it) }
-        while (queue.isNotEmpty() && result.size < limit) {
-            queue.remove().run {
-                value?.let {
+        limit: Int
+    ): ArrayList<T> {
+        var skipped = 0
+        val stack = Stack<TreeNode<T>>()
+        val visited = HashSet<TreeNode<T>>()
+        val result = ArrayList<T>()
+
+        stack.push(root)
+        while (stack.isNotEmpty() && result.size < limit) {
+            val node = stack.pop()
+            if (!visited.contains(node)) {
+                visited.add(node)
+
+                node.value?.let {
                     if (skipped < offset) skipped++
                     else result.add(it)
                 }
-                children?.let { queue.addAll(it) }
+                node.children?.let {
+                    for (i in it.size - 1 downTo 0) stack.push(it[i])
+                }
             }
         }
-        queue.clear()
+        stack.clear()
+        return result
     }
 
     private fun longestCommonPrefix(first: String, second: String): Int {
@@ -148,7 +152,8 @@ class MinimalRadixTree<T> : RadixTree<T> {
      * Visualizes tree structure in console.
      * Notice that should not be used for printing large trees.
      */
-    fun visualize() {
+    @VisibleForTesting
+    internal fun visualize() {
         if (!root.hasChildren) {
             println("<empty>")
             return
@@ -156,10 +161,10 @@ class MinimalRadixTree<T> : RadixTree<T> {
 
         fun traverse(node: TreeNode<T>?, prefix: String) {
             if (node?.hasChildren == false) {
-                println("╴ ${node.key}")
+                println("╴ ${node.key}" + (node.value?.let { " [$it]" } ?: ""))
                 return
             }
-            println("┐ ${node?.key}")
+            println("┐ ${node?.key}" + (node?.value?.let { " [$it]" } ?: ""))
             for (child in node?.children?.dropLast(1) ?: listOf()) {
                 print("$prefix├─")
                 traverse(child, "$prefix│ ")

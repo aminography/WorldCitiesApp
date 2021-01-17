@@ -5,6 +5,7 @@ import androidx.lifecycle.*
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.paging.map
+import com.aminography.domain.city.ClearCitiesCacheUseCase
 import com.aminography.domain.city.LoadCitiesUseCase
 import com.aminography.domain.city.SearchCitiesUseCase
 import com.aminography.model.common.onError
@@ -27,7 +28,8 @@ class CityListViewModel(
     application: Application,
     defaultDispatcher: CoroutineDispatcher,
     loadCitiesUseCase: LoadCitiesUseCase,
-    searchCitiesUseCase: SearchCitiesUseCase
+    searchCitiesUseCase: SearchCitiesUseCase,
+    private val clearCitiesCacheUseCase: ClearCitiesCacheUseCase
 ) : AndroidViewModel(application) {
 
     private var loadCitiesJob: Job? = null
@@ -42,7 +44,7 @@ class CityListViewModel(
 
     val searchResult: LiveData<PagingData<CityItemDataHolder>> =
         queryLiveData.switchMap { query ->
-            liveData {
+            liveData(defaultDispatcher) {
                 _loading.postValue(true)
                 searchCitiesUseCase(query)
                     .map { pagingData -> pagingData.map { it.toCityItemDataHolder() } }
@@ -69,6 +71,7 @@ class CityListViewModel(
     override fun onCleared() {
         super.onCleared()
         getApplication<MainApplication>().cityListComponent = null
+        clearCitiesCacheUseCase(Unit)
     }
 
     init {

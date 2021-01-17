@@ -9,5 +9,7 @@ interface RadixTree<T> {
 
     fun searchPrefix(prefix: String, offset: Int = 0, limit: Int = Int.MAX_VALUE): List<T>
 
+    fun toList(): List<T>
+
     val size: Int
 }
