@@ -3,7 +3,7 @@ buildscript {
     // semantic versioning
     ext.appVersion = [
             'major': 0,
-            'minor': 1,
+            'minor': 2,
             'patch': 0
     ]
     ext.appVersionCode = appVersion.major * 1000000 + appVersion.minor * 1000 + appVersion.patch
