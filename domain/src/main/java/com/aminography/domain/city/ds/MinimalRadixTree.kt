@@ -75,11 +75,15 @@ class MinimalRadixTree<T> : RadixTree<T> {
         return true
     }
 
-    override fun searchPrefix(prefix: String): ArrayList<T> {
+    override fun searchPrefix(prefix: String, offset: Int, limit: Int): List<T> {
+        var skipped = 0
         val result = ArrayList<T>()
         findPrefixRoot(prefix)?.run {
-            value?.let { result.add(it) }
-            exploreChildrenValuesViaBFS(this, result)
+            value?.let {
+                if (skipped < offset) skipped++
+                else result.add(it)
+            }
+            exploreChildrenValuesViaBFS(this, result, offset, limit, skipped)
         }
         return result
     }
@@ -94,10 +98,12 @@ class MinimalRadixTree<T> : RadixTree<T> {
             val lcs = longestCommonPrefix(node.key, keyDiff)
             if (lcs < keyDiff.length && lcs == node.key.length) {
                 keyDiff = keyDiff.substring(lcs)
-                node.children?.forEach {
-                    if (it.key.startsWith(keyDiff[0])) {
-                        queue.add(it)
-                        return@forEach
+                node.children?.let { children ->
+                    for (child in children) {
+                        if (child.key.startsWith(keyDiff[0])) {
+                            queue.add(child)
+                            break
+                        }
                     }
                 }
             } else if (lcs == keyDiff.length) {
@@ -108,15 +114,26 @@ class MinimalRadixTree<T> : RadixTree<T> {
         return result
     }
 
-    private fun exploreChildrenValuesViaBFS(root: TreeNode<T>, result: MutableList<T>) {
+    private fun exploreChildrenValuesViaBFS(
+        root: TreeNode<T>,
+        result: MutableList<T>,
+        offset: Int,
+        limit: Int,
+        skippedUntil: Int
+    ) {
+        var skipped = skippedUntil
         val queue = LinkedList<TreeNode<T>>()
         root.children?.let { queue.addAll(it) }
-        while (queue.isNotEmpty()) {
+        while (queue.isNotEmpty() && result.size < limit) {
             queue.remove().run {
-                value?.let { result.add(it) }
+                value?.let {
+                    if (skipped < offset) skipped++
+                    else result.add(it)
+                }
                 children?.let { queue.addAll(it) }
             }
         }
+        queue.clear()
     }
 
     private fun longestCommonPrefix(first: String, second: String): Int {

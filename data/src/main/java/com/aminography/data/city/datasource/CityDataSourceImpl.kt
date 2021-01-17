@@ -1,7 +1,9 @@
 package com.aminography.data.city.datasource
 
 import android.content.Context
-import com.aminography.data.util.*
+import com.aminography.data.util.openAsset
+import com.aminography.data.util.toInputStreamReader
+import com.aminography.data.util.toJsonReader
 import com.aminography.domain.city.adapter.Inserter
 import com.aminography.domain.city.adapter.MutableListAdapter
 import com.aminography.domain.city.adapter.RadixTreeAdapter
@@ -30,13 +32,13 @@ internal class CityDataSourceImpl @Inject constructor(
             readTo(RadixTreeAdapter(it))
         }
 
-    private suspend fun readTo(inserter: Inserter<City>) {
+    private fun readTo(inserter: Inserter<City>) {
         context.openAsset(fileName)
             .toInputStreamReader()
             .toJsonReader()
             .use {
-                it.beginArraySuspending()
-                while (it.hasNextSuspending()) {
+                it.beginArray()
+                while (it.hasNext()) {
                     val city: City = gson.fromJson(it, City::class.java)
                     inserter.insert(city)
                 }

@@ -1,14 +1,16 @@
 package com.aminography.domain.city
 
+import androidx.paging.PagingData
 import com.aminography.domain.city.ds.RadixTree
 import com.aminography.model.city.City
+import kotlinx.coroutines.flow.Flow
 
 /**
  * @author aminography
  */
 interface CityRepository {
 
-    suspend fun loadCityList(): List<City>
+    suspend fun loadCities(): RadixTree<City>
 
-    suspend fun loadCityRadixTree(): RadixTree<City>
+    fun searchCities(query: String): Flow<PagingData<City>>
 }

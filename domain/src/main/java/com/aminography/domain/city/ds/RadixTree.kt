@@ -1,7 +1,5 @@
 package com.aminography.domain.city.ds
 
-import java.util.*
-
 /**
  * @author aminography
  */
@@ -9,7 +7,7 @@ interface RadixTree<T> {
 
     fun insert(key: String, value: T, replace: Boolean = false)
 
-    fun searchPrefix(prefix: String): ArrayList<T>
+    fun searchPrefix(prefix: String, offset: Int = 0, limit: Int = Int.MAX_VALUE): List<T>
 
     val size: Int
 }
