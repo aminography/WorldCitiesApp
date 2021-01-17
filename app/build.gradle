@@ -16,7 +16,7 @@ android {
         minSdkVersion versions.minSdk
         targetSdkVersion versions.targetSdk
 
-        applicationId "com.aminography.archapp"
+        applicationId "com.aminography.worldcities"
 
         versionCode appVersionCode
         versionName appVersionName
