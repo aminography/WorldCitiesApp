@@ -7,4 +7,6 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="list_item_background">#EEEEEE</color>
+    <color name="empty_state_tint">#222222</color>
 </resources>

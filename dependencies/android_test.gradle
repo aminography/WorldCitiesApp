@@ -1,0 +1,5 @@
+dependencies {
+    // ------- instrumentation
+    androidTestImplementation "androidx.test.ext:junit:${versions.androidx_junit}"
+    androidTestImplementation "androidx.test.espresso:espresso-core:${versions.espresso}"
+}
