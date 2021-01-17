@@ -8,9 +8,9 @@ import com.aminography.domain.city.CityRepository
 import com.aminography.domain.city.ds.MinimalRadixTree
 import com.aminography.domain.city.ds.RadixTree
 import com.aminography.model.city.City
+import com.aminography.model.city.key
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
-import java.util.*
 import javax.inject.Inject
 
 /**
@@ -30,7 +30,7 @@ internal class CityRepositoryImpl @Inject constructor(
             val list = dataSource.loadCityList()
             val sorted = list.sortedBy { it.name }
             for (city in sorted) {
-                tree.insert("${city.name}, ${city.country}".toLowerCase(Locale.getDefault()), city)
+                tree.insert(city.key, city)
             }
             cache = tree
         }
