@@ -12,7 +12,9 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/margin_normal"
         android:hint="@string/search_hint"
+        android:maxLength="64"
         android:paddingHorizontal="@dimen/margin_small"
+        android:singleLine="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -65,12 +67,12 @@
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/progress_size"
+        android:layout_height="@dimen/progress_size"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/searchEditText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
