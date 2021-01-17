@@ -17,16 +17,34 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/resultsTextView"
-        android:layout_width="0dp"
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/emptyState"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/margin_normal"
-        android:paddingHorizontal="@dimen/margin_small"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:constraint_referenced_ids="emptyStateImageView,emptyStateTextView"
+        app:flow_verticalGap="@dimen/margin_normal"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/searchEditText"
-        tools:text="@string/x_results_found" />
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:visibility="visible" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/emptyStateImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_cityscape" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/emptyStateTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/result_not_found"
+        android:textAppearance="@style/TextAppearance.WorldCities.Normal"
+        android:textColor="@color/empty_state_tint" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
@@ -40,11 +58,11 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/resultsTextView"
+        app:layout_constraintTop_toBottomOf="@id/searchEditText"
         tools:itemCount="20"
         tools:listitem="@layout/list_item_city" />
 
-    <androidx.core.widget.ContentLoadingProgressBar
+    <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"

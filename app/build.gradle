@@ -79,6 +79,6 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:${versions.navigation}"
     implementation "androidx.navigation:navigation-ui-ktx:${versions.navigation}"
 
-    // ------- logger
-    implementation "com.jakewharton.timber:timber:${versions.timber}"
+    // ------- paging
+    implementation "androidx.paging:paging-runtime-ktx:${versions.paging}"
 }

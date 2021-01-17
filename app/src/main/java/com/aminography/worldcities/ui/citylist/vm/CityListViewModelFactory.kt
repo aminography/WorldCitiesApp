@@ -3,7 +3,8 @@ package com.aminography.worldcities.ui.citylist.vm
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.aminography.domain.city.SearchCityRadixUseCase
+import com.aminography.domain.city.LoadCitiesUseCase
+import com.aminography.domain.city.SearchCitiesUseCase
 import com.aminography.domain.di.DefaultDispatcher
 import kotlinx.coroutines.CoroutineDispatcher
 import javax.inject.Inject
@@ -13,7 +14,8 @@ import javax.inject.Inject
  */
 class CityListViewModelFactory @Inject constructor(
     private val application: Application,
-    private val searchCityRadixUseCase: SearchCityRadixUseCase,
+    private val loadCitiesUseCase: LoadCitiesUseCase,
+    private val searchCitiesUseCase: SearchCitiesUseCase,
     @DefaultDispatcher private val defaultDispatcher: CoroutineDispatcher
 ) : ViewModelProvider.Factory {
 
@@ -22,6 +24,11 @@ class CityListViewModelFactory @Inject constructor(
         if (clazz != CityListViewModel::class.java) {
             throw IllegalArgumentException("Unknown ViewModel class")
         }
-        return CityListViewModel(application, defaultDispatcher, searchCityRadixUseCase) as VM
+        return CityListViewModel(
+            application,
+            defaultDispatcher,
+            loadCitiesUseCase,
+            searchCitiesUseCase
+        ) as VM
     }
 }

@@ -5,5 +5,5 @@ package com.aminography.worldcities.ui.base.adapter
  */
 interface OnListItemClickListener {
 
-    fun onItemClicked(dataHolder: BaseDataHolder)
+    fun onItemClicked(dataHolder: BaseDataHolder?)
 }

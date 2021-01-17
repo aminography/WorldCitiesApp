@@ -2,18 +2,23 @@ package com.aminography.worldcities.ui.citylist.vm
 
 import android.app.Application
 import androidx.lifecycle.*
-import com.aminography.domain.city.SearchCityRadixUseCase
-import com.aminography.domain.util.mapListInResult
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
+import androidx.paging.map
+import com.aminography.domain.city.LoadCitiesUseCase
+import com.aminography.domain.city.SearchCitiesUseCase
 import com.aminography.model.common.onError
 import com.aminography.model.common.onLoading
 import com.aminography.model.common.onSuccess
 import com.aminography.worldcities.MainApplication
-import com.aminography.worldcities.R
 import com.aminography.worldcities.ui.citylist.adapter.CityItemDataHolder
 import com.aminography.worldcities.ui.citylist.adapter.toCityItemDataHolder
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 
 /**
  * @author aminography
@@ -21,8 +26,11 @@ import kotlinx.coroutines.flow.flowOn
 class CityListViewModel(
     application: Application,
     defaultDispatcher: CoroutineDispatcher,
-    searchCityRadixUseCase: SearchCityRadixUseCase
+    loadCitiesUseCase: LoadCitiesUseCase,
+    searchCitiesUseCase: SearchCitiesUseCase
 ) : AndroidViewModel(application) {
+
+    private var loadCitiesJob: Job? = null
 
     private val queryLiveData = MutableLiveData<String>()
 
@@ -32,41 +40,30 @@ class CityListViewModel(
     private val _errorMessage = MutableLiveData<String>()
     val errorMessage: LiveData<String> = _errorMessage
 
-    private val _resultMessage = MutableLiveData<String>()
-    val resultMessage: LiveData<String> = _resultMessage
-
-    val queryCities: LiveData<List<CityItemDataHolder>> =
+    val searchResult: LiveData<PagingData<CityItemDataHolder>> =
         queryLiveData.switchMap { query ->
             liveData {
-                searchCityRadixUseCase(query)
-                    .mapListInResult { it.toCityItemDataHolder() }
+                _loading.postValue(true)
+                searchCitiesUseCase(query)
+                    .map { pagingData -> pagingData.map { it.toCityItemDataHolder() } }
+                    .cachedIn(viewModelScope)
                     .flowOn(defaultDispatcher)
-                    .collect { result ->
-                        result.onLoading {
-                            _loading.postValue(true)
-                            _resultMessage.postValue(
-                                getApplication<Application>().getString(
-                                    R.string.loading
-                                )
-                            )
-                        }.onError {
-                            _errorMessage.postValue(it?.message ?: it.toString())
-                        }.onSuccess {
+                    .collect {
+                        if (loadCitiesJob?.isActive == false) {
                             _loading.postValue(false)
-                            _resultMessage.postValue(
-                                getApplication<Application>().getString(
-                                    R.string.x_results_found,
-                                    it?.size ?: 0
-                                )
-                            )
-                            emit(it ?: listOf<CityItemDataHolder>())
+                            emit(it)
                         }
                     }
             }
         }
 
     fun setQuery(query: String) {
-        queryLiveData.postValue(if (query.isBlank()) "*" else query)
+        queryLiveData.postValue(query)
+    }
+
+    private fun reloadLastQuery() {
+        val query = queryLiveData.value ?: ""
+        queryLiveData.postValue(query)
     }
 
     override fun onCleared() {
@@ -75,6 +72,15 @@ class CityListViewModel(
     }
 
     init {
-        setQuery("")
+        loadCitiesJob = viewModelScope.launch(defaultDispatcher) {
+            loadCitiesUseCase(Unit).collect {
+                it.onLoading { _loading.postValue(true) }
+                    .onSuccess { reloadLastQuery() }
+                    .onError { e ->
+                        _loading.postValue(false)
+                        _errorMessage.postValue(e?.message ?: e.toString())
+                    }
+            }
+        }
     }
 }

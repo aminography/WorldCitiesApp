@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
+import androidx.paging.LoadState
 import com.aminography.worldcities.databinding.FragmentCityListBinding
 import com.aminography.worldcities.ui.base.BaseFragment
 import com.aminography.worldcities.ui.base.adapter.BaseDataHolder
@@ -23,12 +25,8 @@ class CityListFragment : BaseFragment<FragmentCityListBinding>(), OnListItemClic
     @Inject
     lateinit var viewModel: CityListViewModel
 
-    private val adapter: CityListAdapter by lazy {
-        CityListAdapter().also {
-            it.setOnListItemClickListener(this)
-            binding.recyclerView.adapter = it
-        }
-    }
+    @Inject
+    lateinit var adapter: CityListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,17 +39,33 @@ class CityListFragment : BaseFragment<FragmentCityListBinding>(), OnListItemClic
     ): FragmentCityListBinding = FragmentCityListBinding.inflate(inflater, container, false)
 
     override fun onInitViews(rootView: View, savedInstanceState: Bundle?) {
-        val owner = viewLifecycleOwner
-        viewModel.queryCities.observe(owner) { adapter.submitList(it) }
-        viewModel.errorMessage.observe(owner) { context?.toast(it) }
-        viewModel.loading.observe(owner) { binding.progressBar.run { if (it) show() else hide() } }
-        viewModel.resultMessage.observe(owner) { binding.resultsTextView.text = it }
+        adapter.setOnListItemClickListener(this)
+        adapter.addLoadStateListener { loadState ->
+            binding.emptyState.isVisible =
+                loadState.source.append is LoadState.NotLoading
+                        && loadState.source.append.endOfPaginationReached
+                        && adapter.itemCount == 0
 
-        binding.searchEditText.addTextChangedListener {
-            viewModel.setQuery(it.toString())
+            val errorState = loadState.source.append as? LoadState.Error
+                ?: loadState.source.prepend as? LoadState.Error
+                ?: loadState.append as? LoadState.Error
+                ?: loadState.prepend as? LoadState.Error
+            errorState?.let { context?.toast(it.error.toString()) }
         }
+
+        binding.recyclerView.adapter = adapter
+        binding.searchEditText.addTextChangedListener { viewModel.setQuery(it.toString()) }
+
+        initViewModel()
     }
 
-    override fun onItemClicked(dataHolder: BaseDataHolder) {
+    private fun initViewModel() {
+        val owner = viewLifecycleOwner
+        viewModel.searchResult.observe(owner) { adapter.submitData(lifecycle, it) }
+        viewModel.errorMessage.observe(owner) { context?.toast(it) }
+        viewModel.loading.observe(owner) { binding.progressBar.run { isVisible = it } }
+    }
+
+    override fun onItemClicked(dataHolder: BaseDataHolder?) {
     }
 }
