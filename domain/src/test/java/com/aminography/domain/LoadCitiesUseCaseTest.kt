@@ -1,5 +1,6 @@
 package com.aminography.domain
 
+import com.aminography.domain.base.CoroutineTest
 import com.aminography.domain.city.CityRepository
 import com.aminography.domain.city.LoadCitiesUseCase
 import com.aminography.domain.city.ds.MinimalRadixTree
@@ -24,7 +25,7 @@ class LoadCitiesUseCaseTest : CoroutineTest() {
     private val cityRepository: CityRepository = mockk()
 
     @Test
-    fun `test loading cities successfully`() = runBlockingTest {
+    fun `loading cities successfully`() = runBlockingTest {
         // Given
         coEvery { cityRepository.loadCities() } returns MinimalRadixTree()
 

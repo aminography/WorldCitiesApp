@@ -1,6 +1,7 @@
 package com.aminography.domain
 
 import androidx.paging.PagingData
+import com.aminography.domain.base.CoroutineTest
 import com.aminography.domain.city.CityRepository
 import com.aminography.domain.city.SearchCitiesUseCase
 import com.aminography.model.city.City
@@ -25,7 +26,7 @@ class SearchCitiesUseCaseTest : CoroutineTest() {
     private val cityRepository: CityRepository = mockk()
 
     @Test
-    fun `test searching cities via lowercase letters`() = runBlockingTest {
+    fun `searching cities should be via lowercase letters`() = runBlockingTest {
         // Given
         val queryLowerCase = "test"
         val queryMixedCase = "TeSt"

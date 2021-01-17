@@ -9,18 +9,18 @@ internal class TreeNode<T>(
     var children: List<TreeNode<T>>? = null
 ) {
 
-    fun resetChildren() {
-        if (children == null) return
-        children = ArrayList()
-    }
+    val hasChildren: Boolean
+        get() = children?.isNotEmpty() ?: false
 
     fun addChild(child: TreeNode<T>) {
         if (children == null) children = ArrayList()
         (children as MutableList).add(child)
     }
 
-    val hasChildren: Boolean
-        get() = children?.isNotEmpty() ?: false
+    fun resetChildren() {
+        if (children == null) return
+        children = ArrayList()
+    }
 
     override fun toString(): String = key
 }

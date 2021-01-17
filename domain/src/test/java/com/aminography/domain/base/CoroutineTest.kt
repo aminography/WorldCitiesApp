@@ -1,4 +1,4 @@
-package com.aminography.domain
+package com.aminography.domain.base
 
 import io.mockk.clearAllMocks
 import io.mockk.unmockkAll
