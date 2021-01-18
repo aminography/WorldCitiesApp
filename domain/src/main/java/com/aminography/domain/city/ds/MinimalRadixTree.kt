@@ -80,8 +80,11 @@ class MinimalRadixTree<T>() : RadixTree<T> {
     override fun toList(): List<T> = searchPrefix("")
 
     override fun searchPrefix(prefix: String, offset: Int, limit: Int): List<T> {
+        if (offset >= size || limit <= 0) return listOf()
+        val tunedOffset = if (offset < 0) 0 else offset
+
         return findPrefixRoot(prefix)?.let {
-            exploreChildrenValuesViaDFS(it, offset, limit)
+            exploreChildrenValuesViaDFS(it, tunedOffset, limit)
         } ?: listOf()
     }
 
