@@ -1,7 +1,5 @@
 package com.aminography.domain.base
 
-import com.aminography.model.common.Result
-
 /**
  * @author aminography
  */

@@ -1,8 +1,8 @@
 package com.aminography.domain.city
 
 import com.aminography.domain.base.BaseFlowUseCase
+import com.aminography.domain.base.Result
 import com.aminography.domain.di.IoDispatcher
-import com.aminography.model.common.Result
 import com.aminography.scope.CityListScope
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow

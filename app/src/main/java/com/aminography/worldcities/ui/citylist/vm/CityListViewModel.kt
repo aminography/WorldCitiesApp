@@ -5,12 +5,12 @@ import androidx.lifecycle.*
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.paging.map
+import com.aminography.domain.base.onError
+import com.aminography.domain.base.onLoading
+import com.aminography.domain.base.onSuccess
 import com.aminography.domain.city.ClearCitiesCacheUseCase
 import com.aminography.domain.city.LoadCitiesUseCase
 import com.aminography.domain.city.SearchCitiesUseCase
-import com.aminography.model.common.onError
-import com.aminography.model.common.onLoading
-import com.aminography.model.common.onSuccess
 import com.aminography.worldcities.MainApplication
 import com.aminography.worldcities.ui.base.adapter.BaseDataHolder
 import com.aminography.worldcities.ui.citylist.adapter.CityItemDataHolder

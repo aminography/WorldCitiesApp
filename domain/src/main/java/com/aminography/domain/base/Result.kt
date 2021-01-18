@@ -1,4 +1,4 @@
-package com.aminography.model.common
+package com.aminography.domain.base
 
 /**
  * A generic class that holds a value along with its status.
