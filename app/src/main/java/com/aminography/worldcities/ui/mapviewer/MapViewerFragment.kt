@@ -14,6 +14,7 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import javax.inject.Inject
 
 /**
@@ -39,7 +40,7 @@ class MapViewerFragment : BaseFragment<FragmentMapViewerBinding>(), OnMapReadyCa
         container: ViewGroup?
     ): FragmentMapViewerBinding = FragmentMapViewerBinding.inflate(inflater, container, false)
 
-    override fun onInitViews(rootView: View, savedInstanceState: Bundle?)= with(binding) {
+    override fun onInitViews(rootView: View, savedInstanceState: Bundle?) = with(binding) {
         mapView.onCreate(savedInstanceState?.getBundle(KEY_MAP_VIEW_BUNDLE))
         mapView.getMapAsync(this@MapViewerFragment)
 
@@ -55,21 +56,23 @@ class MapViewerFragment : BaseFragment<FragmentMapViewerBinding>(), OnMapReadyCa
         viewModel.initMap(args.mapViewerArg)
         viewModel.cityName.observe(owner) { binding.toolbar.title = it }
         viewModel.countryName.observe(owner) { binding.toolbar.subtitle = it }
-        viewModel.coordination.observe(owner) { coord = it; animateCamera(it) }
+        viewModel.coordination.observe(owner) { coord = it; showLocation(it) }
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
         this.googleMap = googleMap
-        coord?.let { animateCamera(it) }
+        coord?.let { showLocation(it) }
     }
 
-    private fun animateCamera(coord: Coordination) {
+    private fun showLocation(coord: Coordination) {
+        val location = LatLng(coord.lat, coord.lon)
         googleMap?.animateCamera(
             CameraUpdateFactory.newLatLngZoom(
-                LatLng(coord.lat, coord.lon),
+                location,
                 DEFAULT_CAMERA_ZOOM
             )
         )
+        googleMap?.addMarker(MarkerOptions().position(location))
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
