@@ -9,6 +9,29 @@
     <fragment
         android:id="@+id/cityListFragment"
         android:name="com.aminography.worldcities.ui.citylist.CityListFragment"
-        tools:layout="@layout/fragment_city_list" />
+        tools:layout="@layout/fragment_city_list">
+
+        <action
+            android:id="@+id/action_cityListFragment_to_mapViewerFragment"
+            app:destination="@id/mapViewerFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/mapViewerFragment"
+        android:name="com.aminography.worldcities.ui.mapviewer.MapViewerFragment"
+        tools:layout="@layout/fragment_map_viewer">
+
+        <argument
+            android:name="lat"
+            app:argType="string" />
+
+        <argument
+            android:name="lon"
+            app:argType="string" />
+    </fragment>
 
 </navigation>

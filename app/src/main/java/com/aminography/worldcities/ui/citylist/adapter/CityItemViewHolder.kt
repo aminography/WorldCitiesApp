@@ -17,6 +17,6 @@ class CityItemViewHolder(
 
     override fun bindDataToView(dataHolder: CityItemDataHolder) = with(binding) {
         nameTextView.text = dataHolder.city.run { "$name, $country" }
-        coordTextView.text = dataHolder.city.coord.run { "($lon, $lat)" }
+        coordTextView.text = dataHolder.city.coord.run { "($lat, $lon)" }
     }
 }

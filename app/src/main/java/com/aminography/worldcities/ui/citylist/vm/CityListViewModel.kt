@@ -20,11 +20,12 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 /**
  * @author aminography
  */
-class CityListViewModel(
+class CityListViewModel @Inject constructor(
     application: Application,
     defaultDispatcher: CoroutineDispatcher,
     loadCitiesUseCase: LoadCitiesUseCase,

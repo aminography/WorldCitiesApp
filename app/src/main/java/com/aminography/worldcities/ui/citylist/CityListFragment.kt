@@ -6,11 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
+import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import com.aminography.worldcities.databinding.FragmentCityListBinding
 import com.aminography.worldcities.ui.base.BaseFragment
 import com.aminography.worldcities.ui.base.adapter.BaseDataHolder
 import com.aminography.worldcities.ui.base.adapter.OnListItemClickListener
+import com.aminography.worldcities.ui.citylist.adapter.CityItemDataHolder
 import com.aminography.worldcities.ui.citylist.adapter.CityListAdapter
 import com.aminography.worldcities.ui.citylist.di.injectComponent
 import com.aminography.worldcities.ui.citylist.vm.CityListViewModel
@@ -67,5 +69,10 @@ class CityListFragment : BaseFragment<FragmentCityListBinding>(), OnListItemClic
     }
 
     override fun onItemClicked(dataHolder: BaseDataHolder?) {
+        (dataHolder as? CityItemDataHolder)?.city?.coord?.run {
+            findNavController().navigate(
+                CityListFragmentDirections.actionCityListFragmentToMapViewerFragment("$lat", "$lon")
+            )
+        }
     }
 }
