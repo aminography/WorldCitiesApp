@@ -8,6 +8,7 @@ plugins {
 apply from: '../dependencies/shared.gradle'
 apply from: '../dependencies/unit_test.gradle'
 apply from: '../dependencies/android_test.gradle'
+apply from: '../keystore/keystore.gradle'
 
 android {
     compileSdkVersion versions.compileSdk
@@ -26,6 +27,11 @@ android {
     }
 
     buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+            minifyEnabled false
+            debuggable true
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -82,4 +88,7 @@ dependencies {
 
     // ------- paging
     implementation "androidx.paging:paging-runtime-ktx:${versions.paging}"
+
+    // ------- maps
+    implementation "com.google.android.gms:play-services-maps:${versions.maps}"
 }

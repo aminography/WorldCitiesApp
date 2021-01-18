@@ -12,8 +12,12 @@ import com.aminography.model.common.onError
 import com.aminography.model.common.onLoading
 import com.aminography.model.common.onSuccess
 import com.aminography.worldcities.MainApplication
+import com.aminography.worldcities.ui.base.adapter.BaseDataHolder
 import com.aminography.worldcities.ui.citylist.adapter.CityItemDataHolder
-import com.aminography.worldcities.ui.citylist.adapter.toCityItemDataHolder
+import com.aminography.worldcities.ui.citylist.model.MapViewerArg
+import com.aminography.worldcities.ui.citylist.model.toCityItemDataHolder
+import com.aminography.worldcities.ui.citylist.model.toMapViewerArg
+import com.aminography.worldcities.ui.util.SingleLiveEvent
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collect
@@ -40,8 +44,11 @@ class CityListViewModel @Inject constructor(
     private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> = _loading
 
-    private val _errorMessage = MutableLiveData<String>()
+    private val _errorMessage = SingleLiveEvent<String>()
     val errorMessage: LiveData<String> = _errorMessage
+
+    private val _navigateToMap = SingleLiveEvent<MapViewerArg>()
+    val navigateToMap: LiveData<MapViewerArg> = _navigateToMap
 
     val searchResult: LiveData<PagingData<CityItemDataHolder>> =
         queryLiveData.switchMap { query ->
@@ -62,6 +69,12 @@ class CityListViewModel @Inject constructor(
 
     fun setQuery(query: String) {
         queryLiveData.postValue(query)
+    }
+
+    fun onCityClicked(dataHolder: BaseDataHolder) {
+        if (dataHolder is CityItemDataHolder) {
+            _navigateToMap.postValue(dataHolder.toMapViewerArg())
+        }
     }
 
     private fun reloadLastQuery() {

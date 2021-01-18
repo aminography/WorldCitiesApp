@@ -26,12 +26,8 @@
         tools:layout="@layout/fragment_map_viewer">
 
         <argument
-            android:name="lat"
-            app:argType="string" />
-
-        <argument
-            android:name="lon"
-            app:argType="string" />
+            android:name="mapViewerArg"
+            app:argType="com.aminography.worldcities.ui.citylist.model.MapViewerArg" />
     </fragment>
 
 </navigation>
