@@ -32,7 +32,7 @@ class CityListAdapter(
     private fun setupClickListener(viewHolder: BaseViewHolder<*, *>) {
         onItemClickListener?.run {
             viewHolder.itemView.setOnClickListener {
-                onItemClicked(getItem(viewHolder.absoluteAdapterPosition))
+                onItemClicked(viewHolder.dataHolder)
             }
         }
     }
