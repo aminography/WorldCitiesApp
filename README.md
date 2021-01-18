@@ -1,6 +1,6 @@
 # World Cities App
 
-This is a sample project which shows how to deal with prefix search for large amount od records, such as cities of the world.
+This is a sample project which shows how to deal with prefix search for large amount of records, such as cities of the world.
 To achieve this, I have implemented the [Radix Tree](https://en.wikipedia.org/wiki/Radix_tree) data structure and used it in
 an application with a Clean Architecture organization. In this document I will explain the points about the data structure
 and architecture.
@@ -13,6 +13,7 @@ Table of Contents
   - [Improvements](#improvements)
 - [App Architecture](#app-architecture)
   - [Modules and their dependencies](#modules-and-their-dependencies)
+  - [Dependency Injection](#dependency-injection)
 
 Data Structure and Algorithm
 ----------------------------
@@ -32,11 +33,10 @@ In terms of of presentation architecture, common `MVVM` pattern is highly adapta
 the Android development environment, such as `Jetpack` architectural components, so I have chosen `MVVM` for this aim.
 
 ###  Modules and their dependencies
-As I have mentioned, the structure of codebase is consisted of 5 gradle modules, 3 pure `Kotlin` library and 2 `Android` module.
+As it was mentioned before, the structure of codebase is consisted of 5 gradle modules, 3 pure `Kotlin` library and 2
+`Android` module.
 
 ![](/static/modules.png)
-
-<br/>
 
 #### 1. Scope
 `scope` is a pure `Kotlin` module and holds only scope `annotation` classes.
@@ -57,3 +57,15 @@ are `internal`, so they cannot be exposed to the `app` module. The concrete obje
 #### 5. App
 `app` is an `Android` application module. It presents user interface and builds a dependency graph to flow objects through different
 layers of architecture.
+
+###  Dependency Injection
+In order to establish `IoC` in design of architecture, `dagger` is used in this project. There are 3 `dagger` components in the codebase.
+
+![](/static/dagger.png)
+
+- `AppComponent`: to provide app related concrete objects.
+- `CityListComponent`: to provide feature related concrete objects for the city list feature.
+- `MapViewerComponent`: to provide feature related concrete objects for the map viewer feature.
+
+It is worth mentioning that feature-based components are sub-components of the `AppComponent`, so they can access to app-scoped objects
+like `applicationContext`.
