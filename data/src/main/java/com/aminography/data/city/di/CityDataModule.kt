@@ -31,11 +31,11 @@ class CityDataModule {
 
     @Provides
     @Named(KEY_PAGE_SIZE)
-    internal fun providesPageSize(): Int = 20
+    internal fun providesPageSize(): Int = 40
 
     @Provides
     @Named(KEY_INITIAL_LOAD_SIZE)
-    internal fun providesInitialLoadSize(): Int = 30
+    internal fun providesInitialLoadSize(): Int = 80
 
     @CityListScope
     @Provides
