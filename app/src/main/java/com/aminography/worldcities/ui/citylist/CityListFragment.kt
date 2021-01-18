@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
+import androidx.navigation.fragment.findNavController
+import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import com.aminography.worldcities.databinding.FragmentCityListBinding
 import com.aminography.worldcities.ui.base.BaseFragment
@@ -13,7 +15,9 @@ import com.aminography.worldcities.ui.base.adapter.BaseDataHolder
 import com.aminography.worldcities.ui.base.adapter.OnListItemClickListener
 import com.aminography.worldcities.ui.citylist.adapter.CityListAdapter
 import com.aminography.worldcities.ui.citylist.di.injectComponent
+import com.aminography.worldcities.ui.citylist.model.MapViewerArg
 import com.aminography.worldcities.ui.citylist.vm.CityListViewModel
+import com.aminography.worldcities.ui.util.hideKeyboard
 import com.aminography.worldcities.ui.util.toast
 import javax.inject.Inject
 
@@ -41,16 +45,10 @@ class CityListFragment : BaseFragment<FragmentCityListBinding>(), OnListItemClic
     override fun onInitViews(rootView: View, savedInstanceState: Bundle?) {
         adapter.setOnListItemClickListener(this)
         adapter.addLoadStateListener { loadState ->
-            binding.emptyState.isVisible =
-                loadState.source.append is LoadState.NotLoading
-                        && loadState.source.append.endOfPaginationReached
-                        && adapter.itemCount == 0
-
-            val errorState = loadState.source.append as? LoadState.Error
-                ?: loadState.source.prepend as? LoadState.Error
-                ?: loadState.append as? LoadState.Error
-                ?: loadState.prepend as? LoadState.Error
-            errorState?.let { context?.toast(it.error.toString()) }
+            loadState.decide(
+                showEmptyState = { binding.emptyState.isVisible = it },
+                showError = { context?.toast(it) }
+            )
         }
 
         binding.recyclerView.adapter = adapter
@@ -64,8 +62,33 @@ class CityListFragment : BaseFragment<FragmentCityListBinding>(), OnListItemClic
         viewModel.searchResult.observe(owner) { adapter.submitData(lifecycle, it) }
         viewModel.errorMessage.observe(owner) { context?.toast(it) }
         viewModel.loading.observe(owner) { binding.progressBar.run { isVisible = it } }
+        viewModel.navigateToMap.observe(owner) { navigateToMap(it) }
+    }
+
+    private fun navigateToMap(arg: MapViewerArg) {
+        binding.searchEditText.hideKeyboard()
+        findNavController().navigate(
+            CityListFragmentDirections.actionCityListFragmentToMapViewerFragment(arg)
+        )
     }
 
     override fun onItemClicked(dataHolder: BaseDataHolder?) {
+        dataHolder?.let { viewModel.onCityClicked(it) }
+    }
+
+    private fun CombinedLoadStates.decide(
+        showEmptyState: (Boolean) -> Unit,
+        showError: (String) -> Unit
+    ) {
+        showEmptyState(
+            source.append is LoadState.NotLoading
+                    && source.append.endOfPaginationReached
+                    && adapter.itemCount == 0
+        )
+        val errorState = source.append as? LoadState.Error
+            ?: source.prepend as? LoadState.Error
+            ?: append as? LoadState.Error
+            ?: prepend as? LoadState.Error
+        errorState?.let { showError(it.error.toString()) }
     }
 }
