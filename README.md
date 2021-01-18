@@ -20,7 +20,11 @@ Data Structure and Algorithm
 description
 
 ###  Why Radix Tree?
-description
+Based on research that I have done, `RadixTree` is the best data structure for indexing a large set of objects with string keys
+in order to retrieve them by a prefix search. `RadixTree` is the compact and space-optimized form of prefix tree which enables
+us to find all nodes starting with a prefix string by `O(k)` complexity order, where `k` is the maximum length of indexed keys.
+In case of this project dataset, `k` is dramatically lower than `n` (number of keys), which means that the time complexity
+of this search is significantly better than linear search.
 
 ###  Improvements
 description
@@ -59,7 +63,7 @@ are `internal`, so they cannot be exposed to the `app` module. The concrete obje
 layers of architecture.
 
 ###  Dependency Injection
-In order to establish `IoC` in design of architecture, `dagger` is used in this project. There are 3 `dagger` components in the codebase.
+In order to establish `IoC` in architecture design of the project, `dagger2` is used. There are 3 `dagger` components in the codebase.
 
 ![](/static/dagger.png)
 
