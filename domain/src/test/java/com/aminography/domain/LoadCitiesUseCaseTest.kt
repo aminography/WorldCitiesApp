@@ -25,7 +25,7 @@ class LoadCitiesUseCaseTest : CoroutineTest() {
     private val cityRepository: CityRepository = mockk()
 
     @Test
-    fun `loading cities successfully`() = runBlockingTest {
+    fun `load cities`() = runBlockingTest {
         // Given
         coEvery { cityRepository.loadCities() } returns MinimalRadixTree()
 

@@ -18,7 +18,7 @@ class ClearCitiesCacheUseCaseTest : CoroutineTest() {
     private val cityRepository: CityRepository = mockk()
 
     @Test
-    fun `clear cache of cities successfully`() = runBlockingTest {
+    fun `clear cache of cities`() = runBlockingTest {
         // Given
         coEvery { cityRepository.clearCache() } just Runs
 
