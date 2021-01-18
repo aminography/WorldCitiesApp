@@ -16,6 +16,7 @@ import dagger.Provides
 @Module
 class CityListModule {
 
+    @CityListScope
     @Provides
     fun providesCityListViewModel(
         factory: CityListViewModelFactory,
@@ -28,6 +29,7 @@ class CityListModule {
         fragment: CityListFragment
     ): LayoutInflater = LayoutInflater.from(fragment.requireContext())
 
+    @CityListScope
     @Provides
     fun providesCityListAdapter(
         inflater: LayoutInflater

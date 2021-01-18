@@ -39,17 +39,22 @@ class MapViewerFragment : BaseFragment<FragmentMapViewerBinding>(), OnMapReadyCa
         container: ViewGroup?
     ): FragmentMapViewerBinding = FragmentMapViewerBinding.inflate(inflater, container, false)
 
-    override fun onInitViews(rootView: View, savedInstanceState: Bundle?) {
-        binding.mapView.onCreate(savedInstanceState?.getBundle(KEY_MAP_VIEW_BUNDLE))
-        binding.mapView.getMapAsync(this)
+    override fun onInitViews(rootView: View, savedInstanceState: Bundle?)= with(binding) {
+        mapView.onCreate(savedInstanceState?.getBundle(KEY_MAP_VIEW_BUNDLE))
+        mapView.getMapAsync(this@MapViewerFragment)
+
+        toolbar.setNavigationOnClickListener {
+            activity?.onBackPressedDispatcher?.onBackPressed()
+        }
+
         initViewModel()
     }
 
     private fun initViewModel() {
         val owner = viewLifecycleOwner
         viewModel.initMap(args.mapViewerArg)
-        viewModel.cityName.observe(owner) { }
-        viewModel.countryName.observe(owner) { }
+        viewModel.cityName.observe(owner) { binding.toolbar.title = it }
+        viewModel.countryName.observe(owner) { binding.toolbar.subtitle = it }
         viewModel.coordination.observe(owner) { coord = it; animateCamera(it) }
     }
 

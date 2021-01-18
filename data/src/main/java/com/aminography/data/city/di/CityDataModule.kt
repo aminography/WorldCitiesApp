@@ -37,39 +37,39 @@ class CityDataModule {
     @Named(KEY_INITIAL_LOAD_SIZE)
     internal fun providesInitialLoadSize(): Int = 30
 
-    @Provides
     @CityListScope
+    @Provides
     internal fun providesPagingConfig(
         @Named(KEY_PAGE_SIZE) pageSize: Int,
         @Named(KEY_INITIAL_LOAD_SIZE) initialLoadSize: Int
     ): PagingConfig = PagingConfig(pageSize = pageSize, initialLoadSize = initialLoadSize)
 
-    @Provides
     @CityListScope
+    @Provides
     internal fun providesGson(): Gson = GsonBuilder().create()
 
-    @Provides
     @CityListScope
+    @Provides
     internal fun providesJsonRetriever(
         context: Context,
         gson: Gson
     ): JsonRetriever = JsonRetriever(context, gson)
 
-    @Provides
     @CityListScope
+    @Provides
     internal fun providesCityDataSource(
         jsonRetriever: JsonRetriever,
         @Named(KEY_FILE_NAME) fileName: String
     ): CityDataSource = CityDataSourceImpl(jsonRetriever, fileName)
 
-    @Provides
     @CityListScope
+    @Provides
     internal fun providesPagerFactory(
         pagingConfig: PagingConfig
     ): PagingFactory<City> = PagingFactory(pagingConfig)
 
-    @Provides
     @CityListScope
+    @Provides
     internal fun providesCityRepository(
         cityDataSource: CityDataSource,
         pagingFactory: PagingFactory<City>

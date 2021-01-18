@@ -3,6 +3,14 @@
     <style name="TextAppearance.WorldCities.List.Title" parent="@style/TextAppearance.MaterialComponents.Body1">
         <item name="android:textStyle">bold</item>
     </style>
+
     <style name="TextAppearance.WorldCities.List.Subtitle" parent="@style/TextAppearance.MaterialComponents.Body2" />
+
+    <style name="TextAppearance.WorldCities.Toolbar.Title" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearance.WorldCities.Toolbar.Subtitle" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle" />
+
     <style name="TextAppearance.WorldCities.Normal" parent="@style/TextAppearance.MaterialComponents.Body2" />
 </resources>

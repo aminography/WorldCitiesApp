@@ -6,21 +6,67 @@
     android:layout_height="match_parent"
     android:animateLayoutChanges="true">
 
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/searchEditText"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/margin_normal"
-        android:hint="@string/search_hint"
-        android:maxLength="64"
-        android:paddingHorizontal="@dimen/margin_small"
-        android:singleLine="true"
+        app:elevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/window_background"
+            app:layout_scrollFlags="enterAlways"
+            app:title="@string/app_name" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/searchBackgroundImageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="@dimen/margin_normal"
+        app:layout_constraintBottom_toBottomOf="@id/searchEditText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appBarLayout"
+        app:srcCompat="@drawable/shape_search_background" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/searchEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:hint="@string/search_hint"
+        android:maxLength="64"
+        android:paddingVertical="@dimen/margin_small"
+        android:paddingStart="@dimen/margin_normal"
+        android:paddingEnd="0dp"
+        android:singleLine="true"
+        app:layout_constraintEnd_toStartOf="@id/clearImageView"
+        app:layout_constraintStart_toStartOf="@id/searchBackgroundImageView"
+        app:layout_constraintTop_toBottomOf="@id/appBarLayout">
+
         <requestFocus />
     </androidx.appcompat.widget.AppCompatEditText>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/clearImageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:scaleType="centerInside"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/searchBackgroundImageView"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="@id/searchBackgroundImageView"
+        app:layout_constraintTop_toTopOf="@id/searchBackgroundImageView"
+        app:srcCompat="@drawable/ic_baseline_clear_24"
+        tools:visibility="visible" />
 
     <androidx.constraintlayout.helper.widget.Flow
         android:id="@+id/emptyState"

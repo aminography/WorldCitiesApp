@@ -42,8 +42,9 @@ class CityListFragment : BaseFragment<FragmentCityListBinding>(), OnListItemClic
         container: ViewGroup?
     ): FragmentCityListBinding = FragmentCityListBinding.inflate(inflater, container, false)
 
-    override fun onInitViews(rootView: View, savedInstanceState: Bundle?) {
-        adapter.setOnListItemClickListener(this)
+    override fun onInitViews(rootView: View, savedInstanceState: Bundle?) = with(binding) {
+        recyclerView.adapter = adapter
+        adapter.setOnListItemClickListener(this@CityListFragment)
         adapter.addLoadStateListener { loadState ->
             loadState.decide(
                 showEmptyState = { binding.emptyState.isVisible = it },
@@ -51,8 +52,11 @@ class CityListFragment : BaseFragment<FragmentCityListBinding>(), OnListItemClic
             )
         }
 
-        binding.recyclerView.adapter = adapter
-        binding.searchEditText.addTextChangedListener { viewModel.setQuery(it.toString()) }
+        clearImageView.setOnClickListener { searchEditText.setText("") }
+        searchEditText.addTextChangedListener {
+            viewModel.setQuery(it.toString())
+            clearImageView.isVisible = it?.toString().isNullOrEmpty().not()
+        }
 
         initViewModel()
     }
@@ -90,5 +94,9 @@ class CityListFragment : BaseFragment<FragmentCityListBinding>(), OnListItemClic
             ?: append as? LoadState.Error
             ?: prepend as? LoadState.Error
         errorState?.let { showError(it.error.toString()) }
+    }
+
+    companion object {
+        private var flag = false
     }
 }
