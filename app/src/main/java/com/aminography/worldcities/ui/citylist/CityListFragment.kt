@@ -95,8 +95,4 @@ class CityListFragment : BaseFragment<FragmentCityListBinding>(), OnListItemClic
             ?: prepend as? LoadState.Error
         errorState?.let { showError(it.error.toString()) }
     }
-
-    companion object {
-        private var flag = false
-    }
 }
