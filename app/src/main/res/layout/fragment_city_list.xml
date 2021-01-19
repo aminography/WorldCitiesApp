@@ -108,6 +108,7 @@
         android:clipToPadding="false"
         android:paddingTop="@dimen/margin_small"
         android:paddingBottom="@dimen/margin_normal"
+        android:scrollbars="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
