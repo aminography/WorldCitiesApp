@@ -5,7 +5,7 @@ import com.aminography.domain.city.ds.RadixTree
 /**
  * @author aminography
  */
-class RadixTreeAdapter<T>(
+internal class RadixTreeAdapter<T>(
     private val tree: RadixTree<T>,
     private inline val keyConverter: (T) -> String
 ) : Inserter<T> {

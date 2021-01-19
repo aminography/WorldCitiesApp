@@ -3,7 +3,7 @@ package com.aminography.data.city.datasource.adapter
 /**
  * @author aminography
  */
-class MutableListAdapter<T>(
+internal class MutableListAdapter<T>(
     private val list: MutableList<T>
 ) : Inserter<T> {
 
