@@ -38,6 +38,7 @@ class CityListViewModel @Inject constructor(
 ) : AndroidViewModel(application) {
 
     private var loadCitiesJob: Job? = null
+    private var searchCitiesJob: Job = Job()
 
     private val queryLiveData = UniqueLiveData<String>()
 
@@ -52,7 +53,11 @@ class CityListViewModel @Inject constructor(
 
     val searchResult: LiveData<PagingData<CityItemDataHolder>> =
         queryLiveData.switchMap { query ->
-            liveData(defaultDispatcher) {
+            if (searchCitiesJob.isActive) {
+                searchCitiesJob.cancel()
+                searchCitiesJob = Job()
+            }
+            liveData(searchCitiesJob + defaultDispatcher) {
                 _loading.postValue(true)
                 searchCitiesUseCase(query)
                     .map { pagingData -> pagingData.map { it.toCityItemDataHolder() } }
