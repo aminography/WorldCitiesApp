@@ -8,12 +8,9 @@ import com.aminography.worldcities.ui.util.application
  */
 
 fun CityListFragment.injectComponent() {
-    application?.let {
-        it.appComponent
-            .plusCityListComponent()
-            .cityListFragment(this)
-            .build()
-            .also { component -> it.cityListComponent = component }
-            .inject(this)
-    }
+    application?.appComponent
+        ?.plusCityListComponent()
+        ?.cityListFragment(this)
+        ?.build()
+        ?.inject(this)
 }

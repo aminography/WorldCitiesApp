@@ -12,7 +12,7 @@ import org.junit.jupiter.api.BeforeEach
  * @author aminography
  */
 @ExperimentalCoroutinesApi
-open class CoroutineTest {
+internal open class CoroutineTest {
 
     protected val testDispatcher = TestCoroutineDispatcher()
 

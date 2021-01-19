@@ -11,13 +11,13 @@ import com.aminography.domain.base.onSuccess
 import com.aminography.domain.city.ClearCitiesCacheUseCase
 import com.aminography.domain.city.LoadCitiesUseCase
 import com.aminography.domain.city.SearchCitiesUseCase
-import com.aminography.worldcities.MainApplication
 import com.aminography.worldcities.ui.base.adapter.BaseDataHolder
 import com.aminography.worldcities.ui.citylist.adapter.CityItemDataHolder
 import com.aminography.worldcities.ui.citylist.model.MapViewerArg
 import com.aminography.worldcities.ui.citylist.model.toCityItemDataHolder
 import com.aminography.worldcities.ui.citylist.model.toMapViewerArg
 import com.aminography.worldcities.ui.util.SingleLiveEvent
+import com.aminography.worldcities.ui.util.UniqueLiveData
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collect
@@ -39,7 +39,7 @@ class CityListViewModel @Inject constructor(
 
     private var loadCitiesJob: Job? = null
 
-    private val queryLiveData = MutableLiveData<String>()
+    private val queryLiveData = UniqueLiveData<String>()
 
     private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> = _loading
@@ -84,7 +84,6 @@ class CityListViewModel @Inject constructor(
 
     override fun onCleared() {
         super.onCleared()
-        getApplication<MainApplication>().cityListComponent = null
         clearCitiesCacheUseCase(Unit)
     }
 

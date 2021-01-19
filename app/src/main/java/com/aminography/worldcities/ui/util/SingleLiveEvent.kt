@@ -53,9 +53,9 @@ class SingleLiveEvent<T> : MutableLiveData<T>() {
     }
 
     @MainThread
-    override fun setValue(t: T?) {
+    override fun setValue(value: T?) {
         pending.set(true)
-        super.setValue(t)
+        super.setValue(value)
     }
 
     companion object {

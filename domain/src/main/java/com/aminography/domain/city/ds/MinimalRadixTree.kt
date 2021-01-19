@@ -8,7 +8,7 @@ import kotlin.collections.HashSet
 /**
  * @author aminography
  */
-class MinimalRadixTree<T>() : RadixTree<T> {
+class MinimalRadixTree<T> : RadixTree<T> {
 
     private var root: TreeNode<T> = TreeNode()
 

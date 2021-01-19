@@ -8,12 +8,9 @@ import com.aminography.worldcities.ui.util.application
  */
 
 fun MapViewerFragment.injectComponent() {
-    application?.let {
-        it.appComponent
-            .plusCityMapComponent()
-            .cityMapFragment(this)
-            .build()
-            .also { component -> it.mapViewerComponent = component }
-            .inject(this)
-    }
+    application?.appComponent
+        ?.plusCityMapComponent()
+        ?.cityMapFragment(this)
+        ?.build()
+        ?.inject(this)
 }

@@ -4,8 +4,6 @@ import android.app.Application
 import android.os.StrictMode
 import com.aminography.worldcities.di.AppComponent
 import com.aminography.worldcities.di.DaggerAppComponent
-import com.aminography.worldcities.ui.citylist.di.CityListComponent
-import com.aminography.worldcities.ui.mapviewer.di.MapViewerComponent
 
 /**
  * @author aminography
@@ -14,9 +12,6 @@ class MainApplication : Application() {
 
     lateinit var appComponent: AppComponent
         private set
-
-    var cityListComponent: CityListComponent? = null
-    var mapViewerComponent: MapViewerComponent? = null
 
     override fun onCreate() {
         if (BuildConfig.DEBUG) enableStrictMode()

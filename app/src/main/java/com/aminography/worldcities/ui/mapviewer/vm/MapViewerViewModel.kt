@@ -5,7 +5,6 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.aminography.model.city.Coordination
-import com.aminography.worldcities.MainApplication
 import com.aminography.worldcities.ui.citylist.model.MapViewerArg
 import javax.inject.Inject
 
@@ -29,10 +28,5 @@ class MapViewerViewModel @Inject constructor(
         _cityName.postValue(arg.name)
         _countryName.postValue(arg.country)
         _coordination.postValue(arg.coord)
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        getApplication<MainApplication>().mapViewerComponent = null
     }
 }
