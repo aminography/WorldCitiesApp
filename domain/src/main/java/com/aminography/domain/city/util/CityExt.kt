@@ -1,5 +1,6 @@
-package com.aminography.model.city
+package com.aminography.domain.city.util
 
+import com.aminography.model.city.City
 import java.util.*
 
 /**

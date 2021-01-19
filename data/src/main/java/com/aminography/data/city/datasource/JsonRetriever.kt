@@ -1,10 +1,10 @@
 package com.aminography.data.city.datasource
 
 import android.content.Context
+import com.aminography.data.city.datasource.adapter.Inserter
 import com.aminography.data.util.openAsset
 import com.aminography.data.util.toInputStreamReader
 import com.aminography.data.util.toJsonReader
-import com.aminography.domain.city.adapter.Inserter
 import com.aminography.model.city.City
 import com.google.gson.Gson
 import javax.inject.Inject

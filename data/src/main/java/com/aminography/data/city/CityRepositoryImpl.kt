@@ -6,8 +6,8 @@ import com.aminography.data.city.paging.PagingFactory
 import com.aminography.domain.city.CityRepository
 import com.aminography.domain.city.ds.MinimalRadixTree
 import com.aminography.domain.city.ds.RadixTree
+import com.aminography.domain.city.util.key
 import com.aminography.model.city.City
-import com.aminography.model.city.key
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import javax.inject.Inject

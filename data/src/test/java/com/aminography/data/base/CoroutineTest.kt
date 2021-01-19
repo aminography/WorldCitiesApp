@@ -12,8 +12,9 @@ import org.junit.jupiter.api.BeforeEach
  * @author aminography
  */
 @ExperimentalCoroutinesApi
-internal open class CoroutineTest {
+open class CoroutineTest {
 
+    @Suppress("MemberVisibilityCanBePrivate")
     protected val testDispatcher = TestCoroutineDispatcher()
 
     @BeforeEach

@@ -5,8 +5,8 @@ import com.aminography.data.base.CoroutineTest
 import com.aminography.data.city.CityRepositoryImpl
 import com.aminography.data.city.datasource.CityDataSource
 import com.aminography.data.city.paging.PagingFactory
+import com.aminography.domain.city.util.key
 import com.aminography.model.city.City
-import com.aminography.model.city.key
 import io.mockk.coEvery
 import io.mockk.coVerifySequence
 import io.mockk.every

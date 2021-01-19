@@ -3,7 +3,7 @@ package com.aminography.data
 import com.aminography.data.base.CoroutineTest
 import com.aminography.data.city.datasource.CityDataSourceImpl
 import com.aminography.data.city.datasource.JsonRetriever
-import com.aminography.domain.city.adapter.Inserter
+import com.aminography.data.city.datasource.adapter.Inserter
 import com.aminography.model.city.City
 import io.mockk.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi

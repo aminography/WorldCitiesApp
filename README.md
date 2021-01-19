@@ -10,14 +10,15 @@ Table of Contents
 
 - [Data Structure and Algorithm](#data-structure-and-algorithm)
   - [Why Radix Tree?](#why-radix-tree)
-  - [Improvements](#improvements)
+  - [Implementation and Improvements](#implementation-and-improvements)
 - [App Architecture](#app-architecture)
   - [Modules and their dependencies](#modules-and-their-dependencies)
   - [Dependency Injection](#dependency-injection)
 
 Data Structure and Algorithm
 ----------------------------
-description
+According to the task description, the algorithm used for filtering items would be critical part of this project. Therefore,
+in this section I will elaborate on what approach is taken and how it could be beneficial.
 
 ###  Why Radix Tree?
 Based on research that I have done, `RadixTree` is the best data structure for indexing a large set of objects with string keys
@@ -26,8 +27,11 @@ us to find all nodes starting with a prefix string by `O(k)` complexity order, w
 In case of this project dataset, `k` is dramatically lower than `n` (number of keys), which means that the time complexity
 of this search is significantly better than linear search.
 
-###  Improvements
-description
+###  Implementation and Improvements
+The `RadixTree`, as the heart of the algorithm, is minimally implemented. Thus, it is only involved basic functionality for this
+project such as insert into and search in tree. Other operations like delete a node is not implemented though.
+description (keep retrieval sorted by combining heuristic-bfs and dfs travers, insert remained recursive,
+implementation is minimal without delete and etc, preprocess, time to load)
 
 App Architecture
 ----------------
