@@ -89,6 +89,7 @@ class CityListViewModel @Inject constructor(
 
     override fun onCleared() {
         super.onCleared()
+        searchCitiesJob.cancel()
         clearCitiesCacheUseCase(Unit)
     }
 
