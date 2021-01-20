@@ -1,10 +1,10 @@
 package com.aminography.domain
 
 import androidx.paging.PagingData
-import com.aminography.domain.base.CoroutineTest
 import com.aminography.domain.city.CityRepository
 import com.aminography.domain.city.SearchCitiesUseCase
 import com.aminography.model.city.City
+import com.aminography.test.CoroutineTest
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verifySequence

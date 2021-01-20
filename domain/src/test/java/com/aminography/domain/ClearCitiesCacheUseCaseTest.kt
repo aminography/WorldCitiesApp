@@ -1,8 +1,8 @@
 package com.aminography.domain
 
-import com.aminography.domain.base.CoroutineTest
 import com.aminography.domain.city.CityRepository
 import com.aminography.domain.city.ClearCitiesCacheUseCase
+import com.aminography.test.CoroutineTest
 import io.mockk.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.jupiter.api.Test

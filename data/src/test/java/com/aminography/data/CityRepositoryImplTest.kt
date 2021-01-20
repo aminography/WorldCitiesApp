@@ -1,12 +1,13 @@
 package com.aminography.data
 
 import androidx.paging.PagingData
-import com.aminography.data.base.CoroutineTest
 import com.aminography.data.city.CityRepositoryImpl
 import com.aminography.data.city.datasource.CityDataSource
 import com.aminography.data.city.paging.PagingFactory
 import com.aminography.domain.city.util.key
 import com.aminography.model.city.City
+import com.aminography.test.CoroutineTest
+import com.aminography.test.testCities
 import io.mockk.coEvery
 import io.mockk.coVerifySequence
 import io.mockk.every
@@ -32,8 +33,8 @@ class CityRepositoryImplTest : CoroutineTest() {
     @Test
     fun `loading distinct cities should insert all of them into tree`() = runBlockingTest {
         // Given
-        val expected = cities
-        coEvery { cityDataSource.loadCityList() } returns cities
+        val expected = testCities
+        coEvery { cityDataSource.loadCityList() } returns testCities
 
         val cityRepository = CityRepositoryImpl(cityDataSource, pagingFactory)
 
@@ -51,8 +52,11 @@ class CityRepositoryImplTest : CoroutineTest() {
     @Test
     fun `loading cities should drop duplicated elements in tree`() = runBlockingTest {
         // Given
-        val expected = listOf(cities[0])
-        coEvery { cityDataSource.loadCityList() } returns listOf(cities[0], cities[0].copy())
+        val expected = listOf(testCities[0])
+        coEvery { cityDataSource.loadCityList() } returns listOf(
+            testCities[0],
+            testCities[0].copy()
+        )
 
         val cityRepository = CityRepositoryImpl(cityDataSource, pagingFactory)
 
@@ -70,8 +74,8 @@ class CityRepositoryImplTest : CoroutineTest() {
     @Test
     fun `loading cities should create a sorted tree`() = runBlockingTest {
         // Given
-        val expected = cities
-        coEvery { cityDataSource.loadCityList() } returns cities.shuffled()
+        val expected = testCities
+        coEvery { cityDataSource.loadCityList() } returns testCities.shuffled()
 
         val cityRepository = CityRepositoryImpl(cityDataSource, pagingFactory)
 
@@ -105,10 +109,10 @@ class CityRepositoryImplTest : CoroutineTest() {
     @Test
     fun `search cities should return flow of PagingData when cache isn't null`() = runBlockingTest {
         // Given
-        val query = cities[0].key
-        val expected = PagingData.from(listOf(cities[0]))
+        val query = testCities[0].key
+        val expected = PagingData.from(listOf(testCities[0]))
 
-        coEvery { cityDataSource.loadCityList() } returns cities
+        coEvery { cityDataSource.loadCityList() } returns testCities
         every { pagingFactory.createPagingDataFlow(any(), query) } returns flowOf(expected)
 
         val cityRepository = CityRepositoryImpl(cityDataSource, pagingFactory)

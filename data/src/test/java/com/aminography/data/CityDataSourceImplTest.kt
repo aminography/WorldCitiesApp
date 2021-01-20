@@ -1,10 +1,11 @@
 package com.aminography.data
 
-import com.aminography.data.base.CoroutineTest
 import com.aminography.data.city.datasource.CityDataSourceImpl
 import com.aminography.data.city.datasource.JsonRetriever
 import com.aminography.data.city.datasource.adapter.Inserter
 import com.aminography.model.city.City
+import com.aminography.test.CoroutineTest
+import com.aminography.test.testCities
 import io.mockk.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.jupiter.api.Assertions
@@ -24,11 +25,11 @@ class CityDataSourceImplTest : CoroutineTest() {
     @Test
     fun `load list of cities`() = runBlockingTest {
         // Given
-        val expected = cities
+        val expected = testCities
 
         val inserterSlot: CapturingSlot<Inserter<City>> = slot()
         every { jsonRetriever.readTo(fileName, capture(inserterSlot)) } answers {
-            cities.forEach { inserterSlot.captured.insert(it) }
+            testCities.forEach { inserterSlot.captured.insert(it) }
         }
 
         val cityDataSource = CityDataSourceImpl(jsonRetriever, fileName)
@@ -47,11 +48,11 @@ class CityDataSourceImplTest : CoroutineTest() {
     @Test
     fun `load tree of cities`() = runBlockingTest {
         // Given
-        val expected = cities
+        val expected = testCities
 
         val inserterSlot: CapturingSlot<Inserter<City>> = slot()
         every { jsonRetriever.readTo(fileName, capture(inserterSlot)) } answers {
-            cities.forEach { inserterSlot.captured.insert(it) }
+            testCities.forEach { inserterSlot.captured.insert(it) }
         }
 
         val cityDataSource = CityDataSourceImpl(jsonRetriever, fileName)

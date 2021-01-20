@@ -1,10 +1,10 @@
 package com.aminography.domain
 
-import com.aminography.domain.base.CoroutineTest
 import com.aminography.domain.base.Result
 import com.aminography.domain.city.CityRepository
 import com.aminography.domain.city.LoadCitiesUseCase
 import com.aminography.domain.city.ds.MinimalRadixTree
+import com.aminography.test.CoroutineTest
 import io.mockk.coEvery
 import io.mockk.coVerifySequence
 import io.mockk.mockk

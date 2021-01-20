@@ -1,4 +1,4 @@
-package com.aminography.data.base
+package com.aminography.test
 
 import io.mockk.clearAllMocks
 import io.mockk.unmockkAll
@@ -14,7 +14,6 @@ import org.junit.jupiter.api.BeforeEach
 @ExperimentalCoroutinesApi
 open class CoroutineTest {
 
-    @Suppress("MemberVisibilityCanBePrivate")
     protected val testDispatcher = TestCoroutineDispatcher()
 
     @BeforeEach
