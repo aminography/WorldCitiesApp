@@ -3,6 +3,8 @@ package com.aminography.model.city
 import com.google.gson.annotations.SerializedName
 
 /**
+ * An entity class that models a city
+ *
  * @author aminography
  */
 data class City(

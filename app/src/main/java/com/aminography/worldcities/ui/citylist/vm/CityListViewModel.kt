@@ -1,6 +1,7 @@
 package com.aminography.worldcities.ui.citylist.vm
 
 import android.app.Application
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.*
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
@@ -37,10 +38,13 @@ class CityListViewModel @Inject constructor(
     private val clearCitiesCacheUseCase: ClearCitiesCacheUseCase
 ) : AndroidViewModel(application) {
 
-    private var loadCitiesJob: Job? = null
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    var loadCitiesJob: Job? = null
+
     private var searchCitiesJob: Job = Job()
 
-    private val queryLiveData = UniqueLiveData<String>()
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    val queryLiveData = UniqueLiveData<String>()
 
     private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> = _loading
@@ -57,7 +61,7 @@ class CityListViewModel @Inject constructor(
                 searchCitiesJob.cancel()
                 searchCitiesJob = Job()
             }
-            liveData(searchCitiesJob + defaultDispatcher) {
+            liveData(defaultDispatcher) {
                 _loading.postValue(true)
                 searchCitiesUseCase(query)
                     .map { pagingData -> pagingData.map { it.toCityItemDataHolder() } }

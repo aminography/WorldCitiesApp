@@ -18,15 +18,15 @@ class MapViewerViewModel @Inject constructor(
     private val _cityName = MutableLiveData<String>()
     val cityName: LiveData<String> = _cityName
 
-    private val _countryName = MutableLiveData<String>()
-    val countryName: LiveData<String> = _countryName
+    private val _countryCode = MutableLiveData<String>()
+    val countryCode: LiveData<String> = _countryCode
 
     private val _coordination = MutableLiveData<Coordination>()
     val coordination: LiveData<Coordination> = _coordination
 
     fun initMap(arg: MapViewerArg) {
         _cityName.postValue(arg.name)
-        _countryName.postValue(arg.country)
+        _countryCode.postValue(arg.country)
         _coordination.postValue(arg.coord)
     }
 }
