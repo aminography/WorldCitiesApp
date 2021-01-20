@@ -18,6 +18,7 @@ internal class TreeNode<T>(
     }
 
     fun resetChildren() {
+        // to keep memory consumption as low as possible
         if (children == null) return
         children = ArrayList()
     }
