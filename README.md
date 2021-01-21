@@ -1,9 +1,9 @@
 # World Cities App
 
-This is a sample project which shows how to deal with prefix search for large amount of records, such as cities of the world.
-To achieve this, I have implemented the [Radix Tree](https://en.wikipedia.org/wiki/Radix_tree) data structure and used it in
-an application with a Clean Architecture organization. In this document I will explain the points about the data structure
-and architecture.
+This is a sample project which shows how to deal with prefix search for large amount of records, like cities of the world.
+To achieve this, I have implemented the [RadixTree](https://en.wikipedia.org/wiki/Radix_tree) data structure with the ability
+to retrieve data with `offset` and `limit` used for pagination. To gain more from separation of concerns, the whole app is
+organized by Clean Architecture. In this document I will explain some points about the data structure as well as the architecture.
 
 Table of Contents
 -----------------
@@ -31,22 +31,22 @@ than linear search. To know more, please refer to the comments inside the `Minim
 ###  Implementation and Improvements
 The `RadixTree`, as the heart of the algorithm, is minimally implemented in `MinimalRadixTree` class.
 Thus, it is only involved basic functionality required for this project such as insert into and search in a tree.
-Other operations like delete a node is not implemented though.
+Other operations like delete a node are not implemented.
 
 #### Insert
 According to the assignment description, initial loading time of dataset does not matter. Therefore, insertion algorithm is
 implemented using a recursive approach.
 
 #### Search
-In case of searching the tree, I have used a combination of selective BFS traversal and DFS, which are both implemented iteratively
-to reduce the search time as much as possible. The complexity analysis of them is available in the code comments.
+In case of searching the tree, I have used a combination of selective BFS and DFS traversals, which are both implemented
+iteratively to reduce the searching time as much as possible. The complexity analysis is available in the code comments.
 
 App Architecture
 ----------------
 The architecture of this application is based on well-known `Clean Architecture` consists of 5 gradle modules, to separate
 business rules as much as possible.  
-In terms of presentation architecture, common `MVVM` pattern is highly adaptable with
-the Android development environment and tools, such as `Jetpack` architectural components, so I have chosen `MVVM` for this aim.
+In terms of presentation architecture, common `MVVM` pattern is highly adaptable with the Android development environment
+and tools, such as `Jetpack` architectural components, so I have chosen `MVVM` for this aim.
 
 ###  Modules and their dependencies
 As it was mentioned before, the structure of codebase is consisted of 5 gradle modules, 3 pure `Kotlin` library and 2
@@ -63,7 +63,7 @@ As it was mentioned before, the structure of codebase is consisted of 5 gradle m
 #### 3. Domain
 `domain` is a pure `Kotlin` module. It provides business logic via use-case classes and defines abstraction of repositories to be
 implemented in `data` module. In addition, use-case objects work as a bridge between `app` and `data` modules which is the only
-possible way for the `app` module to access provided data by the `data` module.
+possible way for the `app` to access provided data by the `data` module.
 
 #### 4. Data
 `data` is an `Android` library module. It collaborates with the `Android` framework to provide data. All of the concrete classes
