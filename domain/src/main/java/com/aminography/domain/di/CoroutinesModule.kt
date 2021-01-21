@@ -10,6 +10,7 @@ import kotlinx.coroutines.Dispatchers
  *
  * @author aminography
  */
+@Suppress("unused")
 @Module
 class CoroutinesModule {
 

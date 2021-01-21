@@ -45,15 +45,3 @@ inline fun <R> Result<R>.onSuccess(block: (R?) -> Unit): Result<R> =
  */
 inline fun <R> Result<R>.onError(block: (Throwable?) -> Unit): Result<R> =
     also { if (it is Result.Error) block(it.cause) }
-
-/**
- * Maps the data part of the [Result] from one type to another.
- *
- * @param transform the transformation operation.
- * @return a new instance of [Result] with the transformed data preserving its status.
- */
-inline fun <T, R> Result<T>.map(crossinline transform: (T) -> R): Result<R> = when (this) {
-    is Result.Loading -> Result.Loading
-    is Result.Success -> Result.Success(data?.let { transform(it) })
-    is Result.Error -> Result.Error(cause)
-}
