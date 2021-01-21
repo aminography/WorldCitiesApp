@@ -1,0 +1,36 @@
+plugins {
+    id 'java-library'
+    id 'kotlin'
+}
+
+apply from: '../dependencies/shared.gradle'
+
+sourceCompatibility = "8"
+targetCompatibility = "8"
+
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+}
+
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    // ------- architecture
+    implementation project(':model')
+
+    // ------- junit
+    implementation "org.junit.jupiter:junit-jupiter-api:${versions.junit_jupiter}"
+    runtimeOnly "org.junit.jupiter:junit-jupiter-engine:${versions.junit_jupiter}"
+
+    // ------- mock
+    implementation "io.mockk:mockk:${versions.mockk}"
+
+    // ------- coroutine test
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:${versions.coroutine}"
+}

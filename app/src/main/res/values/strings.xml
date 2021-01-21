@@ -1,7 +1,5 @@
 <resources>
-    <string name="app_name">WorldCitiesApp</string>
+    <string name="app_name">World Cities</string>
     <string name="search_hint">Search here…</string>
-    <string name="x_results_found">%d results found</string>
-    <string name="loading">Loading…</string>
     <string name="result_not_found">Result not found!</string>
 </resources>

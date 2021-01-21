@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="search_background">#333333</color>
     <color name="list_item_background">#222222</color>
-    <color name="empty_state_tint">#EEEEEE</color>
+    <color name="empty_state_tint">#E0E0E0</color>
+
+    <color name="window_background">#000000</color>
+    <color name="status_bar_color">#000000</color>
 </resources>

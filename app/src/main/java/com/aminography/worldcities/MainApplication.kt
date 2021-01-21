@@ -4,17 +4,16 @@ import android.app.Application
 import android.os.StrictMode
 import com.aminography.worldcities.di.AppComponent
 import com.aminography.worldcities.di.DaggerAppComponent
-import com.aminography.worldcities.ui.citylist.di.CityListComponent
 
 /**
+ * The application class responsible for initializing dagger components and dependency graph.
+ *
  * @author aminography
  */
 class MainApplication : Application() {
 
     lateinit var appComponent: AppComponent
         private set
-
-    var cityListComponent: CityListComponent? = null
 
     override fun onCreate() {
         if (BuildConfig.DEBUG) enableStrictMode()

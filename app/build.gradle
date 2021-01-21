@@ -2,11 +2,13 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 apply from: '../dependencies/shared.gradle'
 apply from: '../dependencies/unit_test.gradle'
 apply from: '../dependencies/android_test.gradle'
+apply from: '../keystore/keystore.gradle'
 
 android {
     compileSdkVersion versions.compileSdk
@@ -25,6 +27,11 @@ android {
     }
 
     buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+            minifyEnabled false
+            debuggable true
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -49,7 +56,6 @@ dependencies {
     // ------- architecture
     implementation project(':domain')
     implementation project(':data')
-    implementation project(':scope')
 
     // ------- coroutine
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.coroutine}"
@@ -81,4 +87,7 @@ dependencies {
 
     // ------- paging
     implementation "androidx.paging:paging-runtime-ktx:${versions.paging}"
+
+    // ------- maps
+    implementation "com.google.android.gms:play-services-maps:${versions.maps}"
 }

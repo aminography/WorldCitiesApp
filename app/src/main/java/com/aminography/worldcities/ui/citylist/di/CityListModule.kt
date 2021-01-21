@@ -11,11 +11,14 @@ import dagger.Module
 import dagger.Provides
 
 /**
+ * A dagger module class defining how to provide city-list related dependencies for injection.
+ *
  * @author aminography
  */
 @Module
 class CityListModule {
 
+    @CityListScope
     @Provides
     fun providesCityListViewModel(
         factory: CityListViewModelFactory,
@@ -28,6 +31,7 @@ class CityListModule {
         fragment: CityListFragment
     ): LayoutInflater = LayoutInflater.from(fragment.requireContext())
 
+    @CityListScope
     @Provides
     fun providesCityListAdapter(
         inflater: LayoutInflater

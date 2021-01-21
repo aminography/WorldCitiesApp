@@ -7,6 +7,8 @@ import dagger.Module
 import dagger.Provides
 
 /**
+ * A dagger module class defining how to provide application related dependencies for injection.
+ *
  * @author aminography
  */
 @Module

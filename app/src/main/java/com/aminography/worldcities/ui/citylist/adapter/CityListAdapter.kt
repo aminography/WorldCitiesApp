@@ -8,6 +8,8 @@ import com.aminography.worldcities.ui.base.adapter.BaseViewHolder
 import com.aminography.worldcities.ui.base.adapter.OnListItemClickListener
 
 /**
+ * The adapter class for populating list of cities in a [androidx.recyclerview.widget.RecyclerView].
+ *
  * @author aminography
  */
 class CityListAdapter(
@@ -25,6 +27,12 @@ class CityListAdapter(
         holder.dataHolder = getItem(position)
     }
 
+    /**
+     * Sets an instance of [OnListItemClickListener].
+     *
+     * @param listener an instance of [OnListItemClickListener] to be notified when an item of the
+     * list is clicked.
+     */
     fun setOnListItemClickListener(listener: OnListItemClickListener?) {
         onItemClickListener = listener
     }
@@ -32,7 +40,7 @@ class CityListAdapter(
     private fun setupClickListener(viewHolder: BaseViewHolder<*, *>) {
         onItemClickListener?.run {
             viewHolder.itemView.setOnClickListener {
-                onItemClicked(getItem(viewHolder.absoluteAdapterPosition))
+                onItemClicked(viewHolder.dataHolder)
             }
         }
     }

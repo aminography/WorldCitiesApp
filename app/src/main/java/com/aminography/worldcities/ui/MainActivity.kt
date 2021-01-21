@@ -6,6 +6,8 @@ import com.aminography.worldcities.databinding.ActivityMainBinding
 import com.aminography.worldcities.ui.base.BaseActivity
 
 /**
+ * The only activity of the application.
+ *
  * @author aminography
  */
 class MainActivity : BaseActivity<ActivityMainBinding>() {

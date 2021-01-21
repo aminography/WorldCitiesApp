@@ -20,6 +20,8 @@ import dagger.Provides
 import javax.inject.Named
 
 /**
+ * A dagger module class defining how to provide city related dependencies for injection.
+ *
  * @author aminography
  */
 @Module
@@ -31,45 +33,40 @@ class CityDataModule {
 
     @Provides
     @Named(KEY_PAGE_SIZE)
-    internal fun providesPageSize(): Int = 20
+    internal fun providesPageSize(): Int = 40
 
     @Provides
     @Named(KEY_INITIAL_LOAD_SIZE)
-    internal fun providesInitialLoadSize(): Int = 30
+    internal fun providesInitialLoadSize(): Int = 80
 
     @Provides
-    @CityListScope
     internal fun providesPagingConfig(
         @Named(KEY_PAGE_SIZE) pageSize: Int,
         @Named(KEY_INITIAL_LOAD_SIZE) initialLoadSize: Int
     ): PagingConfig = PagingConfig(pageSize = pageSize, initialLoadSize = initialLoadSize)
 
     @Provides
-    @CityListScope
     internal fun providesGson(): Gson = GsonBuilder().create()
 
     @Provides
-    @CityListScope
     internal fun providesJsonRetriever(
         context: Context,
         gson: Gson
     ): JsonRetriever = JsonRetriever(context, gson)
 
     @Provides
-    @CityListScope
     internal fun providesCityDataSource(
         jsonRetriever: JsonRetriever,
         @Named(KEY_FILE_NAME) fileName: String
     ): CityDataSource = CityDataSourceImpl(jsonRetriever, fileName)
 
     @Provides
-    @CityListScope
     internal fun providesPagerFactory(
         pagingConfig: PagingConfig
     ): PagingFactory<City> = PagingFactory(pagingConfig)
 
-    @Provides
     @CityListScope
+    @Provides
     internal fun providesCityRepository(
         cityDataSource: CityDataSource,
         pagingFactory: PagingFactory<City>

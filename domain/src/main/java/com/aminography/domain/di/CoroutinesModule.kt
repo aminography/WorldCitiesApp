@@ -6,8 +6,11 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 
 /**
+ * A dagger module class defining how to provide [CoroutineDispatcher]s for injection.
+ *
  * @author aminography
  */
+@Suppress("unused")
 @Module
 class CoroutinesModule {
 

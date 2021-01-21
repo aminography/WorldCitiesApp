@@ -1,8 +1,8 @@
 package com.aminography.domain
 
-import com.aminography.domain.base.CoroutineTest
 import com.aminography.domain.city.CityRepository
 import com.aminography.domain.city.ClearCitiesCacheUseCase
+import com.aminography.test.CoroutineTest
 import io.mockk.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.jupiter.api.Test
@@ -18,7 +18,7 @@ class ClearCitiesCacheUseCaseTest : CoroutineTest() {
     private val cityRepository: CityRepository = mockk()
 
     @Test
-    fun `clear cache of cities successfully`() = runBlockingTest {
+    fun `clear cache of cities`() = runBlockingTest {
         // Given
         coEvery { cityRepository.clearCache() } just Runs
 

@@ -40,7 +40,6 @@ android {
 dependencies {
     // ------- architecture
     implementation project(':domain')
-    implementation project(':scope')
 
     // ------- coroutine
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.coroutine}"
