@@ -1,20 +1,22 @@
 package com.aminography.worldcities.ui.citylist.vm
 
-import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.aminography.domain.city.ClearCitiesCacheUseCase
 import com.aminography.domain.city.LoadCitiesUseCase
 import com.aminography.domain.city.SearchCitiesUseCase
 import com.aminography.domain.di.DefaultDispatcher
+import com.aminography.worldcities.ui.mapviewer.vm.MapViewerViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import javax.inject.Inject
 
 /**
+ * The factory class that takes required arguments for [MapViewerViewModel] and creates an instance
+ * of it.
+ *
  * @author aminography
  */
 class CityListViewModelFactory @Inject constructor(
-    private val application: Application,
     private val loadCitiesUseCase: LoadCitiesUseCase,
     private val searchCitiesUseCase: SearchCitiesUseCase,
     private val clearCitiesCacheUseCase: ClearCitiesCacheUseCase,
@@ -27,7 +29,6 @@ class CityListViewModelFactory @Inject constructor(
             throw IllegalArgumentException("Unknown ViewModel class")
         }
         return CityListViewModel(
-            application,
             defaultDispatcher,
             loadCitiesUseCase,
             searchCitiesUseCase,

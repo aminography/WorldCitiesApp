@@ -18,6 +18,8 @@ import com.google.android.gms.maps.model.MarkerOptions
 import javax.inject.Inject
 
 /**
+ * The fragment class to show the target location on an instance of [com.google.android.gms.maps.MapView].
+ *
  * @author aminography
  */
 class MapViewerFragment : BaseFragment<FragmentMapViewerBinding>(), OnMapReadyCallback {

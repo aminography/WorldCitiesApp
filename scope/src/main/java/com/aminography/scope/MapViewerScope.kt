@@ -3,7 +3,7 @@ package com.aminography.scope
 import javax.inject.Scope
 
 /**
- * A scope associated with lifecycle of map viewer feature
+ * A scope associated with the lifecycle of map-viewer feature.
  *
  * @author aminography
  */

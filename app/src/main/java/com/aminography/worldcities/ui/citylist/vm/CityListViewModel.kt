@@ -1,6 +1,5 @@
 package com.aminography.worldcities.ui.citylist.vm
 
-import android.app.Application
 import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.*
 import androidx.paging.PagingData
@@ -28,15 +27,21 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
+ *  The [ViewModel] class fo the city-list user interface.
+ *
+ * @param defaultDispatcher the default [CoroutineDispatcher] to be used for launching coroutines.
+ * @param loadCitiesUseCase an instance of [LoadCitiesUseCase] to load cities from file.
+ * @param searchCitiesUseCase an instance of [SearchCitiesUseCase] to perform prefix search on cities.
+ * @param clearCitiesCacheUseCase an instance of [ClearCitiesCacheUseCase] to lear cache of cities.
+ *
  * @author aminography
  */
 class CityListViewModel @Inject constructor(
-    application: Application,
     defaultDispatcher: CoroutineDispatcher,
     loadCitiesUseCase: LoadCitiesUseCase,
     searchCitiesUseCase: SearchCitiesUseCase,
     private val clearCitiesCacheUseCase: ClearCitiesCacheUseCase
-) : AndroidViewModel(application) {
+) : ViewModel() {
 
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
     var loadCitiesJob: Job? = null
@@ -57,6 +62,7 @@ class CityListViewModel @Inject constructor(
 
     val searchResult: LiveData<PagingData<CityItemDataHolder>> =
         queryLiveData.switchMap { query ->
+            // cancels previous uncompleted search, if any
             if (searchCitiesJob.isActive) {
                 searchCitiesJob.cancel()
                 searchCitiesJob = Job()
@@ -68,6 +74,7 @@ class CityListViewModel @Inject constructor(
                     .cachedIn(viewModelScope)
                     .flowOn(defaultDispatcher)
                     .collect {
+                        // posts the result if loading of the cities has been completed
                         if (loadCitiesJob?.isActive == false) {
                             _loading.postValue(false)
                             emit(it)
@@ -76,16 +83,29 @@ class CityListViewModel @Inject constructor(
             }
         }
 
+    /**
+     * Takes a [query] string to perform a prefix search on cities.
+     *
+     * @param query the prefix of cities to be retrieved.
+     */
     fun setQuery(query: String) {
         queryLiveData.postValue(query)
     }
 
+    /**
+     * Decides an action when a list item is clicked.
+     *
+     * @param dataHolder the [BaseDataHolder] corresponding to the clicked item.
+     */
     fun onCityClicked(dataHolder: BaseDataHolder) {
         if (dataHolder is CityItemDataHolder) {
             _navigateToMap.postValue(dataHolder.toMapViewerArg())
         }
     }
 
+    /**
+     * Searches the last query again that is ignored during the loading cities.
+     */
     private fun reloadLastQuery() {
         val query = queryLiveData.value ?: ""
         queryLiveData.postValue(query)

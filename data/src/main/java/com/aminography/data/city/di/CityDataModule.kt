@@ -20,6 +20,8 @@ import dagger.Provides
 import javax.inject.Named
 
 /**
+ * A dagger module class defining how to provide city related dependencies for injection.
+ *
  * @author aminography
  */
 @Module

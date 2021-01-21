@@ -1,13 +1,11 @@
 package com.aminography.worldcities
 
-import android.app.Application
 import com.aminography.model.city.Coordination
 import com.aminography.test.CoroutineTest
 import com.aminography.worldcities.ui.citylist.model.MapViewerArg
 import com.aminography.worldcities.ui.mapviewer.vm.MapViewerViewModel
 import com.aminography.worldcities.util.InstantExecutorExtension
 import com.aminography.worldcities.util.getOrAwaitValue
-import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
@@ -22,7 +20,6 @@ import org.junit.jupiter.api.extension.ExtendWith
 @ExtendWith(InstantExecutorExtension::class)
 class MapViewerViewModelTest : CoroutineTest() {
 
-    private val application: Application = mockk()
     private val mapViewerArg = MapViewerArg("city", "country", Coordination(0.0, 0.0))
 
     @Test
@@ -61,5 +58,5 @@ class MapViewerViewModelTest : CoroutineTest() {
         assertEquals(mapViewerViewModel.coordination.getOrAwaitValue(), mapViewerArg.coord)
     }
 
-    private fun createViewModel() = MapViewerViewModel(application)
+    private fun createViewModel() = MapViewerViewModel()
 }

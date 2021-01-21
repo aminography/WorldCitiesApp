@@ -3,6 +3,11 @@ package com.aminography.data.city.datasource.adapter
 import com.aminography.domain.city.ds.RadixTree
 
 /**
+ * An implementation of [Inserter] for adapting insertion interface for a [RadixTree].
+ *
+ * @param tree the wrapped [RadixTree] by this adapter.
+ * @param keyConverter the converter function that maps an element to a key.
+ *
  * @author aminography
  */
 internal class RadixTreeAdapter<T>(

@@ -6,6 +6,8 @@ import com.aminography.worldcities.di.AppComponent
 import com.aminography.worldcities.di.DaggerAppComponent
 
 /**
+ * The application class responsible for initializing dagger components and dependency graph.
+ *
  * @author aminography
  */
 class MainApplication : Application() {

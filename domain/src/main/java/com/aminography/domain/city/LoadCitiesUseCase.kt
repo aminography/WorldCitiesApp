@@ -10,6 +10,11 @@ import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 /**
+ * The use-case of loading cities.
+ *
+ * @param cityRepository an instance of [CityRepository].
+ * @param dispatcher the [CoroutineDispatcher] that the flow should produce values on.
+ *
  * @author aminography
  */
 @CityListScope
@@ -18,7 +23,7 @@ class LoadCitiesUseCase @Inject constructor(
     @IoDispatcher dispatcher: CoroutineDispatcher,
 ) : BaseFlowUseCase<Unit, Result<Unit>>(dispatcher) {
 
-    override fun execute(parameters: Unit): Flow<Result<Unit>> = flow {
+    override fun execute(parameter: Unit): Flow<Result<Unit>> = flow {
         emit(Result.Loading)
         cityRepository.loadCities()
         emit(Result.Success(Unit))

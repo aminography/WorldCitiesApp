@@ -10,6 +10,12 @@ import com.google.gson.Gson
 import javax.inject.Inject
 
 /**
+ * A utility class to read a `json` file of cities, located in the `assets` directory and to insert
+ * them into a data structure wrapped by [Inserter].
+ *
+ * @param context an instance of application [Context].
+ * @param gson an instance of [Gson].
+ *
  * @author aminography
  */
 internal class JsonRetriever @Inject constructor(
@@ -17,6 +23,12 @@ internal class JsonRetriever @Inject constructor(
     private val gson: Gson
 ) {
 
+    /**
+     * Reads the `json` file and add the cities into the data structure.
+     *
+     * @param fileName the name of the json file, located in the `assets` directory.
+     * @param inserter the inserter-wrapped data structure.
+     */
     fun readTo(fileName: String, inserter: Inserter<City>) {
         context.openAsset(fileName)
             .toInputStreamReader()

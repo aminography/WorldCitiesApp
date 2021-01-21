@@ -11,6 +11,11 @@ import java.util.*
 import javax.inject.Inject
 
 /**
+ * The use-case of searching cities.
+ *
+ * @param cityRepository an instance of [CityRepository].
+ * @param dispatcher the [CoroutineDispatcher] that the flow should produce values on.
+ *
  * @author aminography
  */
 @CityListScope
@@ -19,8 +24,8 @@ class SearchCitiesUseCase @Inject constructor(
     @DefaultDispatcher dispatcher: CoroutineDispatcher
 ) : BaseFlowUseCase<String, PagingData<City>>(dispatcher) {
 
-    override fun execute(parameters: String): Flow<PagingData<City>> =
-        parameters.toLowerCase(Locale.getDefault()).let { query ->
+    override fun execute(parameter: String): Flow<PagingData<City>> =
+        parameter.toLowerCase(Locale.getDefault()).let { query ->
             cityRepository.searchCities(query)
         }
 }

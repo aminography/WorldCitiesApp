@@ -1,6 +1,5 @@
 package com.aminography.worldcities
 
-import android.app.Application
 import com.aminography.domain.base.Result
 import com.aminography.domain.city.ClearCitiesCacheUseCase
 import com.aminography.domain.city.LoadCitiesUseCase
@@ -28,7 +27,6 @@ import org.junit.jupiter.api.extension.ExtendWith
 @ExtendWith(InstantExecutorExtension::class)
 class CityListViewModelTest : CoroutineTest() {
 
-    private val application: Application = mockk()
     private val defaultDispatcher: CoroutineDispatcher = testDispatcher
     private val loadCitiesUseCase: LoadCitiesUseCase = mockk()
     private val searchCitiesUseCase: SearchCitiesUseCase = mockk()
@@ -108,7 +106,6 @@ class CityListViewModelTest : CoroutineTest() {
     }
 
     private fun createViewModel() = CityListViewModel(
-        application,
         defaultDispatcher,
         loadCitiesUseCase,
         searchCitiesUseCase,

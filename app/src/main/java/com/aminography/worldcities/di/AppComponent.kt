@@ -9,6 +9,9 @@ import dagger.BindsInstance
 import dagger.Component
 
 /**
+ * A dagger component class providing dependencies related to the [AppScope]. It is also responsible
+ * for building relations to sub-components.
+ *
  * @author aminography
  */
 @AppScope

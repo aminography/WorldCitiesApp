@@ -1,6 +1,10 @@
 package com.aminography.data.city.datasource.adapter
 
 /**
+ * An implementation of [Inserter] for adapting insertion interface for a [MutableList].
+ *
+ * @param list the wrapped [MutableList] by this adapter.
+ *
  * @author aminography
  */
 internal class MutableListAdapter<T>(

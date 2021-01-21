@@ -4,10 +4,11 @@ import com.aminography.model.city.City
 import com.aminography.model.city.Coordination
 
 /**
+ * A sample test data contains a dummy list cities.
+ *
  * @author aminography
  */
-
-val testCities = arrayListOf(
+val testCities = listOf(
     City(0, "Alabama", "US", Coordination(0.0, 0.0)),
     City(1, "Albuquerque", "US", Coordination(0.0, 0.0)),
     City(2, "Anaheim", "US", Coordination(0.0, 0.0)),
@@ -15,6 +16,11 @@ val testCities = arrayListOf(
     City(4, "Sydney", "AU", Coordination(0.0, 0.0))
 )
 
+/**
+ * A sample test data contains a dummy list city names.
+ *
+ * @author aminography
+ */
 val testCityNames = listOf(
     "Hokkaidō",
     "Sanggrahan",

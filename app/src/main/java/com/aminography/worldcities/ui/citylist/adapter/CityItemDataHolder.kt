@@ -4,9 +4,16 @@ import com.aminography.model.city.City
 import com.aminography.worldcities.ui.base.adapter.BaseDataHolder
 
 /**
+ * The data-holder entity corresponding to each [City] instance for feeding [CityListAdapter].
+ *
+ * @param city an instance of [City] entity.
+ *
  * @author aminography
  */
 data class CityItemDataHolder(
-    override val id: Int,
     val city: City
-) : BaseDataHolder()
+) : BaseDataHolder() {
+
+    override val id: Int
+        get() = city.id
+}

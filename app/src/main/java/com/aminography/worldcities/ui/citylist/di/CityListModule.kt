@@ -11,6 +11,8 @@ import dagger.Module
 import dagger.Provides
 
 /**
+ * A dagger module class defining how to provide city-list related dependencies for injection.
+ *
  * @author aminography
  */
 @Module

@@ -7,6 +7,8 @@ import dagger.BindsInstance
 import dagger.Subcomponent
 
 /**
+ * A dagger component class providing dependencies related to the [MapViewerScope].
+ *
  * @author aminography
  */
 @MapViewerScope

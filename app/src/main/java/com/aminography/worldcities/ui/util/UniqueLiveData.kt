@@ -4,6 +4,9 @@ import androidx.annotation.MainThread
 import androidx.lifecycle.MutableLiveData
 
 /**
+ * An implementation of [androidx.lifecycle.LiveData] that does not trigger the observers for
+ * repetitive values.
+ *
  * @author aminography
  */
 class UniqueLiveData<T> : MutableLiveData<T>() {

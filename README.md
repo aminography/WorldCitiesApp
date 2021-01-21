@@ -22,10 +22,11 @@ in this section I will elaborate on what approach is taken and how it could be b
 
 ###  Why Radix Tree?
 Based on research that I have done, `RadixTree` is the best data structure for indexing a large set of objects with string keys
-in order to retrieve them by a prefix search. `RadixTree` is the compact and space-optimized form of prefix tree which enables
-us to find all nodes starting with a prefix string by `O(k)` complexity order, where `k` is the maximum length of indexed keys.
-In case of this project dataset, `k` is dramatically lower than `n` (number of keys), which means that the time complexity
-of this search is significantly better than linear search.
+in order to retrieve them by a prefix search. `RadixTree` or compressed trie is the compact and space-optimized form of prefix tree
+which enables us to find all nodes starting with a prefix string by a `O(L + V)` complexity order, where `L` is the length of input
+prefix, and `V` stands for number of nodes containing the desired value. In case of this project dataset, the length of keys for
+cities are dramatically lower than number of cities, which means that the time complexity of this search is significantly better
+than linear search. To know more, please refer to the comments inside the `MinimalRadixTree` class.
 
 ###  Implementation and Improvements
 The `RadixTree`, as the heart of the algorithm, is minimally implemented in `MinimalRadixTree` class.
@@ -37,8 +38,8 @@ According to the assignment description, initial loading time of dataset does no
 implemented using a recursive approach.
 
 #### Search
-In case of searching the tree, I have used a combination of selective BFS traversal
-and DFS, which are both implemented iteratively to reduce the search time as much as possible.
+In case of searching the tree, I have used a combination of selective BFS traversal and DFS, which are both implemented iteratively
+to reduce the search time as much as possible. The complexity analysis of them is available in the code comments.
 
 App Architecture
 ----------------
@@ -49,7 +50,7 @@ the Android development environment and tools, such as `Jetpack` architectural c
 
 ###  Modules and their dependencies
 As it was mentioned before, the structure of codebase is consisted of 5 gradle modules, 3 pure `Kotlin` library and 2
-`Android` module.
+`Android` module (plus one module containing shared classes for the unit test).
 
 ![](/static/modules.png)
 
@@ -79,8 +80,8 @@ In order to establish `IoC` in architecture design of the project, `dagger2` is 
 ![](/static/dagger.png)
 
 - `AppComponent`: to provide app related concrete objects.
-- `CityListComponent`: to provide feature related concrete objects for the city list feature.
-- `MapViewerComponent`: to provide feature related concrete objects for the map viewer feature.
+- `CityListComponent`: to provide feature related concrete objects for the city-list feature.
+- `MapViewerComponent`: to provide feature related concrete objects for the map-viewer feature.
 
 It is worth mentioning that feature-based components are sub-components of the `AppComponent`, so they can access to app-scoped objects
 like `applicationContext`.

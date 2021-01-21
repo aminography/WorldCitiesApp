@@ -9,6 +9,11 @@ import com.aminography.model.city.City
 import javax.inject.Inject
 
 /**
+ * The concrete implementation of the [CityDataSource].
+ *
+ * @param jsonRetriever an instance of [JsonRetriever] that helps to read the file of cities.
+ * @param fileName the name of the cities file, located in `assets` directory.
+ *
  * @author aminography
  */
 internal class CityDataSourceImpl @Inject constructor(

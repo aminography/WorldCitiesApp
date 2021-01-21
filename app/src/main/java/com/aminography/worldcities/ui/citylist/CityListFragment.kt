@@ -22,6 +22,8 @@ import com.aminography.worldcities.ui.util.toast
 import javax.inject.Inject
 
 /**
+ * The fragment class to show list of cities with the ability to perform a prefix search on it.
+ *
  * @author aminography
  */
 class CityListFragment : BaseFragment<FragmentCityListBinding>(), OnListItemClickListener {

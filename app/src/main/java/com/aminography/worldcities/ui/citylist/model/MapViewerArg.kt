@@ -5,6 +5,13 @@ import android.os.Parcelable
 import com.aminography.model.city.Coordination
 
 /**
+ * The argument for the [com.aminography.worldcities.ui.mapviewer.MapViewerFragment], sent via
+ * safe-args.
+ *
+ * @param name the name of the target city.
+ * @param country the country code of the target city.
+ * @param coord the geographical coordination of the target city.
+ *
  * @author aminography
  */
 data class MapViewerArg(

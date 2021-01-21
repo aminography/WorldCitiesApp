@@ -7,9 +7,7 @@ import org.junit.jupiter.api.extension.BeforeEachCallback
 import org.junit.jupiter.api.extension.ExtensionContext
 
 /**
- * https://jeroenmols.com/blog/2019/01/17/livedatajunit5/
- *
- * @author aminography
+ * @see (https://jeroenmols.com/blog/2019/01/17/livedatajunit5)
  */
 class InstantExecutorExtension : BeforeEachCallback, AfterEachCallback {
 
@@ -27,5 +25,4 @@ class InstantExecutorExtension : BeforeEachCallback, AfterEachCallback {
     override fun afterEach(context: ExtensionContext?) {
         ArchTaskExecutor.getInstance().setDelegate(null)
     }
-
 }
