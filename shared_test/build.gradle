@@ -5,9 +5,6 @@ plugins {
 
 apply from: '../dependencies/shared.gradle'
 
-sourceCompatibility = "8"
-targetCompatibility = "8"
-
 compileKotlin {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8
