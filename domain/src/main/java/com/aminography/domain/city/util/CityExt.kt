@@ -10,4 +10,6 @@ import java.util.*
  * @author aminography
  */
 val City.key: String
-    get() = "${name}, $country".toLowerCase(Locale.getDefault())
+    get() = "${name}, $country$ZERO_WIDTH_SPACE$id".toLowerCase(Locale.getDefault())
+
+private const val ZERO_WIDTH_SPACE = '\u200d'

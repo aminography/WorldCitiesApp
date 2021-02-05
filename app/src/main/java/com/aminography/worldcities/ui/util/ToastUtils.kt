@@ -17,7 +17,8 @@ private var toast: Toast? = null
  */
 fun Context.toast(message: CharSequence?) {
     toast?.cancel()
-    toast = message?.let { Toast.makeText(this, it, Toast.LENGTH_SHORT) }?.apply { show() }
+    toast = message?.let { Toast.makeText(applicationContext, it, Toast.LENGTH_SHORT) }
+        ?.apply { show() }
 }
 
 /**
@@ -30,7 +31,8 @@ fun Context.toast(message: CharSequence?) {
  */
 fun Context.longToast(message: CharSequence?) {
     toast?.cancel()
-    toast = message?.let { Toast.makeText(this, it, Toast.LENGTH_LONG) }?.apply { show() }
+    toast = message?.let { Toast.makeText(applicationContext, it, Toast.LENGTH_LONG) }
+        ?.apply { show() }
 }
 
 /**
@@ -42,7 +44,8 @@ fun Context.longToast(message: CharSequence?) {
  */
 fun Context.toast(@StringRes message: Int) {
     toast?.cancel()
-    toast = Toast.makeText(this, message, Toast.LENGTH_SHORT).apply { show() }
+    toast = Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT)
+        .apply { show() }
 }
 
 /**
@@ -55,5 +58,6 @@ fun Context.toast(@StringRes message: Int) {
  */
 fun Context.longToast(@StringRes message: Int) {
     toast?.cancel()
-    toast = Toast.makeText(this, message, Toast.LENGTH_LONG).apply { show() }
+    toast = Toast.makeText(applicationContext, message, Toast.LENGTH_LONG)
+        .apply { show() }
 }

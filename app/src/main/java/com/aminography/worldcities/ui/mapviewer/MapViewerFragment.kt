@@ -46,9 +46,7 @@ class MapViewerFragment : BaseFragment<FragmentMapViewerBinding>(), OnMapReadyCa
         mapView.onCreate(savedInstanceState?.getBundle(KEY_MAP_VIEW_BUNDLE))
         mapView.getMapAsync(this@MapViewerFragment)
 
-        toolbar.setNavigationOnClickListener {
-            activity?.onBackPressedDispatcher?.onBackPressed()
-        }
+        toolbar.setNavigationOnClickListener { activity?.onBackPressedDispatcher?.onBackPressed() }
 
         initViewModel()
     }

@@ -14,12 +14,11 @@ fun City.toCityItemDataHolder() =
     CityItemDataHolder(this)
 
 /**
- * A mapper extension function that maps an instance of [CityItemDataHolder] to an instance of
- * [MapViewerArg].
+ * A mapper extension function that maps an instance of [City] to an instance of [MapViewerArg].
  *
- * @return an instance of [MapViewerArg] corresponding to the [CityItemDataHolder].
+ * @return an instance of [MapViewerArg] corresponding to the [City].
  *
  * @author aminography
  */
-fun CityItemDataHolder.toMapViewerArg() =
-    city.run { MapViewerArg(name, country, coord) }
+fun City.toMapViewerArg() =
+    MapViewerArg(name, country, coord)
