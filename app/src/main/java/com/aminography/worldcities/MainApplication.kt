@@ -3,6 +3,7 @@ package com.aminography.worldcities
 import android.app.Application
 import android.os.StrictMode
 import com.aminography.worldcities.di.AppComponent
+import com.aminography.worldcities.di.ComponentManager
 import com.aminography.worldcities.di.DaggerAppComponent
 
 /**
@@ -12,7 +13,9 @@ import com.aminography.worldcities.di.DaggerAppComponent
  */
 class MainApplication : Application() {
 
-    lateinit var appComponent: AppComponent
+    private lateinit var appComponent: AppComponent
+
+    lateinit var componentManager: ComponentManager
         private set
 
     override fun onCreate() {
@@ -21,6 +24,8 @@ class MainApplication : Application() {
 
         appComponent = DaggerAppComponent.factory()
             .create(applicationContext)
+
+        componentManager = ComponentManager(appComponent)
     }
 
     private fun enableStrictMode() {

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.aminography.model.city.Coordination
+import com.aminography.worldcities.di.ComponentManager
 import com.aminography.worldcities.ui.citylist.model.MapViewerArg
 import javax.inject.Inject
 
@@ -12,7 +13,9 @@ import javax.inject.Inject
  *
  * @author aminography
  */
-class MapViewerViewModel @Inject constructor() : ViewModel() {
+class MapViewerViewModel @Inject constructor(
+    private val componentManager: ComponentManager
+) : ViewModel() {
 
     private val _cityName = MutableLiveData<String>()
     val cityName: LiveData<String> = _cityName
@@ -27,5 +30,10 @@ class MapViewerViewModel @Inject constructor() : ViewModel() {
         _cityName.postValue(arg.name)
         _countryCode.postValue(arg.country)
         _coordination.postValue(arg.coord)
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        componentManager.clearMapViewerComponent()
     }
 }
