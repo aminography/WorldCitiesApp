@@ -9,7 +9,7 @@ import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 
 /**
- * Base class for unit-testing suspend functions by providing [TestCoroutineDispatcher]` as the main
+ * Base class for unit-testing suspend functions by providing [TestCoroutineDispatcher] as the main
  * dispatcher.
  *
  * @author aminography

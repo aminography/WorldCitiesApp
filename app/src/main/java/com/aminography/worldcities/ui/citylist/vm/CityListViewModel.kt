@@ -11,7 +11,7 @@ import com.aminography.domain.base.onSuccess
 import com.aminography.domain.city.ClearCitiesCacheUseCase
 import com.aminography.domain.city.LoadCitiesUseCase
 import com.aminography.domain.city.SearchCitiesUseCase
-import com.aminography.worldcities.ui.base.adapter.BaseDataHolder
+import com.aminography.model.city.City
 import com.aminography.worldcities.ui.citylist.adapter.CityItemDataHolder
 import com.aminography.worldcities.ui.citylist.model.MapViewerArg
 import com.aminography.worldcities.ui.citylist.model.toCityItemDataHolder
@@ -95,12 +95,10 @@ class CityListViewModel @Inject constructor(
     /**
      * Decides an action when a list item is clicked.
      *
-     * @param dataHolder the [BaseDataHolder] corresponding to the clicked item.
+     * @param city the [City] corresponding to the clicked item.
      */
-    fun onCityClicked(dataHolder: BaseDataHolder) {
-        if (dataHolder is CityItemDataHolder) {
-            _navigateToMap.postValue(dataHolder.toMapViewerArg())
-        }
+    fun onCityClicked(city: City) {
+        _navigateToMap.postValue(city.toMapViewerArg())
     }
 
     /**
