@@ -13,6 +13,7 @@ import com.aminography.worldcities.databinding.FragmentCityListBinding
 import com.aminography.worldcities.ui.base.BaseFragment
 import com.aminography.worldcities.ui.base.adapter.BaseDataHolder
 import com.aminography.worldcities.ui.base.adapter.OnListItemClickListener
+import com.aminography.worldcities.ui.citylist.adapter.CityItemDataHolder
 import com.aminography.worldcities.ui.citylist.adapter.CityListAdapter
 import com.aminography.worldcities.ui.citylist.di.injectComponent
 import com.aminography.worldcities.ui.citylist.model.MapViewerArg
@@ -67,7 +68,7 @@ class CityListFragment : BaseFragment<FragmentCityListBinding>(), OnListItemClic
         val owner = viewLifecycleOwner
         viewModel.searchResult.observe(owner) { adapter.submitData(lifecycle, it) }
         viewModel.errorMessage.observe(owner) { context?.toast(it) }
-        viewModel.loading.observe(owner) { binding.progressBar.run { isVisible = it } }
+        viewModel.loading.observe(owner) { binding.progressBar.isVisible = it }
         viewModel.navigateToMap.observe(owner) { navigateToMap(it) }
     }
 
@@ -79,10 +80,10 @@ class CityListFragment : BaseFragment<FragmentCityListBinding>(), OnListItemClic
     }
 
     override fun onItemClicked(dataHolder: BaseDataHolder?) {
-        dataHolder?.let { viewModel.onCityClicked(it) }
+        (dataHolder as? CityItemDataHolder)?.run { viewModel.onCityClicked(city) }
     }
 
-    private fun CombinedLoadStates.decide(
+    private inline fun CombinedLoadStates.decide(
         showEmptyState: (Boolean) -> Unit,
         showError: (String) -> Unit
     ) {

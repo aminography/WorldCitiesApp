@@ -98,7 +98,7 @@ class MinimalRadixTree<T> : RadixTree<T> {
 
     /*
      * Explores the result of the prefix search in two steps:
-     * 1. Finds the first node whose satisfies the prefix string exactly.
+     * 1. Finds the first node whose key satisfies the prefix string exactly.
      * 2. Explores children of the node that is found in step 1.
      */
     override fun searchPrefix(prefix: String, offset: Int, limit: Int): List<T> {
