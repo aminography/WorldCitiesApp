@@ -29,6 +29,6 @@ interface CityListComponent : BaseComponent {
         fun build(): CityListComponent
 
         @BindsInstance
-        fun cityListFragment(fragment: CityListFragment): Builder
+        fun fragment(fragment: CityListFragment): Builder
     }
 }

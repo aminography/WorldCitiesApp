@@ -1,7 +1,7 @@
 package com.aminography.worldcities.ui.citylist.di
 
 import com.aminography.worldcities.ui.citylist.CityListFragment
-import com.aminography.worldcities.ui.util.componentManager
+import com.aminography.worldcities.ui.util.application
 
 /**
  * An extension function on the [CityListFragment] object to build related dagger component to
@@ -11,11 +11,9 @@ import com.aminography.worldcities.ui.util.componentManager
  */
 
 fun CityListFragment.injectComponent() {
-    componentManager?.also { cm ->
-        cm.appComponent
-            .plusCityListComponent()
-            .cityListFragment(this)
-            .build().also { cm.retainComponent(it) }
-            .inject(this)
-    }
+    application?.appComponent
+        ?.plusCityListComponent()
+        ?.fragment(this)
+        ?.build()
+        ?.inject(this)
 }
