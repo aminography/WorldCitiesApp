@@ -13,7 +13,7 @@ import com.aminography.worldcities.ui.util.application
 fun CityListFragment.injectComponent() {
     application?.appComponent
         ?.plusCityListComponent()
-        ?.cityListFragment(this)
+        ?.fragment(this)
         ?.build()
         ?.inject(this)
 }

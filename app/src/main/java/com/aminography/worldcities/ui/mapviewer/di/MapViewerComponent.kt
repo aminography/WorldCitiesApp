@@ -19,7 +19,7 @@ import dagger.Subcomponent
 )
 interface MapViewerComponent {
 
-    fun inject(viewerFragment: MapViewerFragment)
+    fun inject(fragment: MapViewerFragment)
 
     @Subcomponent.Builder
     interface Builder {
@@ -27,6 +27,6 @@ interface MapViewerComponent {
         fun build(): MapViewerComponent
 
         @BindsInstance
-        fun cityMapFragment(viewerFragment: MapViewerFragment): Builder
+        fun fragment(fragment: MapViewerFragment): Builder
     }
 }

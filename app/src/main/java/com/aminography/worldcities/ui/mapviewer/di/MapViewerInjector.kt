@@ -12,7 +12,7 @@ import com.aminography.worldcities.ui.util.application
 fun MapViewerFragment.injectComponent() {
     application?.appComponent
         ?.plusCityMapComponent()
-        ?.cityMapFragment(this)
+        ?.fragment(this)
         ?.build()
         ?.inject(this)
 }
