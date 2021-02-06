@@ -6,7 +6,6 @@ import com.aminography.domain.city.ClearCitiesCacheUseCase
 import com.aminography.domain.city.LoadCitiesUseCase
 import com.aminography.domain.city.SearchCitiesUseCase
 import com.aminography.domain.di.DefaultDispatcher
-import com.aminography.worldcities.di.ComponentManager
 import com.aminography.worldcities.ui.mapviewer.vm.MapViewerViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import javax.inject.Inject
@@ -21,7 +20,6 @@ class CityListViewModelFactory @Inject constructor(
     private val loadCitiesUseCase: LoadCitiesUseCase,
     private val searchCitiesUseCase: SearchCitiesUseCase,
     private val clearCitiesCacheUseCase: ClearCitiesCacheUseCase,
-    private val componentManager: ComponentManager,
     @DefaultDispatcher private val defaultDispatcher: CoroutineDispatcher
 ) : ViewModelProvider.Factory {
 
@@ -31,7 +29,6 @@ class CityListViewModelFactory @Inject constructor(
             throw IllegalArgumentException("Unknown ViewModel class")
         }
         return CityListViewModel(
-            componentManager,
             defaultDispatcher,
             loadCitiesUseCase,
             searchCitiesUseCase,

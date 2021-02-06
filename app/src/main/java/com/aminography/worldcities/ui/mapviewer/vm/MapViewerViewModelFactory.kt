@@ -2,7 +2,6 @@ package com.aminography.worldcities.ui.mapviewer.vm
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.aminography.worldcities.di.ComponentManager
 import javax.inject.Inject
 
 /**
@@ -11,15 +10,13 @@ import javax.inject.Inject
  *
  * @author aminography
  */
-class MapViewerViewModelFactory @Inject constructor(
-    private val componentManager: ComponentManager
-) : ViewModelProvider.Factory {
+class MapViewerViewModelFactory @Inject constructor() : ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")
     override fun <VM : ViewModel> create(clazz: Class<VM>): VM {
         if (clazz != MapViewerViewModel::class.java) {
             throw IllegalArgumentException("Unknown ViewModel class")
         }
-        return MapViewerViewModel(componentManager) as VM
+        return MapViewerViewModel() as VM
     }
 }

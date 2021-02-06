@@ -2,7 +2,6 @@ package com.aminography.worldcities.ui.citylist.di
 
 import com.aminography.data.city.di.CityDataModule
 import com.aminography.scope.CityListScope
-import com.aminography.worldcities.di.BaseComponent
 import com.aminography.worldcities.ui.citylist.CityListFragment
 import dagger.BindsInstance
 import dagger.Subcomponent
@@ -19,7 +18,7 @@ import dagger.Subcomponent
         CityDataModule::class
     ]
 )
-interface CityListComponent : BaseComponent {
+interface CityListComponent {
 
     fun inject(fragment: CityListFragment)
 

@@ -12,7 +12,6 @@ import com.aminography.domain.city.ClearCitiesCacheUseCase
 import com.aminography.domain.city.LoadCitiesUseCase
 import com.aminography.domain.city.SearchCitiesUseCase
 import com.aminography.model.city.City
-import com.aminography.worldcities.di.ComponentManager
 import com.aminography.worldcities.ui.citylist.adapter.CityItemDataHolder
 import com.aminography.worldcities.ui.citylist.model.MapViewerArg
 import com.aminography.worldcities.ui.citylist.model.toCityItemDataHolder
@@ -38,7 +37,6 @@ import javax.inject.Inject
  * @author aminography
  */
 class CityListViewModel @Inject constructor(
-    private val componentManager: ComponentManager,
     defaultDispatcher: CoroutineDispatcher,
     loadCitiesUseCase: LoadCitiesUseCase,
     searchCitiesUseCase: SearchCitiesUseCase,
@@ -115,7 +113,6 @@ class CityListViewModel @Inject constructor(
         super.onCleared()
         searchCitiesJob.cancel()
         clearCitiesCacheUseCase(Unit)
-        componentManager.clearCityListComponent()
     }
 
     init {
