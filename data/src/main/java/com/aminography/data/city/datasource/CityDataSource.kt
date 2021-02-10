@@ -19,6 +19,13 @@ internal interface CityDataSource {
     suspend fun loadCityList(): List<City>
 
     /**
+     * Loads cities as a [List] of cities using a concurrent approach.
+     *
+     * @return the [List] of the cities loaded from file.
+     */
+    suspend fun loadCityListConcurrently(): List<City>
+
+    /**
      * Loads cities as a [RadixTree] of cities.
      *
      * @return the [RadixTree] of the cities loaded from file.

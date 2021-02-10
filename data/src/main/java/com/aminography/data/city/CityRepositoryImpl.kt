@@ -35,8 +35,11 @@ internal class CityRepositoryImpl @Inject constructor(
     override suspend fun loadCities(): RadixTree<City> {
         return if (cache != null) cache!!
         else MinimalRadixTree<City>().also { tree ->
-            val list = dataSource.loadCityList()
-            val sorted = list.sortedBy { it.name }
+            val sorted = dataSource.loadCityListConcurrently()
+
+//            val list = dataSource.loadCityList()
+//            val sorted = list.sortedBy { it.name }
+
             for (city in sorted) {
                 tree.insert(city.key, city)
             }
