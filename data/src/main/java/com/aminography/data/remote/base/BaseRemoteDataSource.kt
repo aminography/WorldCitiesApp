@@ -14,7 +14,6 @@ import java.net.HttpURLConnection.*
  */
 abstract class BaseRemoteDataSource {
 
-    @Suppress("BlockingMethodInNonBlockingContext")
     internal suspend fun <T> wrapResponse(function: suspend () -> Response<T>): Result<T> {
         return try {
             function.invoke().let {
@@ -24,6 +23,7 @@ abstract class BaseRemoteDataSource {
                     HTTP_INTERNAL_ERROR -> Result.Error(ServerInternalException(it.message()))
                     HTTP_BAD_GATEWAY -> Result.Error(ServerInternalException(it.message()))
                     else -> {
+                        @Suppress("BlockingMethodInNonBlockingContext")
                         val msg = it.errorBody()?.string()
                         val errorMsg = if (msg.isNullOrEmpty()) it.message() else msg
                         Result.Error(UnknownApiException(errorMsg ?: "unknown error"))
