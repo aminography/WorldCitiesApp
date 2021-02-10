@@ -29,16 +29,23 @@ internal class JsonRetriever @Inject constructor(
      * @param fileName the name of the json file, located in the `assets` directory.
      * @param inserter the inserter-wrapped data structure.
      */
-    fun readTo(fileName: String, inserter: Inserter<City>) {
-        context.openAsset(fileName)
-            .toInputStreamReader()
-            .toJsonReader()
-            .use {
-                it.beginArray()
-                while (it.hasNext()) {
-                    val city: City = gson.fromJson(it, City::class.java)
-                    inserter.insert(city)
-                }
+    suspend fun readTo(
+        fileName: String,
+        inserter: Inserter<City>,
+        offset: Int = 0,
+        limit: Int = Int.MAX_VALUE
+    ): Unit = context.openAsset(fileName)
+        .toInputStreamReader()
+        .toJsonReader()
+        .use {
+            it.beginArray()
+            for (i in 0 until offset) it.skipValue()
+
+            var count = 0
+            while (it.hasNext() && count < limit) {
+                val city: City = gson.fromJson(it, City::class.java)
+                inserter.insert(city)
+                count++
             }
-    }
+        }
 }

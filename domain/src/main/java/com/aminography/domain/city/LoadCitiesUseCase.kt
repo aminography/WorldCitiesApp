@@ -20,7 +20,7 @@ import javax.inject.Inject
 @CityListScope
 class LoadCitiesUseCase @Inject constructor(
     private val cityRepository: CityRepository,
-    @IoDispatcher dispatcher: CoroutineDispatcher,
+    @IoDispatcher dispatcher: CoroutineDispatcher
 ) : BaseFlowUseCase<Unit, Result<Unit>>(dispatcher) {
 
     override fun execute(parameter: Unit): Flow<Result<Unit>> = flow {
