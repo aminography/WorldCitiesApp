@@ -54,19 +54,19 @@ internal class CityDataSourceImpl @Inject constructor(
 
             val totalCount = counter.await()
             val chunkSize = totalCount / concurrencyLevel
-            val chunkList = mutableListOf<ChunkDataContext>()
+            val chunkContextList = mutableListOf<ChunkContext>()
 
             repeat(concurrencyLevel) {
                 val start = it * chunkSize + if (it == 0) 0 else 1
                 val end = if (it == concurrencyLevel - 1) totalCount - 1 else (it + 1) * chunkSize
-                chunkList.add(ChunkDataContext(start, end))
+                chunkContextList.add(ChunkContext(start, end))
             }
 
             val deferredList = mutableListOf<Deferred<List<City>>>()
-            repeat(concurrencyLevel) {
-                val deferred = async(ioDispatcher + chunkList[it]) {
+            chunkContextList.forEach {
+                val deferred = async(ioDispatcher + it) {
                     arrayListOf<City>().also {
-                        coroutineContext[ChunkDataContext]?.run {
+                        coroutineContext[ChunkContext]?.run {
                             val offset = start
                             val limit = end - start + 1
                             jsonRetriever.readTo(fileName, MutableListAdapter(it), offset, limit)
@@ -89,14 +89,14 @@ internal class CityDataSourceImpl @Inject constructor(
         }
     }
 
-    private data class ChunkDataContext(
+    private data class ChunkContext(
         val start: Int,
         val end: Int
-    ) : AbstractCoroutineContextElement(ChunkDataContext) {
+    ) : AbstractCoroutineContextElement(ChunkContext) {
 
-        companion object Key : CoroutineContext.Key<ChunkDataContext>
+        companion object Key : CoroutineContext.Key<ChunkContext>
 
-        override fun toString(): String = "ChunkDataContext[start: $start, end: $end)"
+        override fun toString(): String = "ChunkContext[start: $start, end: $end)"
     }
 }
 
