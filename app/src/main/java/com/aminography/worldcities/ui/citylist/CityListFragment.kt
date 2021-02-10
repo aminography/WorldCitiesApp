@@ -75,7 +75,8 @@ class CityListFragment : BaseFragment<FragmentCityListBinding>(), OnListItemClic
     private fun navigateToMap(arg: MapViewerArg) {
         binding.searchEditText.hideKeyboard()
         findNavController().navigate(
-            CityListFragmentDirections.actionCityListFragmentToMapViewerFragment(arg)
+//            CityListFragmentDirections.actionCityListFragmentToMapViewerFragment(arg)
+            CityListFragmentDirections.actionCityListFragmentToUserListFragment("")
         )
     }
 

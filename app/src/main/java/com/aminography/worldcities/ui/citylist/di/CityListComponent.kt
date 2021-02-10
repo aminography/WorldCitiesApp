@@ -1,6 +1,6 @@
 package com.aminography.worldcities.ui.citylist.di
 
-import com.aminography.data.city.di.CityDataModule
+import com.aminography.data.local.city.di.CityDataModule
 import com.aminography.scope.CityListScope
 import com.aminography.worldcities.ui.citylist.CityListFragment
 import dagger.BindsInstance

@@ -1,9 +1,9 @@
 package com.aminography.data
 
 import androidx.paging.PagingData
-import com.aminography.data.city.CityRepositoryImpl
-import com.aminography.data.city.datasource.CityDataSource
-import com.aminography.data.city.paging.PagingFactory
+import com.aminography.data.local.city.CityRepositoryImpl
+import com.aminography.data.local.city.datasource.CityDataSource
+import com.aminography.data.local.city.paging.PagingFactory
 import com.aminography.domain.city.util.key
 import com.aminography.model.city.City
 import com.aminography.test.CoroutineTest

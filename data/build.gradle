@@ -45,9 +45,20 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.coroutine}"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.coroutine}"
 
+    // ------- androidx
+    implementation "androidx.core:core-ktx:${versions.androidx_core}"
+
     // ------- dagger
     implementation "com.google.dagger:dagger:${versions.dagger}"
     kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
+
+    // ------- okhttp
+    api "com.squareup.okhttp3:logging-interceptor:${versions.okhttp}"
+    implementation "com.squareup.okhttp3:okhttp:${versions.okhttp}"
+
+    // ------- retrofit
+    api "com.squareup.retrofit2:retrofit:${versions.retrofit}"
+    implementation "com.squareup.retrofit2:converter-gson:${versions.retrofit}"
 
     // ------- paging
     implementation "androidx.paging:paging-runtime-ktx:${versions.paging}"
