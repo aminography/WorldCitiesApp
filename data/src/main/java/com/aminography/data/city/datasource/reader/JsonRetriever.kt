@@ -1,4 +1,4 @@
-package com.aminography.data.city.datasource
+package com.aminography.data.city.datasource.reader
 
 import android.content.Context
 import com.aminography.data.city.datasource.adapter.Inserter

@@ -9,8 +9,8 @@ import com.aminography.data.KEY_PAGE_SIZE
 import com.aminography.data.city.CityRepositoryImpl
 import com.aminography.data.city.datasource.CityDataSource
 import com.aminography.data.city.datasource.CityDataSourceImpl
-import com.aminography.data.city.datasource.JsonRetriever
-import com.aminography.data.city.datasource.LineCounter
+import com.aminography.data.city.datasource.reader.JsonRetriever
+import com.aminography.data.city.datasource.reader.LineCounter
 import com.aminography.data.city.paging.PagingFactory
 import com.aminography.domain.city.CityRepository
 import com.aminography.domain.di.DefaultDispatcher

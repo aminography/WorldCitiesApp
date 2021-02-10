@@ -1,9 +1,9 @@
 package com.aminography.data
 
 import com.aminography.data.city.datasource.CityDataSourceImpl
-import com.aminography.data.city.datasource.JsonRetriever
-import com.aminography.data.city.datasource.LineCounter
 import com.aminography.data.city.datasource.adapter.Inserter
+import com.aminography.data.city.datasource.reader.JsonRetriever
+import com.aminography.data.city.datasource.reader.LineCounter
 import com.aminography.model.city.City
 import com.aminography.test.CoroutineTest
 import com.aminography.test.testCities

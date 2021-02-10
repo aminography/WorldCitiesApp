@@ -1,4 +1,4 @@
-package com.aminography.data.city.datasource
+package com.aminography.data.city.datasource.reader
 
 import android.content.Context
 import com.aminography.data.util.openAsset
@@ -22,7 +22,7 @@ internal class LineCounter @Inject constructor(
      *
      * @param fileName the name of the text file, located in the `assets` directory.
      *
-     * @return number of lines in the text file.
+     * @return the number of lines in the text file.
      */
     suspend fun count(fileName: String): Int =
         context.openAsset(fileName)
