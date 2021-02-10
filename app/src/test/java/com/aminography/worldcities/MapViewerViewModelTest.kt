@@ -28,7 +28,7 @@ class MapViewerViewModelTest : CoroutineTest() {
         val mapViewerViewModel = createViewModel()
 
         // When
-        mapViewerViewModel.initMap(mapViewerArg)
+        mapViewerViewModel.init(mapViewerArg)
 
         // Then
         assertEquals(mapViewerViewModel.cityName.getOrAwaitValue(), mapViewerArg.name)
@@ -40,7 +40,7 @@ class MapViewerViewModelTest : CoroutineTest() {
         val mapViewerViewModel = createViewModel()
 
         // When
-        mapViewerViewModel.initMap(mapViewerArg)
+        mapViewerViewModel.init(mapViewerArg)
 
         // Then
         assertEquals(mapViewerViewModel.countryCode.getOrAwaitValue(), mapViewerArg.country)
@@ -52,7 +52,7 @@ class MapViewerViewModelTest : CoroutineTest() {
         val mapViewerViewModel = createViewModel()
 
         // When
-        mapViewerViewModel.initMap(mapViewerArg)
+        mapViewerViewModel.init(mapViewerArg)
 
         // Then
         assertEquals(mapViewerViewModel.coordination.getOrAwaitValue(), mapViewerArg.coord)

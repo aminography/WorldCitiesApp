@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.navArgs
 import com.aminography.worldcities.databinding.FragmentUserListBinding
 import com.aminography.worldcities.ui.base.BaseFragment
 import com.aminography.worldcities.ui.userlist.di.injectComponent
@@ -17,6 +18,8 @@ class UserListFragment : BaseFragment<FragmentUserListBinding>() {
 
     @Inject
     lateinit var viewModel: UserListViewModel
+
+    private val args: UserListFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,5 +36,7 @@ class UserListFragment : BaseFragment<FragmentUserListBinding>() {
     }
 
     private fun initViewModel() {
+        val owner = viewLifecycleOwner
+        viewModel.init(args.cityName)
     }
 }

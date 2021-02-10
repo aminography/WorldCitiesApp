@@ -19,9 +19,9 @@ abstract class BaseRemoteDataSource {
             function.invoke().let {
                 when (it.code()) {
                     HTTP_OK -> it.body().let { b -> Result.Success(b) }
-                    HTTP_UNAUTHORIZED -> Result.Error(UnauthorizedException(it.message()))
+                    HTTP_UNAUTHORIZED, HTTP_FORBIDDEN -> Result.Error(UnauthorizedException(it.message()))
                     HTTP_INTERNAL_ERROR -> Result.Error(ServerInternalException(it.message()))
-                    HTTP_BAD_GATEWAY -> Result.Error(ServerInternalException(it.message()))
+                    HTTP_BAD_GATEWAY, HTTP_UNAVAILABLE -> Result.Error(ServerInternalException(it.message()))
                     else -> {
                         @Suppress("BlockingMethodInNonBlockingContext")
                         val msg = it.errorBody()?.string()

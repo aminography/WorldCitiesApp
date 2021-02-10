@@ -23,7 +23,7 @@ class MapViewerViewModel @Inject constructor() : ViewModel() {
     private val _coordination = MutableLiveData<Coordination>()
     val coordination: LiveData<Coordination> = _coordination
 
-    fun initMap(arg: MapViewerArg) {
+    fun init(arg: MapViewerArg) {
         _cityName.postValue(arg.name)
         _countryCode.postValue(arg.country)
         _coordination.postValue(arg.coord)

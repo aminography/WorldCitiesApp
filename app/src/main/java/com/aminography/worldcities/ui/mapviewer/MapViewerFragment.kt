@@ -53,7 +53,7 @@ class MapViewerFragment : BaseFragment<FragmentMapViewerBinding>(), OnMapReadyCa
 
     private fun initViewModel() {
         val owner = viewLifecycleOwner
-        viewModel.initMap(args.mapViewerArg)
+        viewModel.init(args.mapViewerArg)
         viewModel.cityName.observe(owner) { binding.toolbar.title = it }
         viewModel.countryCode.observe(owner) { binding.toolbar.subtitle = it }
         viewModel.coordination.observe(owner) { coord = it; showLocation(it) }

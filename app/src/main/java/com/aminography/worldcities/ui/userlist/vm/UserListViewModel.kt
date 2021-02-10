@@ -13,12 +13,12 @@ import javax.inject.Inject
  */
 class UserListViewModel @Inject constructor(
     defaultDispatcher: CoroutineDispatcher,
-    searchUsersUseCase: SearchUsersUseCase
+    private val searchUsersUseCase: SearchUsersUseCase
 ) : ViewModel() {
 
-    init {
+    fun init(cityName: String) {
         viewModelScope.launch {
-            searchUsersUseCase("tehran").collect {
+            searchUsersUseCase(cityName).collect {
                 println("XXXXX: $it")
             }
         }
