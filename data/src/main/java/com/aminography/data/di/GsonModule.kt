@@ -1,6 +1,6 @@
 package com.aminography.data.di
 
-import com.aminography.scope.foundation.FoundationScope
+import com.aminography.scope.annotation.FoundationScope
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module

@@ -5,7 +5,7 @@ import com.aminography.data.user.datasource.SearchUsersApi
 import com.aminography.data.user.datasource.UserDataSource
 import com.aminography.data.user.datasource.UserDataSourceImpl
 import com.aminography.domain.user.UserRepository
-import com.aminography.scope.feature.UserListScope
+import com.aminography.scope.annotation.FeatureScope
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -16,19 +16,19 @@ import retrofit2.Retrofit
 @Module
 class UserDataModule {
 
-    @UserListScope
+    @FeatureScope
     @Provides
     internal fun providesSearchUsersApi(
         retrofit: Retrofit
     ): SearchUsersApi = retrofit.create(SearchUsersApi::class.java)
 
-    @UserListScope
+    @FeatureScope
     @Provides
     internal fun providesUserDataSource(
         searchUsersApi: SearchUsersApi
     ): UserDataSource = UserDataSourceImpl(searchUsersApi)
 
-    @UserListScope
+    @FeatureScope
     @Provides
     internal fun providesUserRepository(
         userDataSource: UserDataSource

@@ -4,17 +4,17 @@ import com.aminography.core.di.AppComponent
 import com.aminography.data.city.di.CityDataModule
 import com.aminography.data.di.GsonComponent
 import com.aminography.domain.di.DispatcherComponent
-import com.aminography.scope.feature.CityListScope
+import com.aminography.scope.annotation.FeatureScope
 import com.aminography.worldcities.ui.citylist.CityListFragment
 import dagger.BindsInstance
 import dagger.Component
 
 /**
- * A dagger component class providing dependencies related to the [CityListScope].
+ * A dagger component class providing dependencies related to the [FeatureScope].
  *
  * @author aminography
  */
-@CityListScope
+@FeatureScope
 @Component(
     dependencies = [
         AppComponent::class,

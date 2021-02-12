@@ -1,16 +1,16 @@
 package com.aminography.worldcities.ui.mapviewer.di
 
-import com.aminography.scope.feature.MapViewerScope
+import com.aminography.scope.annotation.FeatureScope
 import com.aminography.worldcities.ui.mapviewer.MapViewerFragment
 import dagger.BindsInstance
 import dagger.Component
 
 /**
- * A dagger component class providing dependencies related to the [MapViewerScope].
+ * A dagger component class providing dependencies related to the [FeatureScope].
  *
  * @author aminography
  */
-@MapViewerScope
+@FeatureScope
 @Component(
     modules = [
         MapViewerModule::class

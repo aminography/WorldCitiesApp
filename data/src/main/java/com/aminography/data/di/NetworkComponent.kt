@@ -3,7 +3,7 @@ package com.aminography.data.di
 import com.aminography.core.di.AppComponent
 import com.aminography.data.local.pref.di.PrefModule
 import com.aminography.scope.ComponentHolder
-import com.aminography.scope.foundation.FoundationScope
+import com.aminography.scope.annotation.FoundationScope
 import dagger.Component
 import retrofit2.Retrofit
 

@@ -3,17 +3,17 @@ package com.aminography.worldcities.ui.userlist.di
 import com.aminography.data.di.NetworkComponent
 import com.aminography.data.user.di.UserDataModule
 import com.aminography.domain.di.DispatcherComponent
-import com.aminography.scope.feature.UserListScope
+import com.aminography.scope.annotation.FeatureScope
 import com.aminography.worldcities.ui.userlist.UserListFragment
 import dagger.BindsInstance
 import dagger.Component
 
 /**
- * A dagger component class providing dependencies related to the [UserListScope].
+ * A dagger component class providing dependencies related to the [FeatureScope].
  *
  * @author aminography
  */
-@UserListScope
+@FeatureScope
 @Component(
     dependencies = [
         DispatcherComponent::class,

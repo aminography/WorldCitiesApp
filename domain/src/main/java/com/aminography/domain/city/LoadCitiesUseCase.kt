@@ -3,7 +3,7 @@ package com.aminography.domain.city
 import com.aminography.domain.base.BaseFlowUseCase
 import com.aminography.domain.base.Result
 import com.aminography.domain.di.IoDispatcher
-import com.aminography.scope.feature.CityListScope
+import com.aminography.scope.annotation.FeatureScope
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -17,7 +17,7 @@ import javax.inject.Inject
  *
  * @author aminography
  */
-@CityListScope
+@FeatureScope
 class LoadCitiesUseCase @Inject constructor(
     private val cityRepository: CityRepository,
     @IoDispatcher dispatcher: CoroutineDispatcher

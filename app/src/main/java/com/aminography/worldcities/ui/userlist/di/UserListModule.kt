@@ -1,6 +1,6 @@
 package com.aminography.worldcities.ui.userlist.di
 
-import com.aminography.scope.feature.UserListScope
+import com.aminography.scope.annotation.FeatureScope
 import com.aminography.worldcities.ui.userlist.UserListFragment
 import com.aminography.worldcities.ui.userlist.vm.UserListViewModel
 import com.aminography.worldcities.ui.userlist.vm.UserListViewModelFactory
@@ -16,7 +16,7 @@ import dagger.Provides
 @Module
 class UserListModule {
 
-    @UserListScope
+    @FeatureScope
     @Provides
     fun providesUserListViewModel(
         factory: UserListViewModelFactory,

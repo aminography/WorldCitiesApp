@@ -4,7 +4,7 @@ import com.aminography.domain.base.BaseFlowUseCase
 import com.aminography.domain.base.Result
 import com.aminography.domain.di.IoDispatcher
 import com.aminography.model.user.GithubUser
-import com.aminography.scope.feature.UserListScope
+import com.aminography.scope.annotation.FeatureScope
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -14,7 +14,7 @@ import javax.inject.Inject
 /**
  * @author aminography
  */
-@UserListScope
+@FeatureScope
 class SearchUsersUseCase @Inject constructor(
     private val userRepository: UserRepository,
     @IoDispatcher dispatcher: CoroutineDispatcher

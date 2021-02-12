@@ -2,7 +2,7 @@ package com.aminography.domain.city
 
 import com.aminography.domain.base.BaseUseCase
 import com.aminography.domain.base.Result
-import com.aminography.scope.feature.CityListScope
+import com.aminography.scope.annotation.FeatureScope
 import javax.inject.Inject
 
 /**
@@ -12,7 +12,7 @@ import javax.inject.Inject
  *
  * @author aminography
  */
-@CityListScope
+@FeatureScope
 class ClearCitiesCacheUseCase @Inject constructor(
     private val cityRepository: CityRepository
 ) : BaseUseCase<Unit, Unit>() {

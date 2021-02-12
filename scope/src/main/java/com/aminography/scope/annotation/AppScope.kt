@@ -1,9 +1,9 @@
-package com.aminography.scope.app
+package com.aminography.scope.annotation
 
 import javax.inject.Scope
 
 /**
- * A scope associated with the lifecycle of app.
+ * A scope associated with the lifecycle of app-level components.
  *
  * @author aminography
  */

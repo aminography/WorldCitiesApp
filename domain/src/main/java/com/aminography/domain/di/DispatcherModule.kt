@@ -1,6 +1,6 @@
 package com.aminography.domain.di
 
-import com.aminography.scope.app.AppScope
+import com.aminography.scope.annotation.AppScope
 import dagger.Module
 import dagger.Provides
 import kotlinx.coroutines.CoroutineDispatcher

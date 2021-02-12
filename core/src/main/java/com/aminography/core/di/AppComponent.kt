@@ -4,7 +4,7 @@ import android.app.Application
 import android.content.Context
 import com.aminography.domain.di.DispatcherModule
 import com.aminography.scope.ComponentHolder
-import com.aminography.scope.app.AppScope
+import com.aminography.scope.annotation.AppScope
 import dagger.BindsInstance
 import dagger.Component
 import java.lang.ref.WeakReference

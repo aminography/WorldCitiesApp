@@ -1,9 +1,9 @@
-package com.aminography.scope.foundation
+package com.aminography.scope.annotation
 
 import javax.inject.Scope
 
 /**
- * A scope associated with the lifecycle of foundation components.
+ * A scope associated with the lifecycle of foundation-level components.
  *
  * @author aminography
  */

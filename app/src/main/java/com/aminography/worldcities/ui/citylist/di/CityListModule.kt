@@ -1,7 +1,7 @@
 package com.aminography.worldcities.ui.citylist.di
 
 import android.view.LayoutInflater
-import com.aminography.scope.feature.CityListScope
+import com.aminography.scope.annotation.FeatureScope
 import com.aminography.worldcities.ui.citylist.CityListFragment
 import com.aminography.worldcities.ui.citylist.adapter.CityListAdapter
 import com.aminography.worldcities.ui.citylist.vm.CityListViewModel
@@ -18,20 +18,20 @@ import dagger.Provides
 @Module
 class CityListModule {
 
-    @CityListScope
+    @FeatureScope
     @Provides
     fun providesCityListViewModel(
         factory: CityListViewModelFactory,
         fragment: CityListFragment
     ): CityListViewModel = fragment.createViewModel(factory)
 
-    @CityListScope
+    @FeatureScope
     @Provides
     fun providesLayoutInflater(
         fragment: CityListFragment
     ): LayoutInflater = LayoutInflater.from(fragment.requireContext())
 
-    @CityListScope
+    @FeatureScope
     @Provides
     fun providesCityListAdapter(
         inflater: LayoutInflater

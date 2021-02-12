@@ -16,7 +16,7 @@ import com.aminography.domain.city.CityRepository
 import com.aminography.domain.di.DefaultDispatcher
 import com.aminography.domain.di.IoDispatcher
 import com.aminography.model.city.City
-import com.aminography.scope.feature.CityListScope
+import com.aminography.scope.annotation.FeatureScope
 import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
@@ -31,47 +31,47 @@ import javax.inject.Named
 @Module
 class CityDataModule {
 
-    @CityListScope
+    @FeatureScope
     @Provides
     @Named(KEY_FILE_NAME)
     internal fun providesFileName(): String = "cities.json"
 
-    @CityListScope
+    @FeatureScope
     @Provides
     @Named(KEY_CONCURRENCY_LEVEL)
     internal fun providesConcurrencyLevel(): Int = 8
 
-    @CityListScope
+    @FeatureScope
     @Provides
     @Named(KEY_PAGE_SIZE)
     internal fun providesPageSize(): Int = 40
 
-    @CityListScope
+    @FeatureScope
     @Provides
     @Named(KEY_INITIAL_LOAD_SIZE)
     internal fun providesInitialLoadSize(): Int = 80
 
-    @CityListScope
+    @FeatureScope
     @Provides
     internal fun providesPagingConfig(
         @Named(KEY_PAGE_SIZE) pageSize: Int,
         @Named(KEY_INITIAL_LOAD_SIZE) initialLoadSize: Int
     ): PagingConfig = PagingConfig(pageSize = pageSize, initialLoadSize = initialLoadSize)
 
-    @CityListScope
+    @FeatureScope
     @Provides
     internal fun providesJsonRetriever(
         context: Context,
         gson: Gson
     ): JsonRetriever = JsonRetriever(context, gson)
 
-    @CityListScope
+    @FeatureScope
     @Provides
     internal fun providesLineCounter(
         context: Context
     ): LineCounter = LineCounter(context)
 
-    @CityListScope
+    @FeatureScope
     @Provides
     internal fun providesCityDataSource(
         jsonRetriever: JsonRetriever,
@@ -89,13 +89,13 @@ class CityDataModule {
         ioDispatcher
     )
 
-    @CityListScope
+    @FeatureScope
     @Provides
     internal fun providesPagerFactory(
         pagingConfig: PagingConfig
     ): PagingFactory<City> = PagingFactory(pagingConfig)
 
-    @CityListScope
+    @FeatureScope
     @Provides
     internal fun providesCityRepository(
         cityDataSource: CityDataSource,
