@@ -1,6 +1,7 @@
 package com.aminography.domain.di
 
-import com.aminography.scope.AppScope
+import com.aminography.scope.ComponentHolder
+import com.aminography.scope.app.AppScope
 import dagger.Component
 import kotlinx.coroutines.CoroutineDispatcher
 
@@ -26,7 +27,12 @@ interface DispatcherComponent {
 
     @Component.Builder
     interface Builder {
-
         fun build(): DispatcherComponent
+    }
+
+    companion object : ComponentHolder<DispatcherComponent>() {
+        override fun createComponent(): DispatcherComponent =
+            DaggerDispatcherComponent.builder()
+                .build()
     }
 }

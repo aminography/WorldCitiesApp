@@ -2,7 +2,7 @@ package com.aminography.data.di
 
 import com.aminography.data.KEY_BASE_URL
 import com.aminography.data.local.pref.settings.SettingsDataSource
-import com.aminography.scope.FoundationScope
+import com.aminography.scope.foundation.FoundationScope
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient

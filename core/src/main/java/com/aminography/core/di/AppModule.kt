@@ -2,7 +2,7 @@ package com.aminography.core.di
 
 import android.app.Application
 import android.content.Context
-import com.aminography.scope.AppScope
+import com.aminography.scope.app.AppScope
 import dagger.Module
 import dagger.Provides
 

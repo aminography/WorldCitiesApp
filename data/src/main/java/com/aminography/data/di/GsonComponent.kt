@@ -1,6 +1,7 @@
 package com.aminography.data.di
 
-import com.aminography.scope.FoundationScope
+import com.aminography.scope.ComponentHolder
+import com.aminography.scope.foundation.FoundationScope
 import com.google.gson.Gson
 import dagger.Component
 
@@ -19,7 +20,12 @@ interface GsonComponent {
 
     @Component.Builder
     interface Builder {
-
         fun build(): GsonComponent
+    }
+
+    companion object : ComponentHolder<GsonComponent>() {
+        override fun createComponent(): GsonComponent =
+            DaggerGsonComponent.builder()
+                .build()
     }
 }

@@ -1,4 +1,4 @@
-package com.aminography.scope
+package com.aminography.scope.app
 
 import javax.inject.Scope
 
