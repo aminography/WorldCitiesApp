@@ -3,7 +3,7 @@ package com.aminography.domain.city
 import com.aminography.domain.base.BaseFlowUseCase
 import com.aminography.domain.base.Result
 import com.aminography.domain.di.IoDispatcher
-import com.aminography.scope.CityListScope
+import com.aminography.scope.feature.CityListScope
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

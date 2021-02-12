@@ -1,5 +1,7 @@
 package com.aminography.worldcities.ui.citylist.di
 
+import com.aminography.data.di.DaggerGsonComponent
+import com.aminography.domain.di.DaggerDispatcherComponent
 import com.aminography.worldcities.ui.citylist.CityListFragment
 import com.aminography.worldcities.ui.util.application
 
@@ -11,9 +13,15 @@ import com.aminography.worldcities.ui.util.application
  */
 
 fun CityListFragment.injectComponent() {
-    application?.appComponent
-        ?.plusCityListComponent()
-        ?.fragment(this)
-        ?.build()
-        ?.inject(this)
+    val appComponent = application!!.appComponent
+    val dispatcherComponent = DaggerDispatcherComponent.builder().build()
+    val gsonComponent = DaggerGsonComponent.builder().build()
+
+    DaggerCityListComponent.builder()
+        .appComponent(appComponent)
+        .dispatcherComponent(dispatcherComponent)
+        .gsonComponent(gsonComponent)
+        .fragment(this)
+        .build()
+        .inject(this)
 }

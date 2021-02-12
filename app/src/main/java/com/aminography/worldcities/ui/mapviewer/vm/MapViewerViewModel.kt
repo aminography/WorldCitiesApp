@@ -5,14 +5,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.aminography.model.city.Coordination
 import com.aminography.worldcities.ui.citylist.model.MapViewerArg
-import javax.inject.Inject
 
 /**
  * The [ViewModel] class for the map-viewer user interface.
  *
  * @author aminography
  */
-class MapViewerViewModel @Inject constructor() : ViewModel() {
+class MapViewerViewModel : ViewModel() {
 
     private val _cityName = MutableLiveData<String>()
     val cityName: LiveData<String> = _cityName

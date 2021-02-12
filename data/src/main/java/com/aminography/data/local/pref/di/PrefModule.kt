@@ -3,7 +3,7 @@ package com.aminography.data.local.pref.di
 import android.content.Context
 import com.aminography.data.local.pref.settings.SettingsDataSource
 import com.aminography.data.local.pref.settings.SettingsDataSourceImpl
-import com.aminography.scope.AppScope
+import com.aminography.scope.FoundationScope
 import dagger.Module
 import dagger.Provides
 
@@ -13,9 +13,9 @@ import dagger.Provides
 @Module
 class PrefModule {
 
-    @AppScope
+    @FoundationScope
     @Provides
-    internal fun providesSettingsLocalDataSource(
+    internal fun providesSettingsDataSource(
         context: Context
     ): SettingsDataSource = SettingsDataSourceImpl(context)
 }

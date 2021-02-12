@@ -1,6 +1,6 @@
 package com.aminography.data.di
 
-import com.aminography.scope.AppScope
+import com.aminography.scope.FoundationScope
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -12,7 +12,7 @@ import dagger.Provides
 @Module
 class GsonModule {
 
-    @AppScope
+    @FoundationScope
     @Provides
     internal fun providesGson(): Gson = GsonBuilder().create()
 }

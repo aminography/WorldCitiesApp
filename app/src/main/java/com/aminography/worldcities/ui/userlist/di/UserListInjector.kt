@@ -1,5 +1,7 @@
 package com.aminography.worldcities.ui.userlist.di
 
+import com.aminography.data.di.DaggerNetworkComponent
+import com.aminography.domain.di.DaggerDispatcherComponent
 import com.aminography.worldcities.ui.userlist.UserListFragment
 import com.aminography.worldcities.ui.util.application
 
@@ -11,9 +13,14 @@ import com.aminography.worldcities.ui.util.application
  */
 
 fun UserListFragment.injectComponent() {
-    application?.appComponent
-        ?.plusUserListComponent()
-        ?.fragment(this)
-        ?.build()
-        ?.inject(this)
+    val appComponent = application!!.appComponent
+    val dispatcherComponent = DaggerDispatcherComponent.builder().build()
+    val networkComponent = DaggerNetworkComponent.builder().appComponent(appComponent).build()
+
+    DaggerUserListComponent.builder()
+        .dispatcherComponent(dispatcherComponent)
+        .networkComponent(networkComponent)
+        .fragment(this)
+        .build()
+        .inject(this)
 }

@@ -1,6 +1,6 @@
 package com.aminography.worldcities.ui.mapviewer.di
 
-import com.aminography.scope.MapViewerScope
+import com.aminography.scope.feature.MapViewerScope
 import com.aminography.worldcities.ui.mapviewer.MapViewerFragment
 import com.aminography.worldcities.ui.mapviewer.vm.MapViewerViewModel
 import com.aminography.worldcities.ui.mapviewer.vm.MapViewerViewModelFactory

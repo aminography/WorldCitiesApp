@@ -2,7 +2,7 @@ package com.aminography.domain.city
 
 import com.aminography.domain.base.BaseUseCase
 import com.aminography.domain.base.Result
-import com.aminography.scope.CityListScope
+import com.aminography.scope.feature.CityListScope
 import javax.inject.Inject
 
 /**

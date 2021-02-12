@@ -1,26 +1,18 @@
 package com.aminography.worldcities
 
-import android.app.Application
 import android.os.StrictMode
-import com.aminography.worldcities.di.AppComponent
-import com.aminography.worldcities.di.DaggerAppComponent
+import com.aminography.core.CoreApplication
 
 /**
  * The application class responsible for initializing dagger components and dependency graph.
  *
  * @author aminography
  */
-class MainApplication : Application() {
-
-    lateinit var appComponent: AppComponent
-        private set
+class MainApplication : CoreApplication() {
 
     override fun onCreate() {
         if (BuildConfig.DEBUG) enableStrictMode()
         super.onCreate()
-
-        appComponent = DaggerAppComponent.factory()
-            .create(applicationContext)
     }
 
     private fun enableStrictMode() {

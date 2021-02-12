@@ -1,13 +1,15 @@
 package com.aminography.data.di
 
+import com.aminography.data.KEY_BASE_URL
 import com.aminography.data.local.pref.settings.SettingsDataSource
-import com.aminography.scope.AppScope
+import com.aminography.scope.FoundationScope
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Named
 
 /**
  * @author aminography
@@ -15,23 +17,38 @@ import retrofit2.converter.gson.GsonConverterFactory
 @Module
 class NetworkModule {
 
+    @FoundationScope
+    @Provides
+    @Named(KEY_BASE_URL)
+    internal fun providesBaseUrl(
+        settingsDataSource: SettingsDataSource
+    ): String = settingsDataSource.baseUrl
+
+    @FoundationScope
     @Provides
     internal fun providesHttpLoggingInterceptor(): HttpLoggingInterceptor =
         HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY }
 
+    @FoundationScope
     @Provides
     internal fun providesOkHttpClient(
         httpLoggingInterceptor: HttpLoggingInterceptor
     ): OkHttpClient = OkHttpClient.Builder().addInterceptor(httpLoggingInterceptor).build()
 
-    @AppScope
+    @FoundationScope
+    @Provides
+    internal fun providesGsonConverterFactory(): GsonConverterFactory =
+        GsonConverterFactory.create()
+
+    @FoundationScope
     @Provides
     internal fun providesRetrofit(
-        okHttpClient: OkHttpClient,
-        settingsDataSource: SettingsDataSource
+        @Named(KEY_BASE_URL) baseUrl: String,
+        gsonConverterFactory: GsonConverterFactory,
+        okHttpClient: OkHttpClient
     ): Retrofit = Retrofit.Builder()
-        .baseUrl(settingsDataSource.baseUrl)
-        .addConverterFactory(GsonConverterFactory.create())
+        .baseUrl(baseUrl)
+        .addConverterFactory(gsonConverterFactory)
         .client(okHttpClient)
         .build()
 }

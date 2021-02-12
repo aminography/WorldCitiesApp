@@ -24,7 +24,6 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 /**
  *  The [ViewModel] class fo the city-list user interface.
@@ -36,7 +35,7 @@ import javax.inject.Inject
  *
  * @author aminography
  */
-class CityListViewModel @Inject constructor(
+class CityListViewModel(
     defaultDispatcher: CoroutineDispatcher,
     loadCitiesUseCase: LoadCitiesUseCase,
     searchCitiesUseCase: SearchCitiesUseCase,

@@ -56,6 +56,7 @@ dependencies {
     // ------- architecture
     implementation project(':domain')
     implementation project(':data')
+    implementation project(':core')
 
     // ------- coroutine
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.coroutine}"

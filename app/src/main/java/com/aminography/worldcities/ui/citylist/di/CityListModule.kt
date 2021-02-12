@@ -1,7 +1,7 @@
 package com.aminography.worldcities.ui.citylist.di
 
 import android.view.LayoutInflater
-import com.aminography.scope.CityListScope
+import com.aminography.scope.feature.CityListScope
 import com.aminography.worldcities.ui.citylist.CityListFragment
 import com.aminography.worldcities.ui.citylist.adapter.CityListAdapter
 import com.aminography.worldcities.ui.citylist.vm.CityListViewModel

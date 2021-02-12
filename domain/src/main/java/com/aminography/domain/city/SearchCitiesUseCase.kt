@@ -4,7 +4,7 @@ import androidx.paging.PagingData
 import com.aminography.domain.base.BaseFlowUseCase
 import com.aminography.domain.di.DefaultDispatcher
 import com.aminography.model.city.City
-import com.aminography.scope.CityListScope
+import com.aminography.scope.feature.CityListScope
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import java.util.*

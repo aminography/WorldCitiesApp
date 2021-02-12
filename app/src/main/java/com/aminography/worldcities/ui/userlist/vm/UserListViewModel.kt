@@ -8,12 +8,11 @@ import com.aminography.domain.user.SearchUsersUseCase
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 /**
  * @author aminography
  */
-class UserListViewModel @Inject constructor(
+class UserListViewModel(
     private val defaultDispatcher: CoroutineDispatcher,
     private val searchUsersUseCase: SearchUsersUseCase
 ) : ViewModel() {

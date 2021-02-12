@@ -1,10 +1,9 @@
 package com.aminography.worldcities.ui.mapviewer.di
 
-import com.aminography.scope.MapViewerScope
-import com.aminography.worldcities.ui.citylist.di.CityListModule
+import com.aminography.scope.feature.MapViewerScope
 import com.aminography.worldcities.ui.mapviewer.MapViewerFragment
 import dagger.BindsInstance
-import dagger.Subcomponent
+import dagger.Component
 
 /**
  * A dagger component class providing dependencies related to the [MapViewerScope].
@@ -12,21 +11,21 @@ import dagger.Subcomponent
  * @author aminography
  */
 @MapViewerScope
-@Subcomponent(
+@Component(
     modules = [
-        CityListModule::class
+        MapViewerModule::class
     ]
 )
 interface MapViewerComponent {
 
     fun inject(fragment: MapViewerFragment)
 
-    @Subcomponent.Builder
+    @Component.Builder
     interface Builder {
-
-        fun build(): MapViewerComponent
 
         @BindsInstance
         fun fragment(fragment: MapViewerFragment): Builder
+
+        fun build(): MapViewerComponent
     }
 }

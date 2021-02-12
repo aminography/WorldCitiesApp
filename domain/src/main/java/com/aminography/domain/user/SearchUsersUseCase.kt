@@ -4,7 +4,7 @@ import com.aminography.domain.base.BaseFlowUseCase
 import com.aminography.domain.base.Result
 import com.aminography.domain.di.IoDispatcher
 import com.aminography.model.user.GithubUser
-import com.aminography.scope.UserListScope
+import com.aminography.scope.feature.UserListScope
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
