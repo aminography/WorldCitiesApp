@@ -32,11 +32,14 @@ class UserListFragment : BaseFragment<FragmentUserListBinding>() {
     ): FragmentUserListBinding = FragmentUserListBinding.inflate(inflater, container, false)
 
     override fun onInitViews(rootView: View, savedInstanceState: Bundle?) = with(binding) {
+        toolbar.setNavigationOnClickListener { activity?.onBackPressedDispatcher?.onBackPressed() }
+
         initViewModel()
     }
 
     private fun initViewModel() {
         val owner = viewLifecycleOwner
         viewModel.init(args.cityName)
+        viewModel.cityName.observe(owner) { binding.toolbar.title = it }
     }
 }

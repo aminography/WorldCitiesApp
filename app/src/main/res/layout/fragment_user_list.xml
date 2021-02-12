@@ -20,7 +20,7 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@color/window_background"
             app:layout_scrollFlags="enterAlways"
-            app:title="@string/app_name" />
+            app:navigationIcon="@drawable/ic_baseline_arrow_back_24" />
 
     </com.google.android.material.appbar.AppBarLayout>
 

@@ -73,7 +73,7 @@ internal class CityDataSourceImpl @Inject constructor(
                         }
                     }.let {
                         withContext(defaultDispatcher) {
-                            it.sortedBy { it.name }
+                            it.sortedBy { city -> city.name }
                         }
                     }
                 }
