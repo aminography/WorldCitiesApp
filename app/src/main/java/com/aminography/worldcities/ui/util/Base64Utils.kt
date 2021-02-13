@@ -7,7 +7,7 @@ import android.util.Base64
  */
 
 val ByteArray.encodeBase64: String
-    get() = Base64.encode(this, Base64.NO_WRAP).toString(charset("UTF-8"))
+    get() = Base64.encodeToString(this, Base64.URL_SAFE)
 
 val String.decodeBase64: ByteArray
-    get() = Base64.decode(this, Base64.NO_WRAP)
+    get() = Base64.decode(this, Base64.URL_SAFE)

@@ -18,8 +18,9 @@ import com.aminography.worldcities.ui.base.BaseFragment
 import com.aminography.worldcities.ui.base.adapter.BaseDataHolder
 import com.aminography.worldcities.ui.base.adapter.OnListItemClickListener
 import com.aminography.worldcities.ui.model.MapViewerArg
-import com.aminography.worldcities.ui.util.hideKeyboard
-import com.aminography.worldcities.ui.util.toast
+import com.aminography.worldcities.ui.navigation.DeepLinkParser
+import com.aminography.worldcities.ui.navigation.NavDestination
+import com.aminography.worldcities.ui.util.*
 import javax.inject.Inject
 
 /**
@@ -78,6 +79,13 @@ class CityListFragment : BaseFragment<FragmentCityListBinding>(), OnListItemClic
             CityListFragmentDirections.actionCityListFragmentToMapViewerFragment(arg)
 //            CityListFragmentDirections.actionCityListFragmentToUserListFragment(arg.name)
         )
+
+        val deepLink = NavDestination.MapViewer.deepLinkWithArgument(arg)
+
+        val arg2 = DeepLinkParser(deepLink.toString()).decodeArgument(MapViewerArg.CREATOR)
+
+        println(deepLink)
+        println(arg2)
     }
 
     override fun onItemClicked(dataHolder: BaseDataHolder?) {
