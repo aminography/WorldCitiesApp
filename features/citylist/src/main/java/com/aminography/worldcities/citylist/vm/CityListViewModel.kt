@@ -14,7 +14,7 @@ import com.aminography.domain.city.SearchCitiesUseCase
 import com.aminography.model.city.City
 import com.aminography.worldcities.citylist.adapter.CityItemDataHolder
 import com.aminography.worldcities.citylist.model.toCityItemDataHolder
-import com.aminography.worldcities.citylist.model.toMapViewerArg
+import com.aminography.worldcities.ui.model.toMapViewerNavArg
 import com.aminography.worldcities.ui.navigation.NavDestination
 import com.aminography.worldcities.ui.navigation.NavDirection
 import com.aminography.worldcities.ui.util.SingleLiveEvent
@@ -100,11 +100,8 @@ class CityListViewModel(
     fun onCityClicked(city: City) {
         _navigation.postValue(
             NavDestination.MapViewer.deepLinkWithArgument(
-                city.toMapViewerArg()
+                city.toMapViewerNavArg()
             )
-//            NavDestination.UserList.deepLinkWithArgument(
-//                city.toUserListArg()
-//            )
         )
     }
 

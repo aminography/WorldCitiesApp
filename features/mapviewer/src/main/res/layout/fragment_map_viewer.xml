@@ -35,4 +35,14 @@
         app:layout_constraintTop_toBottomOf="@id/appBarLayout"
         tools:context=".ui.MainActivity" />
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/usersButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="8dp"
+        android:text="Users"
+        android:textSize="8sp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

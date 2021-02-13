@@ -11,6 +11,7 @@ import com.aminography.worldcities.mapviewer.vm.MapViewerViewModel
 import com.aminography.worldcities.ui.base.BaseFragment
 import com.aminography.worldcities.ui.model.MapViewerNavArg
 import com.aminography.worldcities.ui.navigation.argument.deepLinkNavArgument
+import com.aminography.worldcities.ui.navigation.observeNavigation
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -50,9 +51,13 @@ class MapViewerFragment : BaseFragment<FragmentMapViewerBinding>(), OnMapReadyCa
         mapView.getMapAsync(this@MapViewerFragment)
 
         initViewModel()
+
+        usersButton.setOnClickListener { viewModel.onShowUsersClicked() }
     }
 
     private fun initViewModel() {
+        observeNavigation(viewModel.navigation)
+
         val owner = viewLifecycleOwner
         viewModel.init(navArg)
         viewModel.cityName.observe(owner) { binding.toolbar.title = it }
