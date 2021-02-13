@@ -37,7 +37,7 @@ class MapViewerViewModel : ViewModel() {
 
     fun onShowUsersClicked() {
         _navigation.postValue(
-            NavDestinations.UserList.deepLinkWithArgument(
+            NavDestinations.UserList.deepLinkWithArg(
                 UserListNavArg(_cityName.value ?: "")
             )
         )

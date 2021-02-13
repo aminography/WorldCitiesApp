@@ -3,7 +3,7 @@ package com.aminography.worldcities.navigation.model
 import android.os.Parcel
 import android.os.Parcelable
 import com.aminography.model.city.Coordination
-import com.aminography.worldcities.navigation.core.argument.DeepLinkNavArgument
+import com.aminography.worldcities.navigation.core.argument.DeepLinkNavArg
 
 /**
  * The argument for the [MapViewerFragment], sent via
@@ -19,7 +19,7 @@ data class MapViewerNavArg(
     val name: String,
     val country: String,
     val coord: Coordination
-) : DeepLinkNavArgument {
+) : DeepLinkNavArg {
 
     constructor(parcel: Parcel) : this(
         parcel.readString() ?: "",

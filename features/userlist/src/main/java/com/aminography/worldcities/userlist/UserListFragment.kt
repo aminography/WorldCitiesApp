@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.aminography.worldcities.navigation.core.argument.deepLinkNavArgument
+import com.aminography.worldcities.navigation.core.argument.deepLinkNavArg
 import com.aminography.worldcities.navigation.model.UserListNavArg
 import com.aminography.worldcities.ui.base.BaseFragment
 import com.aminography.worldcities.userlist.databinding.FragmentUserListBinding
@@ -20,7 +20,7 @@ class UserListFragment : BaseFragment<FragmentUserListBinding>() {
     @Inject
     lateinit var viewModel: UserListViewModel
 
-    private val navArg: UserListNavArg by deepLinkNavArgument()
+    private val navArg: UserListNavArg by deepLinkNavArg()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

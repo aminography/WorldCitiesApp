@@ -9,13 +9,13 @@ import android.util.Base64
  * @author aminography
  */
 
-internal val DeepLinkNavArgument.encodeToBase64: String
+internal val DeepLinkNavArg.encodeToBase64: String
     get() = Parcel.obtain().run {
         writeToParcel(this, 0)
         marshall().encodeBase64.also { recycle() }
     }
 
-internal fun <T : DeepLinkNavArgument> String.decodeFromBase64(
+internal fun <T : DeepLinkNavArg> String.decodeFromBase64(
     creator: Parcelable.Creator<T>
 ): T = decodeBase64ToParcel.run {
     creator.createFromParcel(this).also { recycle() }

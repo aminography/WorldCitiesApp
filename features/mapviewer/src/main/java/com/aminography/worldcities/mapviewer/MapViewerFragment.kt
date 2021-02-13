@@ -8,7 +8,7 @@ import com.aminography.model.city.Coordination
 import com.aminography.worldcities.mapviewer.databinding.FragmentMapViewerBinding
 import com.aminography.worldcities.mapviewer.di.injectComponent
 import com.aminography.worldcities.mapviewer.vm.MapViewerViewModel
-import com.aminography.worldcities.navigation.core.argument.deepLinkNavArgument
+import com.aminography.worldcities.navigation.core.argument.deepLinkNavArg
 import com.aminography.worldcities.navigation.core.observeNavigation
 import com.aminography.worldcities.navigation.model.MapViewerNavArg
 import com.aminography.worldcities.ui.base.BaseFragment
@@ -29,7 +29,7 @@ class MapViewerFragment : BaseFragment<FragmentMapViewerBinding>(), OnMapReadyCa
     @Inject
     lateinit var viewModel: MapViewerViewModel
 
-    private val navArg: MapViewerNavArg by deepLinkNavArgument()
+    private val navArg: MapViewerNavArg by deepLinkNavArg()
 
     private var googleMap: GoogleMap? = null
     private var coord: Coordination? = null

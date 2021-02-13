@@ -5,4 +5,4 @@ import android.os.Parcelable
 /**
  * @author aminography
  */
-interface DeepLinkNavArgument : Parcelable
+interface DeepLinkNavArg : Parcelable

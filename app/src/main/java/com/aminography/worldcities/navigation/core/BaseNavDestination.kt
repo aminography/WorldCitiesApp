@@ -1,22 +1,22 @@
 package com.aminography.worldcities.navigation.core
 
 import androidx.core.net.toUri
-import com.aminography.worldcities.navigation.core.argument.DeepLinkNavArgument
+import com.aminography.worldcities.navigation.core.argument.DeepLinkNavArg
 import com.aminography.worldcities.navigation.core.argument.encodeToBase64
 
 /**
  * @author aminography
  */
-abstract class BaseNavDestination<T : DeepLinkNavArgument>(private val link: String) {
+abstract class BaseNavDestination<T : DeepLinkNavArg>(private val link: String) {
 
     fun deepLink(): NavDirection.DeepLink =
         NavDirection.DeepLink(link.toUri())
 
-    fun deepLinkWithArgument(navArgument: T): NavDirection.DeepLink =
+    fun deepLinkWithArg(navArg: T): NavDirection.DeepLink =
         NavDirection.DeepLink(
             link.toUri()
                 .buildUpon()
-                .encodedQuery("arg=${navArgument.encodeToBase64}")
+                .encodedQuery("arg=${navArg.encodeToBase64}")
                 .build()
         )
 }

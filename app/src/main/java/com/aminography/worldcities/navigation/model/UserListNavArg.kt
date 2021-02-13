@@ -2,14 +2,14 @@ package com.aminography.worldcities.navigation.model
 
 import android.os.Parcel
 import android.os.Parcelable
-import com.aminography.worldcities.navigation.core.argument.DeepLinkNavArgument
+import com.aminography.worldcities.navigation.core.argument.DeepLinkNavArg
 
 /**
  * @author aminography
  */
 data class UserListNavArg(
     val city: String
-) : DeepLinkNavArgument {
+) : DeepLinkNavArg {
 
     constructor(parcel: Parcel) : this(parcel.readString() ?: "")
 

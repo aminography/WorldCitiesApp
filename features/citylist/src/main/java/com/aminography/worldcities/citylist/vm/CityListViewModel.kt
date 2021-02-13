@@ -99,7 +99,7 @@ class CityListViewModel(
      */
     fun onCityClicked(city: City) {
         _navigation.postValue(
-            NavDestinations.MapViewer.deepLinkWithArgument(
+            NavDestinations.MapViewer.deepLinkWithArg(
                 city.toMapViewerNavArg()
             )
         )

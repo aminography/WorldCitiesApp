@@ -10,7 +10,7 @@ import kotlin.reflect.KClass
 /**
  * @author aminography
  */
-class DeepLinkNavArgumentLazy<T : DeepLinkNavArgument>(
+class DeepLinkNavLazy<T : DeepLinkNavArg>(
     private val navArgumentClass: KClass<T>,
     private val argumentProducer: () -> Bundle
 ) : Lazy<T> {
@@ -50,10 +50,10 @@ class DeepLinkNavArgumentLazy<T : DeepLinkNavArgument>(
     override fun isInitialized() = cached != null
 }
 
-internal val creatorMap = ArrayMap<KClass<out DeepLinkNavArgument>, Parcelable.Creator<*>>()
+internal val creatorMap = ArrayMap<KClass<out DeepLinkNavArg>, Parcelable.Creator<*>>()
 
 @MainThread
-inline fun <reified T : DeepLinkNavArgument> Fragment.deepLinkNavArgument() =
-    DeepLinkNavArgumentLazy(T::class) {
+inline fun <reified T : DeepLinkNavArg> Fragment.deepLinkNavArg() =
+    DeepLinkNavLazy(T::class) {
         arguments ?: throw IllegalStateException("Fragment $this has null arguments")
     }
