@@ -10,9 +10,9 @@ import com.aminography.worldcities.navigation.model.UserListNavArg
  */
 sealed class NavDestinations<T : DeepLinkNavArg>(link: String) : BaseNavDestination<T>(link) {
 
-    object TestDestinationWithNoArg : NavDestinations<Nothing>("myapp://test_no_arg")
+    object TestDestinationWithNoArg : NavDestinations<Nothing>("worldcities://test_no_arg")
 
-    object MapViewer : NavDestinations<MapViewerNavArg>("myapp://map_viewer")
+    object MapViewer : NavDestinations<MapViewerNavArg>("worldcities://map_viewer")
 
-    object UserList : NavDestinations<UserListNavArg>("myapp://user_list")
+    object UserList : NavDestinations<UserListNavArg>("worldcities://user_list")
 }

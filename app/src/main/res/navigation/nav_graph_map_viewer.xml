@@ -13,7 +13,7 @@
 
         <deepLink
             android:autoVerify="true"
-            app:uri="myapp://map_viewer?arg={arg}"
+            app:uri="worldcities://map_viewer?arg={arg}"
             tools:targetApi="m" />
     </fragment>
 

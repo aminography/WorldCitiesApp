@@ -21,7 +21,7 @@
 
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
-                <data android:scheme="myapp" />
+                <data android:scheme="worldcities" />
             </intent-filter>
         </activity>
 

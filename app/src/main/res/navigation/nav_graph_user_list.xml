@@ -13,7 +13,7 @@
 
         <deepLink
             android:autoVerify="true"
-            app:uri="myapp://user_list?arg={arg}"
+            app:uri="worldcities://user_list?arg={arg}"
             tools:targetApi="m" />
     </fragment>
 
