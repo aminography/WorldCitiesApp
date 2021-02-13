@@ -8,12 +8,12 @@ import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
+import com.aminography.navigation.observeNavigation
 import com.aminography.worldcities.citylist.adapter.CityItemDataHolder
 import com.aminography.worldcities.citylist.adapter.CityListAdapter
 import com.aminography.worldcities.citylist.databinding.FragmentCityListBinding
 import com.aminography.worldcities.citylist.di.injectComponent
 import com.aminography.worldcities.citylist.vm.CityListViewModel
-import com.aminography.worldcities.navigation.core.observeNavigation
 import com.aminography.worldcities.ui.base.BaseFragment
 import com.aminography.worldcities.ui.base.adapter.BaseDataHolder
 import com.aminography.worldcities.ui.base.adapter.OnListItemClickListener

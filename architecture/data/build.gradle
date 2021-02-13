@@ -1,5 +1,5 @@
 plugins {
-    id 'com.android.dynamic-feature'
+    id 'com.android.library'
     id 'kotlin-android'
     id 'kotlin-kapt'
 }
@@ -16,19 +16,11 @@ android {
         minSdkVersion versions.minSdk
         targetSdkVersion versions.targetSdk
 
-        applicationId "com.aminography.worldcities.citylist"
-
-        versionCode appVersionCode
-        versionName appVersionName
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
-        debug {
-            minifyEnabled false
-            debuggable true
-        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -43,47 +35,31 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8
     }
-
-    buildFeatures {
-        viewBinding true
-    }
 }
 
 dependencies {
     // ------- architecture
-    implementation project(":architecture:app")
     implementation project(':architecture:domain')
-    implementation project(':architecture:data')
     implementation project(':common:core')
 
     // ------- coroutine
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.coroutine}"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.coroutine}"
 
-    // ------- material
-    implementation "com.google.android.material:material:${versions.material}"
-
     // ------- androidx
     implementation "androidx.core:core-ktx:${versions.androidx_core}"
-    implementation "androidx.appcompat:appcompat:${versions.appcompat}"
-    implementation "androidx.fragment:fragment-ktx:${versions.fragment_ktx}"
-    implementation "androidx.constraintlayout:constraintlayout:${versions.constraintlayout}"
-    implementation "androidx.recyclerview:recyclerview:${versions.recyclerview}"
 
     // ------- dagger
     implementation "com.google.dagger:dagger:${versions.dagger}"
     kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
 
-    // ------- lifecycle
-    implementation "androidx.lifecycle:lifecycle-extensions:${versions.lifecycle}"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.lifecycle}"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:${versions.lifecycle}"
-    implementation "androidx.lifecycle:lifecycle-runtime-ktx:${versions.lifecycle}"
+    // ------- okhttp
+    api "com.squareup.okhttp3:logging-interceptor:${versions.okhttp}"
+    implementation "com.squareup.okhttp3:okhttp:${versions.okhttp}"
 
-    // ------- navigation
-    implementation "androidx.navigation:navigation-fragment-ktx:${versions.navigation}"
-    implementation "androidx.navigation:navigation-ui-ktx:${versions.navigation}"
-    implementation "androidx.navigation:navigation-dynamic-features-fragment:${versions.navigation}"
+    // ------- retrofit
+    api "com.squareup.retrofit2:retrofit:${versions.retrofit}"
+    implementation "com.squareup.retrofit2:converter-gson:${versions.retrofit}"
 
     // ------- paging
     implementation "androidx.paging:paging-runtime-ktx:${versions.paging}"

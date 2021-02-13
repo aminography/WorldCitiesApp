@@ -1,13 +1,16 @@
 rootProject.name = "WorldCitiesApp"
 
+// ------- common
+include ':common:core'
+include ':common:scope'
+include ':common:navigation'
+include ':common:shared_test'
+
 // ------- architecture
-include ':app'
-include ':core'
-include ':data'
-include ':domain'
-include ':model'
-include ':scope'
-include ':shared_test'
+include ':architecture:app'
+include ':architecture:data'
+include ':architecture:domain'
+include ':architecture:model'
 
 // ------- features
 include ':features:citylist'

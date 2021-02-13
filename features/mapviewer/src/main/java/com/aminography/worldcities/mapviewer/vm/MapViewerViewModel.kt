@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.aminography.model.city.Coordination
+import com.aminography.navigation.NavDirection
 import com.aminography.worldcities.navigation.NavDestinations
-import com.aminography.worldcities.navigation.core.NavDirection
 import com.aminography.worldcities.navigation.model.MapViewerNavArg
 import com.aminography.worldcities.navigation.model.UserListNavArg
 import com.aminography.worldcities.ui.util.SingleLiveEvent

@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.aminography.worldcities.navigation.core.argument.deepLinkNavArg
-import com.aminography.worldcities.navigation.core.observeNavigation
+import com.aminography.navigation.deepLinkNavArg
+import com.aminography.navigation.observeNavigation
 import com.aminography.worldcities.navigation.model.UserListNavArg
 import com.aminography.worldcities.ui.base.BaseFragment
 import com.aminography.worldcities.userlist.databinding.FragmentUserListBinding
@@ -36,7 +36,7 @@ class UserListFragment : BaseFragment<FragmentUserListBinding>() {
     override fun onInitViews(rootView: View, savedInstanceState: Bundle?) = with(binding) {
         initViewModel()
 
-        toolbar.setNavigationOnClickListener { viewModel.onNavigateUpClicked()  }
+        toolbar.setNavigationOnClickListener { viewModel.onNavigateUpClicked() }
     }
 
     private fun initViewModel() {

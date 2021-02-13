@@ -5,11 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.aminography.model.city.Coordination
+import com.aminography.navigation.deepLinkNavArg
+import com.aminography.navigation.observeNavigation
 import com.aminography.worldcities.mapviewer.databinding.FragmentMapViewerBinding
 import com.aminography.worldcities.mapviewer.di.injectComponent
 import com.aminography.worldcities.mapviewer.vm.MapViewerViewModel
-import com.aminography.worldcities.navigation.core.argument.deepLinkNavArg
-import com.aminography.worldcities.navigation.core.observeNavigation
 import com.aminography.worldcities.navigation.model.MapViewerNavArg
 import com.aminography.worldcities.ui.base.BaseFragment
 import com.google.android.gms.maps.CameraUpdateFactory

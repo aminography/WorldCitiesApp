@@ -1,5 +1,5 @@
 plugins {
-    id 'com.android.dynamic-feature'
+    id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
 }
@@ -7,6 +7,7 @@ plugins {
 apply from: '../../dependencies/shared.gradle'
 apply from: '../../dependencies/unit_test.gradle'
 apply from: '../../dependencies/android_test.gradle'
+apply from: '../../keystore/keystore.gradle'
 
 android {
     compileSdkVersion versions.compileSdk
@@ -16,7 +17,7 @@ android {
         minSdkVersion versions.minSdk
         targetSdkVersion versions.targetSdk
 
-        applicationId "com.aminography.worldcities.userlist"
+        applicationId "com.aminography.worldcities"
 
         versionCode appVersionCode
         versionName appVersionName
@@ -26,6 +27,7 @@ android {
 
     buildTypes {
         debug {
+            signingConfig signingConfigs.debug
             minifyEnabled false
             debuggable true
         }
@@ -47,14 +49,20 @@ android {
     buildFeatures {
         viewBinding true
     }
+
+    dynamicFeatures = [
+            ':features:citylist',
+            ':features:userlist',
+            ':features:mapviewer'
+    ]
 }
 
 dependencies {
     // ------- architecture
-    implementation project(":architecture:app")
     implementation project(':architecture:domain')
     implementation project(':architecture:data')
     implementation project(':common:core')
+    api project(':common:navigation')
 
     // ------- coroutine
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.coroutine}"
@@ -80,8 +88,6 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:${versions.lifecycle}"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:${versions.lifecycle}"
 
-    // ------- navigation
-    implementation "androidx.navigation:navigation-fragment-ktx:${versions.navigation}"
-    implementation "androidx.navigation:navigation-ui-ktx:${versions.navigation}"
-    implementation "androidx.navigation:navigation-dynamic-features-fragment:${versions.navigation}"
+    // ------- maps
+    implementation "com.google.android.gms:play-services-maps:${versions.maps}"
 }
