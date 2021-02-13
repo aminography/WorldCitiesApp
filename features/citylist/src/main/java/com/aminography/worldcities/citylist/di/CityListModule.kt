@@ -1,11 +1,11 @@
-package com.aminography.worldcities.ui.citylist.di
+package com.aminography.worldcities.citylist.di
 
 import android.view.LayoutInflater
 import com.aminography.scope.annotation.FeatureScope
-import com.aminography.worldcities.ui.citylist.CityListFragment
-import com.aminography.worldcities.ui.citylist.adapter.CityListAdapter
-import com.aminography.worldcities.ui.citylist.vm.CityListViewModel
-import com.aminography.worldcities.ui.citylist.vm.CityListViewModelFactory
+import com.aminography.worldcities.citylist.CityListFragment
+import com.aminography.worldcities.citylist.adapter.CityListAdapter
+import com.aminography.worldcities.citylist.vm.CityListViewModel
+import com.aminography.worldcities.citylist.vm.CityListViewModelFactory
 import com.aminography.worldcities.ui.util.createViewModel
 import dagger.Module
 import dagger.Provides

@@ -10,5 +10,6 @@ include ':scope'
 include ':shared_test'
 
 // ------- features
+include ':features:citylist'
 include ':features:userlist'
 include ':features:mapviewer'

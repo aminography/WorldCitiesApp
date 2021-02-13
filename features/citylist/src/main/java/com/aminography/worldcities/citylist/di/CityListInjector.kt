@@ -1,9 +1,9 @@
-package com.aminography.worldcities.ui.citylist.di
+package com.aminography.worldcities.citylist.di
 
 import com.aminography.core.di.AppComponent
 import com.aminography.data.di.GsonComponent
 import com.aminography.domain.di.DispatcherComponent
-import com.aminography.worldcities.ui.citylist.CityListFragment
+import com.aminography.worldcities.citylist.CityListFragment
 
 /**
  * An extension function on the [CityListFragment] object to build related dagger component to

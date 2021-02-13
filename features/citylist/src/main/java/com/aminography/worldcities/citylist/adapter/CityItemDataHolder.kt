@@ -1,4 +1,4 @@
-package com.aminography.worldcities.ui.citylist.adapter
+package com.aminography.worldcities.citylist.adapter
 
 import com.aminography.model.city.City
 import com.aminography.worldcities.ui.base.adapter.BaseDataHolder

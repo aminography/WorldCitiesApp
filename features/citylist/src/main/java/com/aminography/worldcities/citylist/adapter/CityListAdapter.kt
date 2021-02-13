@@ -1,4 +1,4 @@
-package com.aminography.worldcities.ui.citylist.adapter
+package com.aminography.worldcities.citylist.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

@@ -1,14 +1,12 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.dynamic-feature'
     id 'kotlin-android'
     id 'kotlin-kapt'
-    id 'androidx.navigation.safeargs.kotlin'
 }
 
-apply from: '../dependencies/shared.gradle'
-apply from: '../dependencies/unit_test.gradle'
-apply from: '../dependencies/android_test.gradle'
-apply from: '../keystore/keystore.gradle'
+apply from: '../../dependencies/shared.gradle'
+apply from: '../../dependencies/unit_test.gradle'
+apply from: '../../dependencies/android_test.gradle'
 
 android {
     compileSdkVersion versions.compileSdk
@@ -18,7 +16,7 @@ android {
         minSdkVersion versions.minSdk
         targetSdkVersion versions.targetSdk
 
-        applicationId "com.aminography.worldcities"
+        applicationId "com.aminography.worldcities.citylist"
 
         versionCode appVersionCode
         versionName appVersionName
@@ -28,7 +26,6 @@ android {
 
     buildTypes {
         debug {
-            signingConfig signingConfigs.debug
             minifyEnabled false
             debuggable true
         }
@@ -50,16 +47,11 @@ android {
     buildFeatures {
         viewBinding true
     }
-
-    dynamicFeatures = [
-            ':features:citylist',
-            ':features:userlist',
-            ':features:mapviewer'
-    ]
 }
 
 dependencies {
     // ------- architecture
+    implementation project(":app")
     implementation project(':domain')
     implementation project(':data')
     implementation project(':core')
@@ -93,6 +85,6 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:${versions.navigation}"
     implementation "androidx.navigation:navigation-dynamic-features-fragment:${versions.navigation}"
 
-    // ------- maps
-    implementation "com.google.android.gms:play-services-maps:${versions.maps}"
+    // ------- paging
+    implementation "androidx.paging:paging-runtime-ktx:${versions.paging}"
 }

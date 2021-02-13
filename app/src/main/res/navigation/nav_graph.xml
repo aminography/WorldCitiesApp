@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/cityListFragment"
-        android:name="com.aminography.worldcities.ui.citylist.CityListFragment"
+        android:name="com.aminography.worldcities.citylist.CityListFragment"
         tools:layout="@layout/fragment_city_list">
 
         <action
@@ -35,7 +35,7 @@
 
         <argument
             android:name="mapViewerArg"
-            app:argType="com.aminography.worldcities.ui.citylist.model.MapViewerArg" />
+            app:argType="com.aminography.worldcities.ui.model.MapViewerArg" />
     </fragment>
 
     <fragment

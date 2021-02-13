@@ -1,4 +1,4 @@
-package com.aminography.worldcities.ui.citylist.vm
+package com.aminography.worldcities.citylist.vm
 
 import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.*
@@ -12,10 +12,10 @@ import com.aminography.domain.city.ClearCitiesCacheUseCase
 import com.aminography.domain.city.LoadCitiesUseCase
 import com.aminography.domain.city.SearchCitiesUseCase
 import com.aminography.model.city.City
-import com.aminography.worldcities.ui.citylist.adapter.CityItemDataHolder
-import com.aminography.worldcities.ui.citylist.model.MapViewerArg
-import com.aminography.worldcities.ui.citylist.model.toCityItemDataHolder
-import com.aminography.worldcities.ui.citylist.model.toMapViewerArg
+import com.aminography.worldcities.citylist.adapter.CityItemDataHolder
+import com.aminography.worldcities.citylist.model.toCityItemDataHolder
+import com.aminography.worldcities.citylist.model.toMapViewerArg
+import com.aminography.worldcities.ui.model.MapViewerArg
 import com.aminography.worldcities.ui.util.SingleLiveEvent
 import com.aminography.worldcities.ui.util.UniqueLiveData
 import kotlinx.coroutines.CoroutineDispatcher

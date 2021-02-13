@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.aminography.model.city.Coordination
-import com.aminography.worldcities.ui.citylist.model.MapViewerArg
+import com.aminography.worldcities.ui.model.MapViewerArg
 
 /**
  * The [ViewModel] class for the map-viewer user interface.

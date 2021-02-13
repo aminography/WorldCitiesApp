@@ -1,4 +1,4 @@
-package com.aminography.worldcities.ui.citylist.vm
+package com.aminography.worldcities.citylist.vm
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

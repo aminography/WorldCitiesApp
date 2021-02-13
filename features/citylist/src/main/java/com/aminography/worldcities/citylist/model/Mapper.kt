@@ -1,7 +1,8 @@
-package com.aminography.worldcities.ui.citylist.model
+package com.aminography.worldcities.citylist.model
 
 import com.aminography.model.city.City
-import com.aminography.worldcities.ui.citylist.adapter.CityItemDataHolder
+import com.aminography.worldcities.citylist.adapter.CityItemDataHolder
+import com.aminography.worldcities.ui.model.MapViewerArg
 
 /**
  * A mapper extension function that maps an instance of [City] to an instance of [CityItemDataHolder].

@@ -1,11 +1,11 @@
-package com.aminography.worldcities.ui.citylist.di
+package com.aminography.worldcities.citylist.di
 
 import com.aminography.core.di.AppComponent
 import com.aminography.data.city.di.CityDataModule
 import com.aminography.data.di.GsonComponent
 import com.aminography.domain.di.DispatcherComponent
 import com.aminography.scope.annotation.FeatureScope
-import com.aminography.worldcities.ui.citylist.CityListFragment
+import com.aminography.worldcities.citylist.CityListFragment
 import dagger.BindsInstance
 import dagger.Component
 

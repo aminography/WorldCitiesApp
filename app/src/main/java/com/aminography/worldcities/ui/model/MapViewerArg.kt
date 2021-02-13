@@ -1,11 +1,11 @@
-package com.aminography.worldcities.ui.citylist.model
+package com.aminography.worldcities.ui.model
 
 import android.os.Parcel
 import android.os.Parcelable
 import com.aminography.model.city.Coordination
 
 /**
- * The argument for the [com.aminography.worldcities.ui.mapviewer.MapViewerFragment], sent via
+ * The argument for the [MapViewerFragment], sent via
  * safe-args.
  *
  * @param name the name of the target city.

@@ -1,4 +1,4 @@
-package com.aminography.worldcities.ui.citylist
+package com.aminography.worldcities.citylist
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,15 +9,15 @@ import androidx.core.widget.addTextChangedListener
 import androidx.navigation.fragment.findNavController
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
-import com.aminography.worldcities.databinding.FragmentCityListBinding
+import com.aminography.worldcities.citylist.adapter.CityItemDataHolder
+import com.aminography.worldcities.citylist.adapter.CityListAdapter
+import com.aminography.worldcities.citylist.databinding.FragmentCityListBinding
+import com.aminography.worldcities.citylist.di.injectComponent
+import com.aminography.worldcities.citylist.vm.CityListViewModel
 import com.aminography.worldcities.ui.base.BaseFragment
 import com.aminography.worldcities.ui.base.adapter.BaseDataHolder
 import com.aminography.worldcities.ui.base.adapter.OnListItemClickListener
-import com.aminography.worldcities.ui.citylist.adapter.CityItemDataHolder
-import com.aminography.worldcities.ui.citylist.adapter.CityListAdapter
-import com.aminography.worldcities.ui.citylist.di.injectComponent
-import com.aminography.worldcities.ui.citylist.model.MapViewerArg
-import com.aminography.worldcities.ui.citylist.vm.CityListViewModel
+import com.aminography.worldcities.ui.model.MapViewerArg
 import com.aminography.worldcities.ui.util.hideKeyboard
 import com.aminography.worldcities.ui.util.toast
 import javax.inject.Inject

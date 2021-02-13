@@ -1,8 +1,8 @@
-package com.aminography.worldcities.ui.citylist.adapter
+package com.aminography.worldcities.citylist.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.aminography.worldcities.databinding.ListItemCityBinding
+import com.aminography.worldcities.citylist.databinding.ListItemCityBinding
 import com.aminography.worldcities.ui.base.adapter.BaseViewHolder
 
 /**
