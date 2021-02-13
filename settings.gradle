@@ -11,3 +11,4 @@ include ':shared_test'
 
 // ------- features
 include ':features:userlist'
+include ':features:mapviewer'

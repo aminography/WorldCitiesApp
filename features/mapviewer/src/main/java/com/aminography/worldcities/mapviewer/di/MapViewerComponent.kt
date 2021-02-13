@@ -1,7 +1,7 @@
-package com.aminography.worldcities.ui.mapviewer.di
+package com.aminography.worldcities.mapviewer.di
 
 import com.aminography.scope.annotation.FeatureScope
-import com.aminography.worldcities.ui.mapviewer.MapViewerFragment
+import com.aminography.worldcities.mapviewer.MapViewerFragment
 import dagger.BindsInstance
 import dagger.Component
 

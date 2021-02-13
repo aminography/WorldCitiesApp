@@ -1,9 +1,8 @@
-package com.aminography.worldcities
+package com.aminography.worldcities.mapviewer
 
 import com.aminography.model.city.Coordination
 import com.aminography.test.CoroutineTest
 import com.aminography.worldcities.ui.citylist.model.MapViewerArg
-import com.aminography.worldcities.ui.mapviewer.vm.MapViewerViewModel
 import com.aminography.worldcities.util.InstantExecutorExtension
 import com.aminography.worldcities.util.getOrAwaitValue
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -58,5 +57,5 @@ class MapViewerViewModelTest : CoroutineTest() {
         assertEquals(mapViewerViewModel.coordination.getOrAwaitValue(), mapViewerArg.coord)
     }
 
-    private fun createViewModel() = MapViewerViewModel()
+    private fun createViewModel() = com.aminography.worldcities.mapviewer.vm.MapViewerViewModel()
 }

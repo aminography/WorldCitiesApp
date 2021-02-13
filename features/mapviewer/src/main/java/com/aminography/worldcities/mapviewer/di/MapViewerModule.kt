@@ -1,9 +1,9 @@
-package com.aminography.worldcities.ui.mapviewer.di
+package com.aminography.worldcities.mapviewer.di
 
 import com.aminography.scope.annotation.FeatureScope
-import com.aminography.worldcities.ui.mapviewer.MapViewerFragment
-import com.aminography.worldcities.ui.mapviewer.vm.MapViewerViewModel
-import com.aminography.worldcities.ui.mapviewer.vm.MapViewerViewModelFactory
+import com.aminography.worldcities.mapviewer.MapViewerFragment
+import com.aminography.worldcities.mapviewer.vm.MapViewerViewModel
+import com.aminography.worldcities.mapviewer.vm.MapViewerViewModelFactory
 import com.aminography.worldcities.ui.util.createViewModel
 import dagger.Module
 import dagger.Provides

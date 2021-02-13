@@ -5,8 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
-import com.aminography.worldcities.databinding.FragmentUserListBinding
 import com.aminography.worldcities.ui.base.BaseFragment
+import com.aminography.worldcities.userlist.databinding.FragmentUserListBinding
 import com.aminography.worldcities.userlist.di.injectComponent
 import com.aminography.worldcities.userlist.vm.UserListViewModel
 import javax.inject.Inject

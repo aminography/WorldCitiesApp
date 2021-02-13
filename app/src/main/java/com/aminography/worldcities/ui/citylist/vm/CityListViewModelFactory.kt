@@ -6,12 +6,11 @@ import com.aminography.domain.city.ClearCitiesCacheUseCase
 import com.aminography.domain.city.LoadCitiesUseCase
 import com.aminography.domain.city.SearchCitiesUseCase
 import com.aminography.domain.di.DefaultDispatcher
-import com.aminography.worldcities.ui.mapviewer.vm.MapViewerViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import javax.inject.Inject
 
 /**
- * The factory class that takes required arguments for [MapViewerViewModel] and creates an instance
+ * The factory class that takes required arguments for [CityListViewModel] and creates an instance
  * of it.
  *
  * @author aminography

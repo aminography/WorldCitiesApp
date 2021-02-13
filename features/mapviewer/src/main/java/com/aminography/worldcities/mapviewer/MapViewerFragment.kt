@@ -1,4 +1,4 @@
-package com.aminography.worldcities.ui.mapviewer
+package com.aminography.worldcities.mapviewer
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,10 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
 import com.aminography.model.city.Coordination
-import com.aminography.worldcities.databinding.FragmentMapViewerBinding
+import com.aminography.worldcities.mapviewer.databinding.FragmentMapViewerBinding
+import com.aminography.worldcities.mapviewer.di.injectComponent
+import com.aminography.worldcities.mapviewer.vm.MapViewerViewModel
 import com.aminography.worldcities.ui.base.BaseFragment
-import com.aminography.worldcities.ui.mapviewer.di.injectComponent
-import com.aminography.worldcities.ui.mapviewer.vm.MapViewerViewModel
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback

@@ -30,7 +30,7 @@
 
     <fragment
         android:id="@+id/mapViewerFragment"
-        android:name="com.aminography.worldcities.ui.mapviewer.MapViewerFragment"
+        android:name="com.aminography.worldcities.mapviewer.MapViewerFragment"
         tools:layout="@layout/fragment_map_viewer">
 
         <argument

@@ -1,4 +1,4 @@
-package com.aminography.worldcities.ui.mapviewer.vm
+package com.aminography.worldcities.mapviewer.vm
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

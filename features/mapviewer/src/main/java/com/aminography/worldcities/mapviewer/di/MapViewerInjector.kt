@@ -1,6 +1,6 @@
-package com.aminography.worldcities.ui.mapviewer.di
+package com.aminography.worldcities.mapviewer.di
 
-import com.aminography.worldcities.ui.mapviewer.MapViewerFragment
+import com.aminography.worldcities.mapviewer.MapViewerFragment
 
 /**
  * An extension function on the [MapViewerFragment] object to build related dagger component to
