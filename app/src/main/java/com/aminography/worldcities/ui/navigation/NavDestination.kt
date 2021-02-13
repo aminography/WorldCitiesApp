@@ -11,6 +11,8 @@ import com.aminography.worldcities.ui.navigation.argument.encodeToBase64
  */
 sealed class NavDestination<T : DeepLinkNavArgument>(private val link: String) {
 
+    object TestNoArg : NavDestination<Nothing>("myapp://test_no_arg")
+
     object MapViewer : NavDestination<MapViewerNavArg>("myapp://map_viewer")
     object UserList : NavDestination<UserListNavArg>("myapp://user_list")
 
