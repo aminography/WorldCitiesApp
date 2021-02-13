@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.aminography.worldcities.navigation.core.argument.deepLinkNavArg
+import com.aminography.worldcities.navigation.core.observeNavigation
 import com.aminography.worldcities.navigation.model.UserListNavArg
 import com.aminography.worldcities.ui.base.BaseFragment
 import com.aminography.worldcities.userlist.databinding.FragmentUserListBinding
@@ -33,12 +34,14 @@ class UserListFragment : BaseFragment<FragmentUserListBinding>() {
     ): FragmentUserListBinding = FragmentUserListBinding.inflate(inflater, container, false)
 
     override fun onInitViews(rootView: View, savedInstanceState: Bundle?) = with(binding) {
-        toolbar.setNavigationOnClickListener { activity?.onBackPressedDispatcher?.onBackPressed() }
-
         initViewModel()
+
+        toolbar.setNavigationOnClickListener { viewModel.onNavigateUpClicked()  }
     }
 
     private fun initViewModel() {
+        observeNavigation(viewModel.navigation)
+
         val owner = viewLifecycleOwner
         viewModel.init(navArg)
         viewModel.cityName.observe(owner) { binding.toolbar.title = it }

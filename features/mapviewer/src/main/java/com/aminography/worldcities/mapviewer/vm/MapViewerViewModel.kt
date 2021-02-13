@@ -17,6 +17,9 @@ import com.aminography.worldcities.ui.util.SingleLiveEvent
  */
 class MapViewerViewModel : ViewModel() {
 
+    private val _navigation = SingleLiveEvent<NavDirection>()
+    val navigation: LiveData<NavDirection> = _navigation
+
     private val _cityName = MutableLiveData<String>()
     val cityName: LiveData<String> = _cityName
 
@@ -26,13 +29,14 @@ class MapViewerViewModel : ViewModel() {
     private val _coordination = MutableLiveData<Coordination>()
     val coordination: LiveData<Coordination> = _coordination
 
-    private val _navigation = SingleLiveEvent<NavDirection>()
-    val navigation: LiveData<NavDirection> = _navigation
-
     fun init(navArg: MapViewerNavArg) {
         _cityName.postValue(navArg.name)
         _countryCode.postValue(navArg.country)
         _coordination.postValue(navArg.coord)
+    }
+
+    fun onNavigateUpClicked() {
+        _navigation.postValue(NavDirection.Up)
     }
 
     fun onShowUsersClicked() {

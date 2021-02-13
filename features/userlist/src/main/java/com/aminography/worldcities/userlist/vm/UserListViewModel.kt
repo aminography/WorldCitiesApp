@@ -5,7 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.aminography.domain.user.SearchUsersUseCase
+import com.aminography.worldcities.navigation.core.NavDirection
 import com.aminography.worldcities.navigation.model.UserListNavArg
+import com.aminography.worldcities.ui.util.SingleLiveEvent
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -18,6 +20,9 @@ class UserListViewModel(
     private val searchUsersUseCase: SearchUsersUseCase
 ) : ViewModel() {
 
+    private val _navigation = SingleLiveEvent<NavDirection>()
+    val navigation: LiveData<NavDirection> = _navigation
+
     private val _cityName = MutableLiveData<String>()
     val cityName: LiveData<String> = _cityName
 
@@ -28,5 +33,9 @@ class UserListViewModel(
                 println("XXXXX: $it")
             }
         }
+    }
+
+    fun onNavigateUpClicked() {
+        _navigation.postValue(NavDirection.Up)
     }
 }

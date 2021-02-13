@@ -45,13 +45,12 @@ class MapViewerFragment : BaseFragment<FragmentMapViewerBinding>(), OnMapReadyCa
     ): FragmentMapViewerBinding = FragmentMapViewerBinding.inflate(inflater, container, false)
 
     override fun onInitViews(rootView: View, savedInstanceState: Bundle?) = with(binding) {
-        toolbar.setNavigationOnClickListener { activity?.onBackPressedDispatcher?.onBackPressed() }
-
         mapView.onCreate(savedInstanceState?.getBundle(KEY_MAP_VIEW_BUNDLE))
         mapView.getMapAsync(this@MapViewerFragment)
 
         initViewModel()
 
+        toolbar.setNavigationOnClickListener { viewModel.onNavigateUpClicked() }
         usersButton.setOnClickListener { viewModel.onShowUsersClicked() }
     }
 

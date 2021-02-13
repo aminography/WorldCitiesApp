@@ -43,6 +43,9 @@ class CityListViewModel(
     private val clearCitiesCacheUseCase: ClearCitiesCacheUseCase
 ) : ViewModel() {
 
+    private val _navigation = SingleLiveEvent<NavDirection>()
+    val navigation: LiveData<NavDirection> = _navigation
+
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
     var loadCitiesJob: Job? = null
 
@@ -56,9 +59,6 @@ class CityListViewModel(
 
     private val _errorMessage = SingleLiveEvent<String>()
     val errorMessage: LiveData<String> = _errorMessage
-
-    private val _navigation = SingleLiveEvent<NavDirection>()
-    val navigation: LiveData<NavDirection> = _navigation
 
     val searchResult: LiveData<PagingData<CityItemDataHolder>> =
         queryLiveData.switchMap { query ->
