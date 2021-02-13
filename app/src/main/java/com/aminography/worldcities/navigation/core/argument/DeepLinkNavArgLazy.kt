@@ -36,7 +36,7 @@ class DeepLinkNavLazy<T : DeepLinkNavArg>(
                     }
 
                 args = creator?.let {
-                    arguments.getString("arg")?.decodeFromBase64(it)
+                    arguments.getString(KEY_NAV_ARG)?.decodeFromBase64(it)
                         ?: throw IllegalStateException("The received deep-link has no arguments!")
                 } ?: throw IllegalStateException(
                     "The $navArgumentClass class has no CREATOR object!"
