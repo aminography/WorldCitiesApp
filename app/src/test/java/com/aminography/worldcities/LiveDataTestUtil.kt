@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.aminography.worldcities.util
+package com.aminography.worldcities
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer

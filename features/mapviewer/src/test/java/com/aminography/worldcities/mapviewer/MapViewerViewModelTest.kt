@@ -2,9 +2,9 @@ package com.aminography.worldcities.mapviewer
 
 import com.aminography.model.city.Coordination
 import com.aminography.test.CoroutineTest
-import com.aminography.worldcities.ui.citylist.model.MapViewerArg
-import com.aminography.worldcities.util.InstantExecutorExtension
-import com.aminography.worldcities.util.getOrAwaitValue
+import com.aminography.worldcities.InstantExecutorExtension
+import com.aminography.worldcities.getOrAwaitValue
+import com.aminography.worldcities.ui.model.MapViewerArg
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
