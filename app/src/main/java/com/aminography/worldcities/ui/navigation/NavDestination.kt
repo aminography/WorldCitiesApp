@@ -4,6 +4,7 @@ import androidx.core.net.toUri
 import com.aminography.worldcities.ui.model.MapViewerNavArg
 import com.aminography.worldcities.ui.model.UserListNavArg
 import com.aminography.worldcities.ui.navigation.argument.DeepLinkNavArgument
+import com.aminography.worldcities.ui.navigation.argument.encodeToBase64
 
 /**
  * @author aminography
@@ -15,7 +16,8 @@ sealed class NavDestination<T : DeepLinkNavArgument>(private val link: String) {
 
     //----------------------------------------------------------------------------------------------
 
-    fun deepLink(): NavDirection.DeepLink = NavDirection.DeepLink(link.toUri())
+    fun deepLink(): NavDirection.DeepLink =
+        NavDirection.DeepLink(link.toUri())
 
     fun deepLinkWithArgument(navArgument: T): NavDirection.DeepLink =
         NavDirection.DeepLink(

@@ -5,7 +5,6 @@ import android.os.Parcelable
 import androidx.annotation.MainThread
 import androidx.collection.ArrayMap
 import androidx.fragment.app.Fragment
-import com.aminography.worldcities.ui.navigation.decodeFromBase64
 import kotlin.reflect.KClass
 
 /**

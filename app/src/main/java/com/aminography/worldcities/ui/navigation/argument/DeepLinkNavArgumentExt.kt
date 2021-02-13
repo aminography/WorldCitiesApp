@@ -1,9 +1,8 @@
-package com.aminography.worldcities.ui.navigation
+package com.aminography.worldcities.ui.navigation.argument
 
 import android.os.Parcel
 import android.os.Parcelable
 import android.util.Base64
-import com.aminography.worldcities.ui.navigation.argument.DeepLinkNavArgument
 
 
 /**
