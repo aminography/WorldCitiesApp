@@ -1,4 +1,4 @@
-package com.aminography.worldcities.ui.userlist
+package com.aminography.worldcities.userlist
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
 import com.aminography.worldcities.databinding.FragmentUserListBinding
 import com.aminography.worldcities.ui.base.BaseFragment
-import com.aminography.worldcities.ui.userlist.di.injectComponent
-import com.aminography.worldcities.ui.userlist.vm.UserListViewModel
+import com.aminography.worldcities.userlist.di.injectComponent
+import com.aminography.worldcities.userlist.vm.UserListViewModel
 import javax.inject.Inject
 
 /**

@@ -1,10 +1,10 @@
-package com.aminography.worldcities.ui.userlist.di
+package com.aminography.worldcities.userlist.di
 
 import com.aminography.data.di.NetworkComponent
 import com.aminography.data.user.di.UserDataModule
 import com.aminography.domain.di.DispatcherComponent
 import com.aminography.scope.annotation.FeatureScope
-import com.aminography.worldcities.ui.userlist.UserListFragment
+import com.aminography.worldcities.userlist.UserListFragment
 import dagger.BindsInstance
 import dagger.Component
 

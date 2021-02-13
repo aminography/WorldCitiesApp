@@ -1,3 +1,6 @@
+rootProject.name = "WorldCitiesApp"
+
+// ------- architecture
 include ':app'
 include ':core'
 include ':data'
@@ -5,4 +8,6 @@ include ':domain'
 include ':model'
 include ':scope'
 include ':shared_test'
-rootProject.name = "WorldCitiesApp"
+
+// ------- features
+include ':features:userlist'

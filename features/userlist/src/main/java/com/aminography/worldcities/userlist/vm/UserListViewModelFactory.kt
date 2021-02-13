@@ -1,4 +1,4 @@
-package com.aminography.worldcities.ui.userlist.vm
+package com.aminography.worldcities.userlist.vm
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

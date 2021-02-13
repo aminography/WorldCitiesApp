@@ -40,7 +40,7 @@
 
     <fragment
         android:id="@+id/userListFragment"
-        android:name="com.aminography.worldcities.ui.userlist.UserListFragment"
+        android:name="com.aminography.worldcities.userlist.UserListFragment"
         tools:layout="@layout/fragment_user_list">
 
         <argument

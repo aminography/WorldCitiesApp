@@ -1,10 +1,10 @@
-package com.aminography.worldcities.ui.userlist.di
+package com.aminography.worldcities.userlist.di
 
 import com.aminography.scope.annotation.FeatureScope
-import com.aminography.worldcities.ui.userlist.UserListFragment
-import com.aminography.worldcities.ui.userlist.vm.UserListViewModel
-import com.aminography.worldcities.ui.userlist.vm.UserListViewModelFactory
 import com.aminography.worldcities.ui.util.createViewModel
+import com.aminography.worldcities.userlist.UserListFragment
+import com.aminography.worldcities.userlist.vm.UserListViewModel
+import com.aminography.worldcities.userlist.vm.UserListViewModelFactory
 import dagger.Module
 import dagger.Provides
 

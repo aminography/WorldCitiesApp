@@ -1,8 +1,8 @@
-package com.aminography.worldcities.ui.userlist.di
+package com.aminography.worldcities.userlist.di
 
 import com.aminography.data.di.NetworkComponent
 import com.aminography.domain.di.DispatcherComponent
-import com.aminography.worldcities.ui.userlist.UserListFragment
+import com.aminography.worldcities.userlist.UserListFragment
 
 /**
  * An extension function on the [UserListFragment] object to build related dagger component to
