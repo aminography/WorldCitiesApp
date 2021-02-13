@@ -1,8 +1,8 @@
-package com.aminography.worldcities.ui.model
+package com.aminography.worldcities.navigation.model
 
 import android.os.Parcel
 import android.os.Parcelable
-import com.aminography.worldcities.ui.navigation.argument.DeepLinkNavArgument
+import com.aminography.worldcities.navigation.core.argument.DeepLinkNavArgument
 
 /**
  * @author aminography
@@ -17,9 +17,7 @@ data class UserListNavArg(
         parcel.writeString(city)
     }
 
-    override fun describeContents(): Int {
-        return 0
-    }
+    override fun describeContents(): Int = 0
 
     companion object CREATOR : Parcelable.Creator<UserListNavArg> {
         override fun createFromParcel(parcel: Parcel): UserListNavArg {

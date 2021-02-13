@@ -1,9 +1,9 @@
-package com.aminography.worldcities.ui.model
+package com.aminography.worldcities.navigation.model
 
 import android.os.Parcel
 import android.os.Parcelable
 import com.aminography.model.city.Coordination
-import com.aminography.worldcities.ui.navigation.argument.DeepLinkNavArgument
+import com.aminography.worldcities.navigation.core.argument.DeepLinkNavArgument
 
 /**
  * The argument for the [MapViewerFragment], sent via
@@ -37,9 +37,7 @@ data class MapViewerNavArg(
         parcel.writeDouble(coord.lon)
     }
 
-    override fun describeContents(): Int {
-        return 0
-    }
+    override fun describeContents(): Int = 0
 
     companion object CREATOR : Parcelable.Creator<MapViewerNavArg> {
         override fun createFromParcel(parcel: Parcel): MapViewerNavArg {

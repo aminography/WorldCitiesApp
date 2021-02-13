@@ -1,4 +1,4 @@
-package com.aminography.worldcities.ui.navigation
+package com.aminography.worldcities.navigation.core
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData

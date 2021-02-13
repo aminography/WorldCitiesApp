@@ -4,10 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.aminography.model.city.Coordination
-import com.aminography.worldcities.ui.model.MapViewerNavArg
-import com.aminography.worldcities.ui.model.UserListNavArg
-import com.aminography.worldcities.ui.navigation.NavDestination
-import com.aminography.worldcities.ui.navigation.NavDirection
+import com.aminography.worldcities.navigation.NavDestinations
+import com.aminography.worldcities.navigation.core.NavDirection
+import com.aminography.worldcities.navigation.model.MapViewerNavArg
+import com.aminography.worldcities.navigation.model.UserListNavArg
 import com.aminography.worldcities.ui.util.SingleLiveEvent
 
 /**
@@ -37,7 +37,7 @@ class MapViewerViewModel : ViewModel() {
 
     fun onShowUsersClicked() {
         _navigation.postValue(
-            NavDestination.UserList.deepLinkWithArgument(
+            NavDestinations.UserList.deepLinkWithArgument(
                 UserListNavArg(_cityName.value ?: "")
             )
         )

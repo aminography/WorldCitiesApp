@@ -4,7 +4,7 @@ import com.aminography.model.city.Coordination
 import com.aminography.test.CoroutineTest
 import com.aminography.worldcities.InstantExecutorExtension
 import com.aminography.worldcities.getOrAwaitValue
-import com.aminography.worldcities.ui.model.MapViewerNavArg
+import com.aminography.worldcities.navigation.model.MapViewerNavArg
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test

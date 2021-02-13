@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.aminography.domain.user.SearchUsersUseCase
-import com.aminography.worldcities.ui.model.UserListNavArg
+import com.aminography.worldcities.navigation.model.UserListNavArg
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch

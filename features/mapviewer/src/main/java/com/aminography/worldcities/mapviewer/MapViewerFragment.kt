@@ -8,10 +8,10 @@ import com.aminography.model.city.Coordination
 import com.aminography.worldcities.mapviewer.databinding.FragmentMapViewerBinding
 import com.aminography.worldcities.mapviewer.di.injectComponent
 import com.aminography.worldcities.mapviewer.vm.MapViewerViewModel
+import com.aminography.worldcities.navigation.core.argument.deepLinkNavArgument
+import com.aminography.worldcities.navigation.core.observeNavigation
+import com.aminography.worldcities.navigation.model.MapViewerNavArg
 import com.aminography.worldcities.ui.base.BaseFragment
-import com.aminography.worldcities.ui.model.MapViewerNavArg
-import com.aminography.worldcities.ui.navigation.argument.deepLinkNavArgument
-import com.aminography.worldcities.ui.navigation.observeNavigation
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback

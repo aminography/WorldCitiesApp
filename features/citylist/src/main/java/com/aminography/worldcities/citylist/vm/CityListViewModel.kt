@@ -14,9 +14,9 @@ import com.aminography.domain.city.SearchCitiesUseCase
 import com.aminography.model.city.City
 import com.aminography.worldcities.citylist.adapter.CityItemDataHolder
 import com.aminography.worldcities.citylist.model.toCityItemDataHolder
-import com.aminography.worldcities.ui.model.toMapViewerNavArg
-import com.aminography.worldcities.ui.navigation.NavDestination
-import com.aminography.worldcities.ui.navigation.NavDirection
+import com.aminography.worldcities.navigation.NavDestinations
+import com.aminography.worldcities.navigation.core.NavDirection
+import com.aminography.worldcities.navigation.model.toMapViewerNavArg
 import com.aminography.worldcities.ui.util.SingleLiveEvent
 import com.aminography.worldcities.ui.util.UniqueLiveData
 import kotlinx.coroutines.CoroutineDispatcher
@@ -99,7 +99,7 @@ class CityListViewModel(
      */
     fun onCityClicked(city: City) {
         _navigation.postValue(
-            NavDestination.MapViewer.deepLinkWithArgument(
+            NavDestinations.MapViewer.deepLinkWithArgument(
                 city.toMapViewerNavArg()
             )
         )

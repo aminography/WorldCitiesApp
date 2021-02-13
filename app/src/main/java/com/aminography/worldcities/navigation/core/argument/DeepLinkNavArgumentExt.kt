@@ -1,4 +1,4 @@
-package com.aminography.worldcities.ui.navigation.argument
+package com.aminography.worldcities.navigation.core.argument
 
 import android.os.Parcel
 import android.os.Parcelable

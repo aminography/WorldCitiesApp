@@ -13,10 +13,10 @@ import com.aminography.worldcities.citylist.adapter.CityListAdapter
 import com.aminography.worldcities.citylist.databinding.FragmentCityListBinding
 import com.aminography.worldcities.citylist.di.injectComponent
 import com.aminography.worldcities.citylist.vm.CityListViewModel
+import com.aminography.worldcities.navigation.core.observeNavigation
 import com.aminography.worldcities.ui.base.BaseFragment
 import com.aminography.worldcities.ui.base.adapter.BaseDataHolder
 import com.aminography.worldcities.ui.base.adapter.OnListItemClickListener
-import com.aminography.worldcities.ui.navigation.observeNavigation
 import com.aminography.worldcities.ui.util.*
 import javax.inject.Inject
 

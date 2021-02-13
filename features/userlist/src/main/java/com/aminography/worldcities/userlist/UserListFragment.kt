@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.aminography.worldcities.navigation.core.argument.deepLinkNavArgument
+import com.aminography.worldcities.navigation.model.UserListNavArg
 import com.aminography.worldcities.ui.base.BaseFragment
-import com.aminography.worldcities.ui.model.UserListNavArg
-import com.aminography.worldcities.ui.navigation.argument.deepLinkNavArgument
 import com.aminography.worldcities.userlist.databinding.FragmentUserListBinding
 import com.aminography.worldcities.userlist.di.injectComponent
 import com.aminography.worldcities.userlist.vm.UserListViewModel

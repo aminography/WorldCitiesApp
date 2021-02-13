@@ -1,4 +1,4 @@
-package com.aminography.worldcities.ui.model
+package com.aminography.worldcities.navigation.model
 
 import com.aminography.model.city.City
 
