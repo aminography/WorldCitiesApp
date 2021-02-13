@@ -14,6 +14,7 @@ class DeepLinkNavLazy<T : DeepLinkNavArg>(
     private val navArgumentClass: KClass<T>,
     private val argumentProducer: () -> Bundle
 ) : Lazy<T> {
+
     private var cached: T? = null
 
     override val value: T
