@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.aminography.model.city.Coordination
-import com.aminography.worldcities.ui.model.MapViewerArg
+import com.aminography.worldcities.ui.model.MapViewerNavArg
 
 /**
  * The [ViewModel] class for the map-viewer user interface.
@@ -22,9 +22,9 @@ class MapViewerViewModel : ViewModel() {
     private val _coordination = MutableLiveData<Coordination>()
     val coordination: LiveData<Coordination> = _coordination
 
-    fun init(arg: MapViewerArg) {
-        _cityName.postValue(arg.name)
-        _countryCode.postValue(arg.country)
-        _coordination.postValue(arg.coord)
+    fun init(navArg: MapViewerNavArg) {
+        _cityName.postValue(navArg.name)
+        _countryCode.postValue(navArg.country)
+        _coordination.postValue(navArg.coord)
     }
 }

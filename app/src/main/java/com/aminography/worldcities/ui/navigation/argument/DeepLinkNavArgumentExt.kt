@@ -1,21 +1,22 @@
-package com.aminography.worldcities.ui.util
+package com.aminography.worldcities.ui.navigation
 
 import android.os.Parcel
 import android.os.Parcelable
-import com.aminography.worldcities.ui.navigation.NavArgument
+import android.util.Base64
+import com.aminography.worldcities.ui.navigation.argument.DeepLinkNavArgument
 
 
 /**
  * @author aminography
  */
 
-val NavArgument.encodeToBase64: String
+internal val DeepLinkNavArgument.encodeToBase64: String
     get() = Parcel.obtain().run {
         writeToParcel(this, 0)
         marshall().encodeBase64.also { recycle() }
     }
 
-fun <T : NavArgument> String.decodeFromBase64(
+internal fun <T : DeepLinkNavArgument> String.decodeFromBase64(
     creator: Parcelable.Creator<T>
 ): T = decodeBase64ToParcel.run {
     creator.createFromParcel(this).also { recycle() }
@@ -28,3 +29,9 @@ private val String.decodeBase64ToParcel: Parcel
             setDataPosition(0)
         }
     }
+
+private val ByteArray.encodeBase64: String
+    get() = Base64.encodeToString(this, Base64.URL_SAFE).replace("\n", "#")
+
+private val String.decodeBase64: ByteArray
+    get() = Base64.decode(replace("#", "\n"), Base64.URL_SAFE)

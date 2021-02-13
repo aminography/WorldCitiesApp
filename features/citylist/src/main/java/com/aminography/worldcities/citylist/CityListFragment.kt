@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
-import androidx.navigation.fragment.findNavController
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import com.aminography.worldcities.citylist.adapter.CityItemDataHolder
@@ -17,9 +16,7 @@ import com.aminography.worldcities.citylist.vm.CityListViewModel
 import com.aminography.worldcities.ui.base.BaseFragment
 import com.aminography.worldcities.ui.base.adapter.BaseDataHolder
 import com.aminography.worldcities.ui.base.adapter.OnListItemClickListener
-import com.aminography.worldcities.ui.model.MapViewerArg
-import com.aminography.worldcities.ui.navigation.DeepLinkParser
-import com.aminography.worldcities.ui.navigation.NavDestination
+import com.aminography.worldcities.ui.navigation.observeNavigation
 import com.aminography.worldcities.ui.util.*
 import javax.inject.Inject
 
@@ -39,6 +36,11 @@ class CityListFragment : BaseFragment<FragmentCityListBinding>(), OnListItemClic
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         injectComponent()
+    }
+
+    override fun onPause() {
+        binding.searchEditText.hideKeyboard()
+        super.onPause()
     }
 
     override fun inflateBinding(
@@ -66,26 +68,12 @@ class CityListFragment : BaseFragment<FragmentCityListBinding>(), OnListItemClic
     }
 
     private fun initViewModel() {
+        observeNavigation(viewModel.navigation)
+
         val owner = viewLifecycleOwner
         viewModel.searchResult.observe(owner) { adapter.submitData(lifecycle, it) }
         viewModel.errorMessage.observe(owner) { context?.toast(it) }
         viewModel.loading.observe(owner) { binding.progressBar.isVisible = it }
-        viewModel.navigateToMap.observe(owner) { navigateToMap(it) }
-    }
-
-    private fun navigateToMap(arg: MapViewerArg) {
-        binding.searchEditText.hideKeyboard()
-        findNavController().navigate(
-            CityListFragmentDirections.actionCityListFragmentToMapViewerFragment(arg)
-//            CityListFragmentDirections.actionCityListFragmentToUserListFragment(arg.name)
-        )
-
-        val deepLink = NavDestination.MapViewer.deepLinkWithArgument(arg)
-
-        val arg2 = DeepLinkParser(deepLink.toString()).decodeArgument(MapViewerArg.CREATOR)
-
-        println(deepLink)
-        println(arg2)
     }
 
     override fun onItemClicked(dataHolder: BaseDataHolder?) {

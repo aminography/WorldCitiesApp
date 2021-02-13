@@ -15,7 +15,8 @@ import com.aminography.model.city.City
 import com.aminography.worldcities.citylist.adapter.CityItemDataHolder
 import com.aminography.worldcities.citylist.model.toCityItemDataHolder
 import com.aminography.worldcities.citylist.model.toMapViewerArg
-import com.aminography.worldcities.ui.model.MapViewerArg
+import com.aminography.worldcities.ui.navigation.NavDestination
+import com.aminography.worldcities.ui.navigation.NavDirection
 import com.aminography.worldcities.ui.util.SingleLiveEvent
 import com.aminography.worldcities.ui.util.UniqueLiveData
 import kotlinx.coroutines.CoroutineDispatcher
@@ -56,8 +57,8 @@ class CityListViewModel(
     private val _errorMessage = SingleLiveEvent<String>()
     val errorMessage: LiveData<String> = _errorMessage
 
-    private val _navigateToMap = SingleLiveEvent<MapViewerArg>()
-    val navigateToMap: LiveData<MapViewerArg> = _navigateToMap
+    private val _navigation = SingleLiveEvent<NavDirection>()
+    val navigation: LiveData<NavDirection> = _navigation
 
     val searchResult: LiveData<PagingData<CityItemDataHolder>> =
         queryLiveData.switchMap { query ->
@@ -97,7 +98,14 @@ class CityListViewModel(
      * @param city the [City] corresponding to the clicked item.
      */
     fun onCityClicked(city: City) {
-        _navigateToMap.postValue(city.toMapViewerArg())
+        _navigation.postValue(
+            NavDestination.MapViewer.deepLinkWithArgument(
+                city.toMapViewerArg()
+            )
+//            NavDestination.UserList.deepLinkWithArgument(
+//                city.toUserListArg()
+//            )
+        )
     }
 
     /**

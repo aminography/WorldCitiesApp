@@ -3,7 +3,7 @@ package com.aminography.worldcities.ui.model
 import android.os.Parcel
 import android.os.Parcelable
 import com.aminography.model.city.Coordination
-import com.aminography.worldcities.ui.navigation.NavArgument
+import com.aminography.worldcities.ui.navigation.argument.DeepLinkNavArgument
 
 /**
  * The argument for the [MapViewerFragment], sent via
@@ -15,11 +15,11 @@ import com.aminography.worldcities.ui.navigation.NavArgument
  *
  * @author aminography
  */
-data class MapViewerArg(
+data class MapViewerNavArg(
     val name: String,
     val country: String,
     val coord: Coordination
-) : NavArgument {
+) : DeepLinkNavArgument {
 
     constructor(parcel: Parcel) : this(
         parcel.readString() ?: "",
@@ -41,12 +41,12 @@ data class MapViewerArg(
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<MapViewerArg> {
-        override fun createFromParcel(parcel: Parcel): MapViewerArg {
-            return MapViewerArg(parcel)
+    companion object CREATOR : Parcelable.Creator<MapViewerNavArg> {
+        override fun createFromParcel(parcel: Parcel): MapViewerNavArg {
+            return MapViewerNavArg(parcel)
         }
 
-        override fun newArray(size: Int): Array<MapViewerArg?> {
+        override fun newArray(size: Int): Array<MapViewerNavArg?> {
             return arrayOfNulls(size)
         }
     }

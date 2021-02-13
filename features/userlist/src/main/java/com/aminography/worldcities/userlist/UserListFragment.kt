@@ -4,8 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.navArgs
 import com.aminography.worldcities.ui.base.BaseFragment
+import com.aminography.worldcities.ui.model.UserListNavArg
+import com.aminography.worldcities.ui.navigation.argument.deepLinkNavArgument
 import com.aminography.worldcities.userlist.databinding.FragmentUserListBinding
 import com.aminography.worldcities.userlist.di.injectComponent
 import com.aminography.worldcities.userlist.vm.UserListViewModel
@@ -19,7 +20,7 @@ class UserListFragment : BaseFragment<FragmentUserListBinding>() {
     @Inject
     lateinit var viewModel: UserListViewModel
 
-    private val args: UserListFragmentArgs by navArgs()
+    private val navArg: UserListNavArg by deepLinkNavArgument()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +40,7 @@ class UserListFragment : BaseFragment<FragmentUserListBinding>() {
 
     private fun initViewModel() {
         val owner = viewLifecycleOwner
-        viewModel.init(args.cityName)
+        viewModel.init(navArg)
         viewModel.cityName.observe(owner) { binding.toolbar.title = it }
     }
 }

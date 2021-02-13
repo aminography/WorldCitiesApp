@@ -4,12 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.navArgs
 import com.aminography.model.city.Coordination
 import com.aminography.worldcities.mapviewer.databinding.FragmentMapViewerBinding
 import com.aminography.worldcities.mapviewer.di.injectComponent
 import com.aminography.worldcities.mapviewer.vm.MapViewerViewModel
 import com.aminography.worldcities.ui.base.BaseFragment
+import com.aminography.worldcities.ui.model.MapViewerNavArg
+import com.aminography.worldcities.ui.navigation.argument.deepLinkNavArgument
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -27,7 +28,7 @@ class MapViewerFragment : BaseFragment<FragmentMapViewerBinding>(), OnMapReadyCa
     @Inject
     lateinit var viewModel: MapViewerViewModel
 
-    private val args: MapViewerFragmentArgs by navArgs()
+    private val navArg: MapViewerNavArg by deepLinkNavArgument()
 
     private var googleMap: GoogleMap? = null
     private var coord: Coordination? = null
@@ -53,7 +54,7 @@ class MapViewerFragment : BaseFragment<FragmentMapViewerBinding>(), OnMapReadyCa
 
     private fun initViewModel() {
         val owner = viewLifecycleOwner
-        viewModel.init(args.mapViewerArg)
+        viewModel.init(navArg)
         viewModel.cityName.observe(owner) { binding.toolbar.title = it }
         viewModel.countryCode.observe(owner) { binding.toolbar.subtitle = it }
         viewModel.coordination.observe(owner) { coord = it; showLocation(it) }

@@ -2,7 +2,8 @@ package com.aminography.worldcities.citylist.model
 
 import com.aminography.model.city.City
 import com.aminography.worldcities.citylist.adapter.CityItemDataHolder
-import com.aminography.worldcities.ui.model.MapViewerArg
+import com.aminography.worldcities.ui.model.MapViewerNavArg
+import com.aminography.worldcities.ui.model.UserListNavArg
 
 /**
  * A mapper extension function that maps an instance of [City] to an instance of [CityItemDataHolder].
@@ -15,11 +16,14 @@ fun City.toCityItemDataHolder() =
     CityItemDataHolder(this)
 
 /**
- * A mapper extension function that maps an instance of [City] to an instance of [MapViewerArg].
+ * A mapper extension function that maps an instance of [City] to an instance of [MapViewerNavArg].
  *
- * @return an instance of [MapViewerArg] corresponding to the [City].
+ * @return an instance of [MapViewerNavArg] corresponding to the [City].
  *
  * @author aminography
  */
 fun City.toMapViewerArg() =
-    MapViewerArg(name, country, coord)
+    MapViewerNavArg(name, country, coord)
+
+fun City.toUserListArg() =
+    UserListNavArg(name)

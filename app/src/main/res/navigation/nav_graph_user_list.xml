@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_user_list.xml"
+    app:startDestination="@+id/userListFragment"
+    tools:ignore="UnusedNavigation">
+
+    <fragment
+        android:id="@+id/userListFragment"
+        android:name="com.aminography.worldcities.userlist.UserListFragment"
+        tools:layout="@layout/fragment_user_list">
+
+        <deepLink
+            android:autoVerify="true"
+            app:uri="myapp://user_list?arg={arg}"
+            tools:targetApi="m" />
+    </fragment>
+
+</navigation>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_map_viewer.xml"
+    app:startDestination="@+id/mapViewerFragment"
+    tools:ignore="UnusedNavigation">
+
+    <fragment
+        android:id="@+id/mapViewerFragment"
+        android:name="com.aminography.worldcities.mapviewer.MapViewerFragment"
+        tools:layout="@layout/fragment_map_viewer">
+
+        <deepLink
+            android:autoVerify="true"
+            app:uri="myapp://map_viewer?arg={arg}"
+            tools:targetApi="m" />
+    </fragment>
+
+</navigation>
