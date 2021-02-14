@@ -21,14 +21,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/usernameTextView"
+        android:id="@+id/nameTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.WorldCities.List.Title"
         tools:text="City" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/avatarTextView"
+        android:id="@+id/coordTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.WorldCities.List.Subtitle"
@@ -41,7 +41,7 @@
         android:layout_marginTop="@dimen/margin_small"
         android:layout_marginBottom="@dimen/margin_small"
         android:orientation="vertical"
-        app:constraint_referenced_ids="usernameTextView,avatarTextView"
+        app:constraint_referenced_ids="nameTextView,coordTextView"
         app:flow_verticalGap="@dimen/margin_tiny"
         app:flow_verticalStyle="packed"
         app:layout_constraintBottom_toBottomOf="@id/background"

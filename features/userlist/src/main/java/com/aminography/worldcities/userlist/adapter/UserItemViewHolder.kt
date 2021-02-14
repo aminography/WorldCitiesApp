@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.aminography.worldcities.ui.base.adapter.BaseViewHolder
 import com.aminography.worldcities.userlist.databinding.ListItemUserBinding
+import com.aminography.worldcities.userlist.util.image
 
 /**
  * The view-holder class to represent each user data-holder in the [androidx.recyclerview.widget.RecyclerView].
@@ -21,7 +22,7 @@ class UserItemViewHolder(
 ) {
 
     override fun bindDataToView(dataHolder: UserItemDataHolder) = with(binding) {
-        nameTextView.text = dataHolder.user.username
-        coordTextView.text = dataHolder.user.avatarUrl
+        usernameTextView.text = dataHolder.user.username
+        avatarImageView.image = dataHolder.user.avatarUrl
     }
 }
