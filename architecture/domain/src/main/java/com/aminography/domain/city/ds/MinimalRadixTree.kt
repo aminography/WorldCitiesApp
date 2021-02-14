@@ -27,7 +27,7 @@ class MinimalRadixTree<T> : RadixTree<T> {
 
     override fun insert(key: String, value: T, replace: Boolean) {
         size++
-        insertIterative(key, value, replace)
+        insertNode(key, value, replace)
     }
 
     /**
@@ -36,7 +36,7 @@ class MinimalRadixTree<T> : RadixTree<T> {
      * with the value. So, the overall complexity to inserting `n` pairs of key/value is `O(L * n)`
      * where `L` stands for the maximum length of keys in the dataset.
      */
-    private fun insertIterative(key: String, value: T, replace: Boolean) {
+    private fun insertNode(key: String, value: T, replace: Boolean) {
         var keyResidual = key
         val stack = Stack<TreeNode<T>>()
 
@@ -136,7 +136,7 @@ class MinimalRadixTree<T> : RadixTree<T> {
                 keyDiff = keyDiff.substring(lcs)
                 node.children?.let { children ->
                     for (child in children) {
-                        if (child.key.startsWith(keyDiff[0])) {
+                        if (child.key[0] == keyDiff[0]) {
                             queue.add(child)
                             break
                         }
