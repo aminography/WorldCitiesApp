@@ -63,8 +63,8 @@ internal class CityDataSourceImpl @Inject constructor(
             }
 
             val deferredList = mutableListOf<Deferred<List<City>>>()
-            chunkContextList.forEach {
-                val deferred = async(ioDispatcher + it) {
+            for (chunk in chunkContextList) {
+                val deferred = async(ioDispatcher + chunk) {
                     arrayListOf<City>().also {
                         coroutineContext[ChunkContext]?.run {
                             val offset = start
@@ -80,7 +80,9 @@ internal class CityDataSourceImpl @Inject constructor(
                 deferredList.add(deferred)
             }
 
-            deferredList.forEach { resultList.add(it.await()) }
+            for (deferred in deferredList) {
+                resultList.add(deferred.await())
+            }
         }
 
         return withContext(defaultDispatcher) {

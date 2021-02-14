@@ -27,70 +27,77 @@ class MinimalRadixTree<T> : RadixTree<T> {
 
     override fun insert(key: String, value: T, replace: Boolean) {
         size++
-        insert(key, value, replace, root)
+        insertIterative(key, value, replace)
     }
 
     /**
      * Inserts the input element into the tree at the right place according to the corresponding key.
-     * As far as the maximum depth of the tree equals to the maximum length of the input keys, and
-     * the length of keys is limited in our dataset, calling the recursive insertion will not cause
-     * a stack overflow exception. The time complexity to insert a node is `O(l)` where `l` is the
-     * length of the key associated with the value. So, the overall complexity to inserting `n` pairs
-     * of key/value is `O(L * n)` where `L` stands for the maximum length of keys in the dataset.
+     * The time complexity to insert a node is `O(l)` where `l` is the length of the key associated
+     * with the value. So, the overall complexity to inserting `n` pairs of key/value is `O(L * n)`
+     * where `L` stands for the maximum length of keys in the dataset.
      */
-    private fun insert(key: String, value: T, replace: Boolean, node: TreeNode<T>) {
-        val lcs = longestCommonPrefix(node.key, key)
-        val keyDiff = key.substring(lcs)
+    private fun insertIterative(key: String, value: T, replace: Boolean) {
+        var keyResidual = key
+        val stack = Stack<TreeNode<T>>()
 
-        if (lcs == 0 || (lcs < key.length && lcs == node.key.length)) {
-            var found = false
-            node.children?.let { children ->
-                for (child in children) {
-                    if (child.key.startsWith(keyDiff[0])) {
-                        found = true
-                        insert(keyDiff, value, replace, child)
-                        break
+        stack.push(root)
+        while (stack.isNotEmpty()) {
+            val node = stack.pop()
+            val lcs = longestCommonPrefix(node.key, keyResidual)
+
+            if (lcs == 0 || (lcs < keyResidual.length && lcs == node.key.length)) { // node is root OR key of the node is a prefix of keyResidual and shorter then it (so there are descendants to cover it)
+                keyResidual = keyResidual.substring(lcs)
+
+                var found = false
+                node.children?.let { children ->
+                    for (child in children) {
+                        if (child.key[0] == keyResidual[0]) {
+                            found = true
+                            stack.push(child)
+                        }
                     }
                 }
-            }
 
-            if (!found) {
-                node.addChild(TreeNode(keyDiff, value))
-            }
-        } else if (lcs > 0 && lcs < node.key.length) {
-            val child = TreeNode(
-                node.key.substring(lcs),
-                node.value,
-                node.children
-            )
+                if (!found) {
+                    node.addChild(TreeNode(keyResidual, value))
+                }
+            } else if (lcs > 0 && lcs < node.key.length) { // a prefix of key of the node is a prefix of keyResidual, so the key of the not must be divided
+                val child = TreeNode(
+                    node.key.substring(lcs),
+                    node.value,
+                    node.children
+                )
 
-            node.key = key.substring(0, lcs)
-            node.resetChildren()
-            node.addChild(child)
+                node.key = keyResidual.substring(0, lcs)
+                node.resetChildren()
+                node.addChild(child)
 
-            if (lcs < key.length) {
-                node.value = null
-                node.addChild(TreeNode(keyDiff, value))
-            } else {
+                if (lcs < keyResidual.length) {
+                    keyResidual = keyResidual.substring(lcs)
+
+                    node.value = null
+                    node.addChild(TreeNode(keyResidual, value))
+                } else {
+                    node.value = value
+                }
+            } else if (lcs == keyResidual.length && lcs == node.key.length) {
+                if (node.value != null) {
+                    if (replace) node.value = value
+                    size--
+                    return
+                }
                 node.value = value
-            }
-        } else if (lcs == key.length && lcs == node.key.length) {
-            if (node.value != null) {
-                if (replace) node.value = value
-                size--
-                return
-            }
-            node.value = value
-        } else {
-            val child = TreeNode(
-                node.key.substring(lcs),
-                node.value,
-                node.children
-            )
+            } else {
+                val child = TreeNode(
+                    node.key.substring(lcs),
+                    node.value,
+                    node.children
+                )
 
-            node.key = key
-            node.value = value
-            node.addChild(child)
+                node.key = keyResidual
+                node.value = value
+                node.addChild(child)
+            }
         }
     }
 
