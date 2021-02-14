@@ -2,7 +2,6 @@ package com.aminography.domain.city.ds
 
 import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.collections.HashSet
 
 /**
  * A concrete implementation for [RadixTree].
@@ -164,22 +163,17 @@ class MinimalRadixTree<T> : RadixTree<T> {
     ): ArrayList<T> {
         var skipped = 0
         val stack = Stack<TreeNode<T>>()
-        val visited = HashSet<TreeNode<T>>()
         val result = ArrayList<T>()
 
         stack.push(root)
         while (stack.isNotEmpty() && result.size < limit) {
             val node = stack.pop()
-            if (!visited.contains(node)) {
-                visited.add(node)
-
-                node.value?.let {
-                    if (skipped < offset) skipped++
-                    else result.add(it)
-                }
-                node.children?.let {
-                    for (i in it.size - 1 downTo 0) stack.push(it[i])
-                }
+            node.value?.let {
+                if (skipped < offset) skipped++
+                else result.add(it)
+            }
+            node.children?.let {
+                for (i in it.size - 1 downTo 0) stack.push(it[i])
             }
         }
         stack.clear()
