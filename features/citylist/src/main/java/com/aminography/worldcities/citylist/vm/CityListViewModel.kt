@@ -15,8 +15,8 @@ import com.aminography.model.city.City
 import com.aminography.navigation.NavDirection
 import com.aminography.worldcities.citylist.adapter.CityItemDataHolder
 import com.aminography.worldcities.citylist.model.toCityItemDataHolder
+import com.aminography.worldcities.citylist.model.toMapViewerNavArg
 import com.aminography.worldcities.navigation.NavDestinations
-import com.aminography.worldcities.navigation.model.toMapViewerNavArg
 import com.aminography.worldcities.ui.util.SingleLiveEvent
 import com.aminography.worldcities.ui.util.UniqueLiveData
 import kotlinx.coroutines.CoroutineDispatcher
