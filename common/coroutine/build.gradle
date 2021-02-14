@@ -21,14 +21,13 @@ compileTestKotlin {
 
 dependencies {
     // ------- architecture
-    api project(':architecture:model')
-    api project(':common:scope')
-    api project(':common:coroutine')
+    implementation project(':common:scope')
 
     // ------- dagger
     implementation "com.google.dagger:dagger:${versions.dagger}"
     kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
 
-    // ------- paging
-    implementation "androidx.paging:paging-common:${versions.paging}"
+    // ------- coroutine
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.coroutine}"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.coroutine}"
 }

@@ -61,12 +61,8 @@ dependencies {
     // ------- architecture
     implementation project(':architecture:domain')
     implementation project(':architecture:data')
-    implementation project(':common:core')
+    implementation project(':common:app_core')
     implementation project(':common:navigation')
-
-    // ------- coroutine
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.coroutine}"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.coroutine}"
 
     // ------- material
     implementation "com.google.android.material:material:${versions.material}"

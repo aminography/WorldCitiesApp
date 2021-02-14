@@ -2,7 +2,7 @@ package com.aminography.worldcities.userlist.vm
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.aminography.domain.di.DefaultDispatcher
+import com.aminography.coroutine.di.DefaultDispatcher
 import com.aminography.domain.user.SearchUsersUseCase
 import kotlinx.coroutines.CoroutineDispatcher
 import javax.inject.Inject

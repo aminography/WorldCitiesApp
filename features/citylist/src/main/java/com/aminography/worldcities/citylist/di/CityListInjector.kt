@@ -1,8 +1,8 @@
 package com.aminography.worldcities.citylist.di
 
 import com.aminography.core.di.AppComponent
+import com.aminography.coroutine.di.CoroutineComponent
 import com.aminography.data.di.GsonComponent
-import com.aminography.domain.di.DispatcherComponent
 import com.aminography.worldcities.citylist.CityListFragment
 
 /**
@@ -15,7 +15,7 @@ import com.aminography.worldcities.citylist.CityListFragment
 fun CityListFragment.injectComponent() {
     DaggerCityListComponent.builder()
         .appComponent(AppComponent.get())
-        .dispatcherComponent(DispatcherComponent.get())
+        .coroutineComponent(CoroutineComponent.get())
         .gsonComponent(GsonComponent.get())
         .fragment(this)
         .build()

@@ -1,7 +1,7 @@
 package com.aminography.worldcities.userlist.di
 
+import com.aminography.coroutine.di.CoroutineComponent
 import com.aminography.data.di.NetworkComponent
-import com.aminography.domain.di.DispatcherComponent
 import com.aminography.worldcities.userlist.UserListFragment
 
 /**
@@ -13,7 +13,7 @@ import com.aminography.worldcities.userlist.UserListFragment
 
 fun UserListFragment.injectComponent() {
     DaggerUserListComponent.builder()
-        .dispatcherComponent(DispatcherComponent.get())
+        .coroutineComponent(CoroutineComponent.get())
         .networkComponent(NetworkComponent.get())
         .fragment(this)
         .build()

@@ -1,4 +1,4 @@
-package com.aminography.domain.di
+package com.aminography.coroutine.di
 
 import com.aminography.scope.ComponentHolder
 import com.aminography.scope.annotation.AppScope
@@ -14,7 +14,7 @@ import kotlinx.coroutines.CoroutineDispatcher
         DispatcherModule::class
     ]
 )
-interface DispatcherComponent {
+interface CoroutineComponent {
 
     @DefaultDispatcher
     fun exposesDefaultDispatcher(): CoroutineDispatcher
@@ -27,12 +27,12 @@ interface DispatcherComponent {
 
     @Component.Builder
     interface Builder {
-        fun build(): DispatcherComponent
+        fun build(): CoroutineComponent
     }
 
-    companion object : ComponentHolder<DispatcherComponent>() {
-        override fun createComponent(): DispatcherComponent =
-            DaggerDispatcherComponent.builder()
+    companion object : ComponentHolder<CoroutineComponent>() {
+        override fun createComponent(): CoroutineComponent =
+            DaggerCoroutineComponent.builder()
                 .build()
     }
 }

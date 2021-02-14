@@ -1,9 +1,10 @@
 rootProject.name = "WorldCitiesApp"
 
 // ------- common
-include ':common:core'
+include ':common:app_core'
 include ':common:scope'
 include ':common:navigation'
+include ':common:coroutine'
 include ':common:shared_test'
 
 // ------- architecture

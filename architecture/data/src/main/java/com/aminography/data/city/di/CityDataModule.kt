@@ -2,6 +2,8 @@ package com.aminography.data.city.di
 
 import android.content.Context
 import androidx.paging.PagingConfig
+import com.aminography.coroutine.di.DefaultDispatcher
+import com.aminography.coroutine.di.IoDispatcher
 import com.aminography.data.KEY_CONCURRENCY_LEVEL
 import com.aminography.data.KEY_FILE_NAME
 import com.aminography.data.KEY_INITIAL_LOAD_SIZE
@@ -13,8 +15,6 @@ import com.aminography.data.city.datasource.reader.JsonRetriever
 import com.aminography.data.city.datasource.reader.LineCounter
 import com.aminography.data.city.paging.PagingFactory
 import com.aminography.domain.city.CityRepository
-import com.aminography.domain.di.DefaultDispatcher
-import com.aminography.domain.di.IoDispatcher
 import com.aminography.model.city.City
 import com.aminography.scope.annotation.FeatureScope
 import com.google.gson.Gson

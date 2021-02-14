@@ -1,4 +1,4 @@
-package com.aminography.domain.di
+package com.aminography.coroutine.di
 
 import com.aminography.scope.annotation.AppScope
 import dagger.Module

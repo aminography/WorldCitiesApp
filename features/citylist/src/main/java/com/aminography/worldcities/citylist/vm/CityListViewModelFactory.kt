@@ -2,10 +2,10 @@ package com.aminography.worldcities.citylist.vm
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.aminography.coroutine.di.DefaultDispatcher
 import com.aminography.domain.city.ClearCitiesCacheUseCase
 import com.aminography.domain.city.LoadCitiesUseCase
 import com.aminography.domain.city.SearchCitiesUseCase
-import com.aminography.domain.di.DefaultDispatcher
 import kotlinx.coroutines.CoroutineDispatcher
 import javax.inject.Inject
 

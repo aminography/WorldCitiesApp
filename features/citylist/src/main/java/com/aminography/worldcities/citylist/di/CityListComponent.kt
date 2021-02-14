@@ -1,9 +1,9 @@
 package com.aminography.worldcities.citylist.di
 
 import com.aminography.core.di.AppComponent
+import com.aminography.coroutine.di.CoroutineComponent
 import com.aminography.data.city.di.CityDataModule
 import com.aminography.data.di.GsonComponent
-import com.aminography.domain.di.DispatcherComponent
 import com.aminography.scope.annotation.FeatureScope
 import com.aminography.worldcities.citylist.CityListFragment
 import dagger.BindsInstance
@@ -18,7 +18,7 @@ import dagger.Component
 @Component(
     dependencies = [
         AppComponent::class,
-        DispatcherComponent::class,
+        CoroutineComponent::class,
         GsonComponent::class
     ],
     modules = [
@@ -35,7 +35,7 @@ interface CityListComponent {
 
         fun appComponent(component: AppComponent): Builder
 
-        fun dispatcherComponent(component: DispatcherComponent): Builder
+        fun coroutineComponent(component: CoroutineComponent): Builder
 
         fun gsonComponent(component: GsonComponent): Builder
 

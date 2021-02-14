@@ -2,7 +2,6 @@ package com.aminography.core.di
 
 import android.app.Application
 import android.content.Context
-import com.aminography.domain.di.DispatcherModule
 import com.aminography.scope.ComponentHolder
 import com.aminography.scope.annotation.AppScope
 import dagger.BindsInstance
@@ -18,8 +17,7 @@ import java.lang.ref.WeakReference
 @AppScope
 @Component(
     modules = [
-        AppModule::class,
-        DispatcherModule::class
+        AppModule::class
     ]
 )
 interface AppComponent {

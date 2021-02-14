@@ -1,4 +1,4 @@
-package com.aminography.domain.di
+package com.aminography.coroutine.di
 
 import kotlinx.coroutines.Dispatchers
 import javax.inject.Qualifier

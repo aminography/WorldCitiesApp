@@ -40,11 +40,7 @@ android {
 dependencies {
     // ------- architecture
     implementation project(':architecture:domain')
-    implementation project(':common:core')
-
-    // ------- coroutine
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.coroutine}"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.coroutine}"
+    implementation project(':common:app_core')
 
     // ------- androidx
     implementation "androidx.core:core-ktx:${versions.androidx_core}"
