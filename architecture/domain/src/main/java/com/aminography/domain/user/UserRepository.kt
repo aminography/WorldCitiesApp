@@ -1,14 +1,15 @@
 package com.aminography.domain.user
 
-import com.aminography.domain.base.Result
+import androidx.paging.PagingData
 import com.aminography.model.user.GithubUser
+import kotlinx.coroutines.flow.Flow
 
 /**
  * @author aminography
  */
 interface UserRepository {
 
-    suspend fun search(
+    fun search(
         location: String
-    ): Result<List<GithubUser>>
+    ): Flow<PagingData<GithubUser>>
 }

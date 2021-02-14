@@ -1,3 +1,4 @@
 <resources>
     <string name="title_userlist">Github Users</string>
+    <string name="result_not_found">Result not found!</string>
 </resources>

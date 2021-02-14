@@ -1,13 +1,12 @@
 package com.aminography.domain.user
 
+import androidx.paging.PagingData
 import com.aminography.coroutine.di.IoDispatcher
 import com.aminography.domain.base.BaseFlowUseCase
-import com.aminography.domain.base.Result
 import com.aminography.model.user.GithubUser
 import com.aminography.scope.annotation.FeatureScope
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 import java.util.*
 import javax.inject.Inject
 
@@ -18,12 +17,10 @@ import javax.inject.Inject
 class SearchUsersUseCase @Inject constructor(
     private val userRepository: UserRepository,
     @IoDispatcher dispatcher: CoroutineDispatcher
-) : BaseFlowUseCase<String, Result<List<GithubUser>>>(dispatcher) {
+) : BaseFlowUseCase<String, PagingData<GithubUser>>(dispatcher) {
 
-    override fun execute(parameter: String): Flow<Result<List<GithubUser>>> = flow {
-        emit(Result.Loading)
+    override fun execute(parameter: String): Flow<PagingData<GithubUser>> =
         parameter.toLowerCase(Locale.getDefault()).let { query ->
-            emit(userRepository.search(query))
+            userRepository.search(query)
         }
-    }
 }

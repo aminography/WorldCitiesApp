@@ -38,11 +38,6 @@ class CityListFragment : BaseFragment<FragmentCityListBinding>(), OnListItemClic
         injectComponent()
     }
 
-    override fun onPause() {
-        binding.searchEditText.hideKeyboard()
-        super.onPause()
-    }
-
     override fun inflateBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
@@ -74,6 +69,11 @@ class CityListFragment : BaseFragment<FragmentCityListBinding>(), OnListItemClic
         viewModel.searchResult.observe(owner) { adapter.submitData(lifecycle, it) }
         viewModel.errorMessage.observe(owner) { context?.toast(it) }
         viewModel.loading.observe(owner) { binding.progressBar.isVisible = it }
+    }
+
+    override fun onPause() {
+        binding.searchEditText.hideKeyboard()
+        super.onPause()
     }
 
     override fun onItemClicked(dataHolder: BaseDataHolder?) {

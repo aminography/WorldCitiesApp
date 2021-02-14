@@ -15,6 +15,6 @@ internal class UserDataSourceImpl @Inject internal constructor(
     override suspend fun search(
         location: String
     ): Result<SearchUsersResponseModel> = wrapResponse {
-        api.search("location:$location", 0, 10)
+        api.search("location:$location", 0, 50)
     }
 }
