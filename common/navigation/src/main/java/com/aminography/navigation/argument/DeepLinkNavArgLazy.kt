@@ -8,8 +8,8 @@ import kotlin.reflect.KClass
 /**
  * @author aminography
  */
-class DeepLinkNavLazy<T : DeepLinkNavArg>(
-    private val navArgumentClass: KClass<T>,
+class DeepLinkNavArgLazy<T : DeepLinkNavArg>(
+    private val navArgClass: KClass<T>,
     private val argumentProducer: () -> Bundle
 ) : Lazy<T> {
 
@@ -23,12 +23,12 @@ class DeepLinkNavLazy<T : DeepLinkNavArg>(
 
                 @Suppress("UNCHECKED_CAST")
                 val creator: Parcelable.Creator<T>? =
-                    (creatorMap[navArgumentClass] as? Parcelable.Creator<T>) ?: run {
+                    (creatorMap[navArgClass] as? Parcelable.Creator<T>) ?: run {
                         var result: Parcelable.Creator<T>? = null
-                        for (f in navArgumentClass.java.fields) {
+                        for (f in navArgClass.java.fields) {
                             if (f.get(Unit) is Parcelable.Creator<*>) {
                                 result = f.get(Unit) as Parcelable.Creator<T>
-                                creatorMap[navArgumentClass] = result
+                                creatorMap[navArgClass] = result
                             }
                         }
                         result
@@ -38,7 +38,7 @@ class DeepLinkNavLazy<T : DeepLinkNavArg>(
                     arguments.getString(KEY_NAV_ARG)?.decodeFromBase64(it)
                         ?: throw IllegalStateException("The received deep-link has no arguments!")
                 } ?: throw IllegalStateException(
-                    "The $navArgumentClass class has no CREATOR object!"
+                    "The $navArgClass class has no CREATOR object!"
                 )
 
                 cached = args

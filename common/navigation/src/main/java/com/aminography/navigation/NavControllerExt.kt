@@ -7,7 +7,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.aminography.navigation.argument.DeepLinkNavArg
-import com.aminography.navigation.argument.DeepLinkNavLazy
+import com.aminography.navigation.argument.DeepLinkNavArgLazy
 
 /**
  * @author aminography
@@ -35,6 +35,6 @@ fun <T : NavDirection> Fragment.observeNavigation(liveData: LiveData<T>) {
 
 @MainThread
 inline fun <reified T : DeepLinkNavArg> Fragment.deepLinkNavArg() =
-    DeepLinkNavLazy(T::class) {
+    DeepLinkNavArgLazy(T::class) {
         arguments ?: throw IllegalStateException("Fragment $this has null arguments")
     }
