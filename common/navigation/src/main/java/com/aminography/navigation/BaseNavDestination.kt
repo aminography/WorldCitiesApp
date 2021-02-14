@@ -1,14 +1,13 @@
 package com.aminography.navigation
 
+import android.os.Parcelable
 import androidx.core.net.toUri
-import com.aminography.navigation.argument.DeepLinkNavArg
-import com.aminography.navigation.argument.KEY_NAV_ARG
 import com.aminography.navigation.argument.encodeToBase64
 
 /**
  * @author aminography
  */
-abstract class BaseNavDestination<T : DeepLinkNavArg>(private val link: String) {
+abstract class BaseNavDestination<T : Parcelable>(private val link: String) {
 
     fun deepLink(): NavDirection.DeepLink =
         NavDirection.DeepLink(

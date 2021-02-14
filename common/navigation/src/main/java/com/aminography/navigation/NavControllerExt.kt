@@ -1,12 +1,12 @@
 package com.aminography.navigation
 
+import android.os.Parcelable
 import androidx.annotation.MainThread
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
-import com.aminography.navigation.argument.DeepLinkNavArg
 import com.aminography.navigation.argument.DeepLinkNavArgLazy
 
 /**
@@ -34,7 +34,7 @@ fun <T : NavDirection> Fragment.observeNavigation(liveData: LiveData<T>) {
 }
 
 @MainThread
-inline fun <reified T : DeepLinkNavArg> Fragment.deepLinkNavArg() =
+inline fun <reified T : Parcelable> Fragment.deepLinkNavArg() =
     DeepLinkNavArgLazy(T::class) {
         arguments ?: throw IllegalStateException("Fragment $this has null arguments!")
     }

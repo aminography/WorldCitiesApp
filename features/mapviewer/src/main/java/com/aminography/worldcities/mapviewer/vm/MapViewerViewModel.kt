@@ -32,7 +32,7 @@ class MapViewerViewModel : ViewModel() {
     fun init(navArg: MapViewerNavArg) {
         _cityName.postValue(navArg.name)
         _countryCode.postValue(navArg.country)
-        _coordination.postValue(navArg.coord)
+        _coordination.postValue(Coordination(navArg.latitude, navArg.longitude))
     }
 
     fun onNavigateUpClicked() {

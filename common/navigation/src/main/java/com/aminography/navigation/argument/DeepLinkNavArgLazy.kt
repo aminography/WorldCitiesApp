@@ -2,12 +2,13 @@ package com.aminography.navigation.argument
 
 import android.os.Bundle
 import android.os.Parcelable
+import com.aminography.navigation.KEY_NAV_ARG
 import kotlin.reflect.KClass
 
 /**
  * @author aminography
  */
-class DeepLinkNavArgLazy<T : DeepLinkNavArg>(
+class DeepLinkNavArgLazy<T : Parcelable>(
     private val navArgClass: KClass<T>,
     private val argumentProducer: () -> Bundle
 ) : Lazy<T> {
@@ -48,4 +49,4 @@ class DeepLinkNavArgLazy<T : DeepLinkNavArg>(
     override fun isInitialized() = cached != null
 }
 
-internal val creatorMap = HashMap<KClass<out DeepLinkNavArg>, Parcelable.Creator<*>>()
+internal val creatorMap = HashMap<KClass<out Parcelable>, Parcelable.Creator<*>>()

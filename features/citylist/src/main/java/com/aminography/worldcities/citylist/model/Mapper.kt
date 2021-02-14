@@ -22,4 +22,4 @@ fun City.toCityItemDataHolder() =
  * @author aminography
  */
 fun City.toMapViewerNavArg() =
-    MapViewerNavArg(name, country, coord)
+    MapViewerNavArg(name, country, coord.latitude, coord.longitude)

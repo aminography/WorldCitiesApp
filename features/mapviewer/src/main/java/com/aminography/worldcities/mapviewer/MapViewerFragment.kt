@@ -70,7 +70,7 @@ class MapViewerFragment : BaseFragment<FragmentMapViewerBinding>(), OnMapReadyCa
     }
 
     private fun showLocation(coord: Coordination) {
-        val location = LatLng(coord.lat, coord.lon)
+        val location = LatLng(coord.latitude, coord.longitude)
         googleMap?.animateCamera(
             CameraUpdateFactory.newLatLngZoom(
                 location,

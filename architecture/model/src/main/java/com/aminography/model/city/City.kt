@@ -3,12 +3,12 @@ package com.aminography.model.city
 import com.google.gson.annotations.SerializedName
 
 /**
- * An entity class that models a city
+ * An entity class that models a city.
  *
- * @param id unique id of the city
- * @param name name of the city
- * @param country country code of the city
- * @param coord geographical coordination of the city
+ * @param id unique id of the city.
+ * @param name name of the city.
+ * @param country country code of the city.
+ * @param coord geographical coordination of the city.
  *
  * @author aminography
  */
