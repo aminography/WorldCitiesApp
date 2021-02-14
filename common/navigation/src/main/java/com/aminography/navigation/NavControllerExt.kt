@@ -36,5 +36,5 @@ fun <T : NavDirection> Fragment.observeNavigation(liveData: LiveData<T>) {
 @MainThread
 inline fun <reified T : DeepLinkNavArg> Fragment.deepLinkNavArg() =
     DeepLinkNavArgLazy(T::class) {
-        arguments ?: throw IllegalStateException("Fragment $this has null arguments")
+        arguments ?: throw IllegalStateException("Fragment $this has null arguments!")
     }

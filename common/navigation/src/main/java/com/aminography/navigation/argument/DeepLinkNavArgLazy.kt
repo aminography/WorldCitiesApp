@@ -38,7 +38,7 @@ class DeepLinkNavArgLazy<T : DeepLinkNavArg>(
                     arguments.getString(KEY_NAV_ARG)?.decodeFromBase64(it)
                         ?: throw IllegalStateException("The received deep-link has no arguments!")
                 } ?: throw IllegalStateException(
-                    "The $navArgClass class has no CREATOR object!"
+                    "Class $navArgClass has no CREATOR object!"
                 )
 
                 cached = args
