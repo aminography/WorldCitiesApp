@@ -1,7 +1,7 @@
 package com.aminography.data.city.datasource
 
 import com.aminography.data.city.datasource.adapter.MutableListAdapter
-import com.aminography.data.city.datasource.adapter.RadixTreeAdapter
+import com.aminography.data.city.datasource.adapter.MutableRadixTreeAdapter
 import com.aminography.data.city.datasource.reader.JsonRetriever
 import com.aminography.data.city.datasource.reader.LineCounter
 import com.aminography.domain.city.util.key
@@ -41,7 +41,7 @@ internal class CityDataSourceImpl @Inject constructor(
 
     override suspend fun loadCityRadixTree(): RadixTree<City> =
         mutableRadixTreeOf<City>().apply {
-            jsonRetriever.readTo(fileName, RadixTreeAdapter(this) { it.key })
+            jsonRetriever.readTo(fileName, MutableRadixTreeAdapter(this) { it.key })
         }
 
     override suspend fun loadCityListConcurrently(): List<City> {

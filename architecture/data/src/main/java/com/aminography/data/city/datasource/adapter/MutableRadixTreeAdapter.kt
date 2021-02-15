@@ -11,7 +11,7 @@ import com.aminography.radixtree.RadixTree
  *
  * @author aminography
  */
-internal class RadixTreeAdapter<T>(
+internal class MutableRadixTreeAdapter<T>(
     private val tree: MutableRadixTree<T>,
     private inline val keyTransformer: (T) -> String
 ) : Inserter<T> {
