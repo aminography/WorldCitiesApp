@@ -24,7 +24,7 @@ internal class LineCounter @Inject constructor(
      *
      * @return the number of lines in the text file.
      */
-    suspend fun count(fileName: String): Int =
+    fun count(fileName: String): Int =
         context.openAsset(fileName)
             .toInputStreamReader()
             .toLineNumberReader()

@@ -57,6 +57,9 @@ dependencies {
     api "com.squareup.retrofit2:retrofit:${versions.retrofit}"
     implementation "com.squareup.retrofit2:converter-gson:${versions.retrofit}"
 
+    // ------- radixtree
+    implementation "com.aminography:radixtree:${versions.radixtree}"
+
     // ------- paging
     implementation "androidx.paging:paging-runtime-ktx:${versions.paging}"
 }

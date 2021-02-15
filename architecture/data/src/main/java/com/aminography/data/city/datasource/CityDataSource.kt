@@ -1,7 +1,7 @@
 package com.aminography.data.city.datasource
 
-import com.aminography.domain.city.ds.RadixTree
 import com.aminography.model.city.City
+import com.aminography.radixtree.RadixTree
 
 /**
  * The abstraction of the city data source that defines expected functions for the concrete child

@@ -23,7 +23,7 @@ internal class UserRepositoryImpl @Inject constructor(
         // TODO: This is for test, so errors are not transmitted.
         userDataSource.search(location).map { it.items }.let {
             when (it) {
-                is Result.Success -> emit(PagingData.from(it.data ?: listOf()))
+                is Result.Success -> emit(PagingData.from(it.data.orEmpty()))
                 else -> emit(PagingData.empty<GithubUser>())
             }
         }

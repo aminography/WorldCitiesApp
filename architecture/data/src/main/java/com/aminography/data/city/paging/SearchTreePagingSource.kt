@@ -2,7 +2,7 @@ package com.aminography.data.city.paging
 
 import androidx.paging.PagingData
 import androidx.paging.PagingSource
-import com.aminography.domain.city.ds.RadixTree
+import com.aminography.radixtree.RadixTree
 
 /**
  * The concrete implementation of the [PagingSource] that is used to load pages of data for an
@@ -26,7 +26,7 @@ internal class SearchTreePagingSource<T : Any>(
         val offset = pageNumber * params.loadSize
         val limit = params.loadSize
 
-        val response = tree.searchPrefix(query, offset, limit)
+        val response = tree.prefixSearch(query, offset, limit)
 
         val prevKey = if (pageNumber > 0) pageNumber - 1 else null
         val nextKey = if (response.isNotEmpty()) pageNumber + 1 else null

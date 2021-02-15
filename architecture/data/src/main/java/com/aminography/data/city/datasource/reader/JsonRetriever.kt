@@ -29,7 +29,7 @@ internal class JsonRetriever @Inject constructor(
      * @param fileName the name of the json file, located in the `assets` directory.
      * @param inserter the inserter-wrapped data structure.
      */
-    suspend fun readTo(
+    fun readTo(
         fileName: String,
         inserter: Inserter<City>,
         offset: Int = 0,

@@ -3,7 +3,7 @@ package com.aminography.data.city.paging
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.aminography.domain.city.ds.RadixTree
+import com.aminography.radixtree.RadixTree
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

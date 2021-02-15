@@ -1,7 +1,6 @@
 package com.aminography.domain.city
 
 import androidx.paging.PagingData
-import com.aminography.domain.city.ds.RadixTree
 import com.aminography.model.city.City
 import kotlinx.coroutines.flow.Flow
 
@@ -14,11 +13,9 @@ import kotlinx.coroutines.flow.Flow
 interface CityRepository {
 
     /**
-     * Loads cities as an instance of [RadixTree].
-     *
-     * @return the loaded cities stored in a [RadixTree].
+     * Loads cities into the memory.
      */
-    suspend fun loadCities(): RadixTree<City>
+    suspend fun loadCities()
 
     /**
      * Performs a prefix search on cities based on the input [query].

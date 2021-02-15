@@ -4,10 +4,10 @@ import com.aminography.data.city.datasource.adapter.MutableListAdapter
 import com.aminography.data.city.datasource.adapter.RadixTreeAdapter
 import com.aminography.data.city.datasource.reader.JsonRetriever
 import com.aminography.data.city.datasource.reader.LineCounter
-import com.aminography.domain.city.ds.MinimalRadixTree
-import com.aminography.domain.city.ds.RadixTree
 import com.aminography.domain.city.util.key
 import com.aminography.model.city.City
+import com.aminography.radixtree.RadixTree
+import com.aminography.radixtree.mutableRadixTreeOf
 import kotlinx.coroutines.*
 import javax.inject.Inject
 import kotlin.coroutines.AbstractCoroutineContextElement
@@ -40,7 +40,7 @@ internal class CityDataSourceImpl @Inject constructor(
         }
 
     override suspend fun loadCityRadixTree(): RadixTree<City> =
-        MinimalRadixTree<City>().apply {
+        mutableRadixTreeOf<City>().apply {
             jsonRetriever.readTo(fileName, RadixTreeAdapter(this) { it.key })
         }
 

@@ -3,11 +3,8 @@ package com.aminography.domain
 import com.aminography.domain.base.Result
 import com.aminography.domain.city.CityRepository
 import com.aminography.domain.city.LoadCitiesUseCase
-import com.aminography.domain.city.ds.MinimalRadixTree
 import com.aminography.test.CoroutineTest
-import io.mockk.coEvery
-import io.mockk.coVerifySequence
-import io.mockk.mockk
+import io.mockk.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.toList
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -27,7 +24,7 @@ class LoadCitiesUseCaseTest : CoroutineTest() {
     @Test
     fun `load cities`() = runBlockingTest {
         // Given
-        coEvery { cityRepository.loadCities() } returns MinimalRadixTree()
+        coEvery { cityRepository.loadCities() } just Runs
 
         val useCase = LoadCitiesUseCase(cityRepository, testDispatcher)
 
