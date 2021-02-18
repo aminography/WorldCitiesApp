@@ -123,7 +123,10 @@ class CityListViewModel(
         loadCitiesJob = viewModelScope.launch(defaultDispatcher) {
             loadCitiesUseCase(Unit).collect {
                 it.onLoading { _loading.postValue(true) }
-                    .onSuccess { reloadLastQuery() }
+                    .onSuccess {
+                        reloadLastQuery()
+                        loadCitiesJob?.cancel()
+                    }
                     .onError { e ->
                         _loading.postValue(false)
                         _errorMessage.postValue(e?.message ?: e.toString())
