@@ -1,13 +1,13 @@
 package com.aminography.worldcities.citylist
 
+import com.aminography.androidtest.InstantExecutorExtension
+import com.aminography.androidtest.getOrAwaitValue
 import com.aminography.domain.base.Result
 import com.aminography.domain.city.ClearCitiesCacheUseCase
 import com.aminography.domain.city.LoadCitiesUseCase
 import com.aminography.domain.city.SearchCitiesUseCase
 import com.aminography.test.CoroutineTest
-import com.aminography.worldcities.InstantExecutorExtension
 import com.aminography.worldcities.citylist.vm.CityListViewModel
-import com.aminography.worldcities.getOrAwaitValue
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verifySequence

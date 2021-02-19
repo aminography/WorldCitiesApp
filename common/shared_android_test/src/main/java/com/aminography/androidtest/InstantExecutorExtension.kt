@@ -1,4 +1,4 @@
-package com.aminography.worldcities
+package com.aminography.androidtest
 
 import androidx.arch.core.executor.ArchTaskExecutor
 import androidx.arch.core.executor.TaskExecutor

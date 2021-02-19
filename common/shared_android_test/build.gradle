@@ -1,0 +1,53 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+}
+
+apply from: '../../dependencies/shared.gradle'
+
+android {
+    compileSdkVersion versions.compileSdk
+    buildToolsVersion versions.buildTools
+
+    defaultConfig {
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    // ------- androidx
+    implementation "androidx.core:core-ktx:${versions.androidx_core}"
+
+    // ------- lifecycle
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:${versions.lifecycle}"
+
+    // ------- junit
+    implementation "org.junit.jupiter:junit-jupiter-api:${versions.junit_jupiter}"
+    runtimeOnly "org.junit.jupiter:junit-jupiter-engine:${versions.junit_jupiter}"
+
+    // ------- mock
+    implementation "io.mockk:mockk:${versions.mockk}"
+
+    // ------- coroutine test
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:${versions.coroutine}"
+}

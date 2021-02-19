@@ -6,6 +6,7 @@ include ':common:scope'
 include ':common:navigation'
 include ':common:coroutine'
 include ':common:shared_test'
+include ':common:shared_android_test'
 
 // ------- architecture
 include ':architecture:app'
