@@ -1,4 +1,7 @@
 dependencies {
+    // ------- shared utils
+    testImplementation project(':common:shared_android_test')
+
     // ------- instrumentation
     androidTestImplementation "androidx.test.ext:junit:${versions.androidx_junit}"
     androidTestImplementation "androidx.test.espresso:espresso-core:${versions.espresso}"
