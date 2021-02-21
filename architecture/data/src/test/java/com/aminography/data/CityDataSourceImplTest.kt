@@ -75,7 +75,7 @@ class CityDataSourceImplTest : CoroutineTest() {
         )
 
         // When
-        val result = cityDataSource.loadCityRadixTree().toList()
+        val result = cityDataSource.loadCityRadixTree().values
 
         // Then
         Assertions.assertEquals(result, expected)
