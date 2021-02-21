@@ -60,10 +60,10 @@ android {
 
 dependencies {
     // ------- architecture
-    api project(':architecture:domain')
-    api project(':architecture:data')
-    api project(':common:app_core')
-    api project(':common:navigation')
+    implementation project(':architecture:domain')
+    implementation project(':architecture:data')
+    implementation project(':common:app_core')
+    implementation project(':common:navigation')
 
     // ------- material
     implementation "com.google.android.material:material:${versions.material}"

@@ -52,6 +52,8 @@ android {
 dependencies {
     // ------- architecture
     implementation project(":architecture:app")
+    implementation project(':architecture:domain')
+    implementation project(':common:navigation')
 
     // ------- material
     implementation "com.google.android.material:material:${versions.material}"
