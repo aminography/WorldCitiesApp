@@ -52,6 +52,8 @@ and tools, such as `Jetpack` architectural components, so I have chosen `MVVM` f
 As it was mentioned before, the structure of codebase is consisted of 5 gradle modules, 3 pure `Kotlin` library and 2
 `Android` module (plus one module containing shared classes for the unit test).
 
+<br/>
+
 ![](/static/modules.png)
 
 #### 1. Scope
