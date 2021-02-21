@@ -1,5 +1,6 @@
 package com.aminography.data.city
 
+import androidx.annotation.VisibleForTesting
 import androidx.paging.PagingData
 import com.aminography.data.city.datasource.CityDataSource
 import com.aminography.data.city.paging.PagingFactory
@@ -27,7 +28,9 @@ internal class CityRepositoryImpl @Inject constructor(
     private val pagingFactory: PagingFactory<City>
 ) : CityRepository {
 
-    private var cache: RadixTree<City>? = null
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    var cache: RadixTree<City>? = null
+
     private val mutex = Mutex()
 
     /*

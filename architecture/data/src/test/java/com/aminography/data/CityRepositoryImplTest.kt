@@ -34,18 +34,19 @@ class CityRepositoryImplTest : CoroutineTest() {
     fun `loading distinct cities should insert all of them into tree`() = runBlockingTest {
         // Given
         val expected = testCities
-        coEvery { cityDataSource.loadCityList() } returns testCities
+        coEvery { cityDataSource.loadCityListConcurrently() } returns testCities
 
         val cityRepository = CityRepositoryImpl(cityDataSource, pagingFactory)
 
         // When
-        val result = cityRepository.loadCities()
+        cityRepository.loadCities()
+        val result = cityRepository.cache?.values.orEmpty()
 
         // Then
         assertEquals(result.size, expected.size)
 
         coVerifySequence {
-            cityDataSource.loadCityList()
+            cityDataSource.loadCityListConcurrently()
         }
     }
 
@@ -53,7 +54,7 @@ class CityRepositoryImplTest : CoroutineTest() {
     fun `loading cities should drop duplicated elements in tree`() = runBlockingTest {
         // Given
         val expected = listOf(testCities[0])
-        coEvery { cityDataSource.loadCityList() } returns listOf(
+        coEvery { cityDataSource.loadCityListConcurrently() } returns listOf(
             testCities[0],
             testCities[0].copy()
         )
@@ -61,32 +62,14 @@ class CityRepositoryImplTest : CoroutineTest() {
         val cityRepository = CityRepositoryImpl(cityDataSource, pagingFactory)
 
         // When
-        val result = cityRepository.loadCities().toList()
+        cityRepository.loadCities()
+        val result = cityRepository.cache?.values.orEmpty()
 
         // Then
         assertEquals(result, expected)
 
         coVerifySequence {
-            cityDataSource.loadCityList()
-        }
-    }
-
-    @Test
-    fun `loading cities should create a sorted tree`() = runBlockingTest {
-        // Given
-        val expected = testCities
-        coEvery { cityDataSource.loadCityList() } returns testCities.shuffled()
-
-        val cityRepository = CityRepositoryImpl(cityDataSource, pagingFactory)
-
-        // When
-        val result = cityRepository.loadCities().toList()
-
-        // Then
-        assertEquals(result, expected)
-
-        coVerifySequence {
-            cityDataSource.loadCityList()
+            cityDataSource.loadCityListConcurrently()
         }
     }
 
@@ -112,7 +95,7 @@ class CityRepositoryImplTest : CoroutineTest() {
         val query = testCities[0].key
         val expected = PagingData.from(listOf(testCities[0]))
 
-        coEvery { cityDataSource.loadCityList() } returns testCities
+        coEvery { cityDataSource.loadCityListConcurrently() } returns testCities
         every { pagingFactory.createPagingDataFlow(any(), query) } returns flowOf(expected)
 
         val cityRepository = CityRepositoryImpl(cityDataSource, pagingFactory)
@@ -126,7 +109,7 @@ class CityRepositoryImplTest : CoroutineTest() {
         Assertions.assertSame(result[0], expected)
 
         coVerifySequence {
-            cityDataSource.loadCityList()
+            cityDataSource.loadCityListConcurrently()
             pagingFactory.createPagingDataFlow(any(), query)
         }
     }
