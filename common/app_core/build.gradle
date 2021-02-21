@@ -39,7 +39,7 @@ android {
 
 dependencies {
     // ------- architecture
-    implementation project(':architecture:domain')
+    implementation project(':common:scope')
 
     // ------- dagger
     implementation "com.google.dagger:dagger:${versions.dagger}"

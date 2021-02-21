@@ -75,13 +75,4 @@ are `internal`, so they cannot be exposed to the `app` module. The concrete obje
 layers of architecture.
 
 ###  Dependency Injection
-In order to establish `IoC` in architecture design of the project, `dagger2` is used. There are 3 `dagger` components in the codebase.
-
-![](/static/dagger.png)
-
-- `AppComponent`: to provide app related concrete objects.
-- `CityListComponent`: to provide feature related concrete objects for the city-list feature.
-- `MapViewerComponent`: to provide feature related concrete objects for the map-viewer feature.
-
-It is worth mentioning that feature-based components are sub-components of the `AppComponent`, so they can access to app-scoped objects
-like `applicationContext`.
+In order to establish `IoC` in architecture design of the project, `dagger2` is used.
