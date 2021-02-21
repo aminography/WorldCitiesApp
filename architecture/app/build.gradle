@@ -52,9 +52,9 @@ android {
     }
 
     dynamicFeatures = [
-            ':features:citylist',
-            ':features:userlist',
-            ':features:mapviewer'
+            ':features:cityList',
+            ':features:userList',
+            ':features:mapViewer'
     ]
 }
 
@@ -62,7 +62,7 @@ dependencies {
     // ------- architecture
     api project(':architecture:domain')
     api project(':architecture:data')
-    api project(':common:app_core')
+    api project(':common:appCore')
     api project(':common:navigation')
 
     // ------- material
