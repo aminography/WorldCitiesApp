@@ -49,7 +49,7 @@ In terms of presentation architecture, common `MVVM` pattern is highly adaptable
 and tools, such as `Jetpack` architectural components, so I have chosen `MVVM` for this aim.
 
 ###  Modules and their dependencies
-As it was mentioned before, the structure of codebase is consisted of 5 gradle modules, 3 pure `Kotlin` library and 2
+As it was mentioned before, the structure of codebase is consisted of 11 gradle modules, 4 pure `Kotlin` library and 7
 `Android` module (plus one module containing shared classes for the unit test).
 
 <br/>
