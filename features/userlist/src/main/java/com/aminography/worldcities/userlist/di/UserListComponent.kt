@@ -2,7 +2,6 @@ package com.aminography.worldcities.userlist.di
 
 import com.aminography.coroutine.di.CoroutineComponent
 import com.aminography.data.core.network.NetworkComponent
-import com.aminography.data.user.di.UserDataModule
 import com.aminography.scope.annotation.FeatureScope
 import com.aminography.worldcities.userlist.UserListFragment
 import dagger.BindsInstance
@@ -20,8 +19,7 @@ import dagger.Component
         NetworkComponent::class
     ],
     modules = [
-        UserListModule::class,
-        UserDataModule::class
+        UserListModule::class
     ]
 )
 interface UserListComponent {

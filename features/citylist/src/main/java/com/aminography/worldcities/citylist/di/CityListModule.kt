@@ -1,6 +1,7 @@
 package com.aminography.worldcities.citylist.di
 
 import android.view.LayoutInflater
+import com.aminography.data.city.di.CityDataModule
 import com.aminography.scope.annotation.FeatureScope
 import com.aminography.worldcities.citylist.CityListFragment
 import com.aminography.worldcities.citylist.adapter.CityListAdapter
@@ -15,7 +16,11 @@ import dagger.Provides
  *
  * @author aminography
  */
-@Module
+@Module(
+    includes = [
+        CityDataModule::class
+    ]
+)
 class CityListModule {
 
     @FeatureScope

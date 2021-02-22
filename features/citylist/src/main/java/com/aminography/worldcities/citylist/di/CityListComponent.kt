@@ -2,7 +2,6 @@ package com.aminography.worldcities.citylist.di
 
 import com.aminography.core.di.AppComponent
 import com.aminography.coroutine.di.CoroutineComponent
-import com.aminography.data.city.di.CityDataModule
 import com.aminography.data.core.gson.GsonComponent
 import com.aminography.scope.annotation.FeatureScope
 import com.aminography.worldcities.citylist.CityListFragment
@@ -22,8 +21,7 @@ import dagger.Component
         GsonComponent::class
     ],
     modules = [
-        CityListModule::class,
-        CityDataModule::class
+        CityListModule::class
     ]
 )
 interface CityListComponent {
