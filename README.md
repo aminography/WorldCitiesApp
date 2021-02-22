@@ -54,7 +54,7 @@ As it was mentioned before, the structure of codebase is consisted of 5 gradle m
 
 <br/>
 
-![](/static/modules.png)
+![](/static/modules.svg)
 
 #### 1. Scope
 `scope` is a pure `Kotlin` module and holds only scope `annotation` classes.
