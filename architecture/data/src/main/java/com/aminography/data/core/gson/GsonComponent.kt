@@ -1,14 +1,15 @@
-package com.aminography.data.di
+package com.aminography.data.core.gson
 
 import com.aminography.scope.ComponentHolder
-import com.aminography.scope.annotation.FoundationScope
+import com.aminography.scope.annotation.AppScope
 import com.google.gson.Gson
 import dagger.Component
+import retrofit2.converter.gson.GsonConverterFactory
 
 /**
  * @author aminography
  */
-@FoundationScope
+@AppScope
 @Component(
     modules = [
         GsonModule::class
@@ -17,6 +18,8 @@ import dagger.Component
 interface GsonComponent {
 
     fun exposesGson(): Gson
+
+    fun exposesGsonConverterFactory(): GsonConverterFactory
 
     @Component.Builder
     interface Builder {

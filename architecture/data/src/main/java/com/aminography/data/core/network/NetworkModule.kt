@@ -1,4 +1,4 @@
-package com.aminography.data.di
+package com.aminography.data.core.network
 
 import com.aminography.data.KEY_BASE_URL
 import com.aminography.data.local.pref.settings.SettingsDataSource
@@ -34,11 +34,6 @@ class NetworkModule {
     internal fun providesOkHttpClient(
         httpLoggingInterceptor: HttpLoggingInterceptor
     ): OkHttpClient = OkHttpClient.Builder().addInterceptor(httpLoggingInterceptor).build()
-
-    @FoundationScope
-    @Provides
-    internal fun providesGsonConverterFactory(): GsonConverterFactory =
-        GsonConverterFactory.create()
 
     @FoundationScope
     @Provides

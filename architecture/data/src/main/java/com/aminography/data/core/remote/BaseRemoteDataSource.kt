@@ -1,9 +1,9 @@
-package com.aminography.data.base
+package com.aminography.data.core.remote
 
-import com.aminography.data.base.exception.ServerInternalException
-import com.aminography.data.base.exception.ServerUnreachableException
-import com.aminography.data.base.exception.UnauthorizedException
-import com.aminography.data.base.exception.UnknownApiException
+import com.aminography.data.core.remote.exception.ServerInternalException
+import com.aminography.data.core.remote.exception.ServerUnreachableException
+import com.aminography.data.core.remote.exception.UnauthorizedException
+import com.aminography.data.core.remote.exception.UnknownApiException
 import com.aminography.domain.base.Result
 import retrofit2.Response
 import java.io.IOException

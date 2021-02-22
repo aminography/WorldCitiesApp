@@ -1,9 +1,9 @@
-package com.aminography.data.base.exception
+package com.aminography.data.core.remote.exception
 
 /**
  * @author aminography
  */
-class UnknownApiException(
+class ServerInternalException(
     message: String? = null,
     cause: Throwable? = null
 ) : ApiException(message, cause)

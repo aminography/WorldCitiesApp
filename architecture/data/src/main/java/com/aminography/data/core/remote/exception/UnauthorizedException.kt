@@ -1,4 +1,4 @@
-package com.aminography.data.base.exception
+package com.aminography.data.core.remote.exception
 
 /**
  * @author aminography
