@@ -1,9 +1,9 @@
-package com.aminography.scope.annotation
+package com.aminography.scope.annotation.foundation
 
 import javax.inject.Scope
 
 /**
- * A scope associated with the lifecycle of persistent data components.
+ * A scope associated with the lifecycle of persistent-data foundation-level components.
  *
  * @author aminography
  */

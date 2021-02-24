@@ -2,7 +2,7 @@ package com.aminography.data.core.network
 
 import com.aminography.data.KEY_BASE_URL
 import com.aminography.data.core.persistent.pref.settings.SettingsDataSource
-import com.aminography.scope.annotation.FoundationScope
+import com.aminography.scope.annotation.foundation.NetworkScope
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -32,7 +32,7 @@ class NetworkModule {
         httpLoggingInterceptor: HttpLoggingInterceptor
     ): OkHttpClient = OkHttpClient.Builder().addInterceptor(httpLoggingInterceptor).build()
 
-    @FoundationScope
+    @NetworkScope
     @Provides
     internal fun providesRetrofit(
         @Named(KEY_BASE_URL) baseUrl: String,

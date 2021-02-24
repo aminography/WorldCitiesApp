@@ -4,7 +4,7 @@ import com.aminography.core.di.AppComponent
 import com.aminography.data.core.persistent.pref.di.PrefModule
 import com.aminography.data.core.persistent.pref.settings.SettingsDataSource
 import com.aminography.scope.ComponentHolder
-import com.aminography.scope.annotation.PersistentDataScope
+import com.aminography.scope.annotation.foundation.PersistentDataScope
 import dagger.Component
 
 /**

@@ -4,14 +4,14 @@ import com.aminography.core.di.AppComponent
 import com.aminography.data.core.gson.GsonComponent
 import com.aminography.data.core.persistent.di.PersistentDataComponent
 import com.aminography.scope.ComponentHolder
-import com.aminography.scope.annotation.FoundationScope
+import com.aminography.scope.annotation.foundation.NetworkScope
 import dagger.Component
 import retrofit2.Retrofit
 
 /**
  * @author aminography
  */
-@FoundationScope
+@NetworkScope
 @Component(
     dependencies = [
         AppComponent::class,
