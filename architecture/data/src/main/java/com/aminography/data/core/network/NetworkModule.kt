@@ -17,19 +17,16 @@ import javax.inject.Named
 @Module
 class NetworkModule {
 
-    @FoundationScope
     @Provides
     @Named(KEY_BASE_URL)
     internal fun providesBaseUrl(
         settingsDataSource: SettingsDataSource
     ): String = settingsDataSource.baseUrl
 
-    @FoundationScope
     @Provides
     internal fun providesHttpLoggingInterceptor(): HttpLoggingInterceptor =
         HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY }
 
-    @FoundationScope
     @Provides
     internal fun providesOkHttpClient(
         httpLoggingInterceptor: HttpLoggingInterceptor

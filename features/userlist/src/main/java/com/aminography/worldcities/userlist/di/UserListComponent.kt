@@ -28,14 +28,11 @@ interface UserListComponent {
 
     @Component.Builder
     interface Builder {
-
         fun coroutineComponent(component: CoroutineComponent): Builder
-
         fun networkComponent(component: NetworkComponent): Builder
 
         @BindsInstance
         fun fragment(fragment: UserListFragment): Builder
-
         fun build(): UserListComponent
     }
 }

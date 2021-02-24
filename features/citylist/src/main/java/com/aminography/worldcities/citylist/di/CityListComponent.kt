@@ -30,16 +30,12 @@ interface CityListComponent {
 
     @Component.Builder
     interface Builder {
-
         fun appComponent(component: AppComponent): Builder
-
         fun coroutineComponent(component: CoroutineComponent): Builder
-
         fun gsonComponent(component: GsonComponent): Builder
 
         @BindsInstance
         fun fragment(fragment: CityListFragment): Builder
-
         fun build(): CityListComponent
     }
 }
