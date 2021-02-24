@@ -1,8 +1,8 @@
-package com.aminography.data.local.pref.settings
+package com.aminography.data.core.persistent.pref.settings
 
 import android.content.Context
-import com.aminography.data.local.pref.base.BasePreferencesLocalDataSource
-import com.aminography.data.local.pref.base.StringPreference
+import com.aminography.data.core.persistent.pref.base.BasePreferencesLocalDataSource
+import com.aminography.data.core.persistent.pref.base.StringPreference
 import javax.inject.Inject
 
 /**

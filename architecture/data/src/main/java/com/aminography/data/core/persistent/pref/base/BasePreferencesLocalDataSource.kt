@@ -1,4 +1,4 @@
-package com.aminography.data.local.pref.base
+package com.aminography.data.core.persistent.pref.base
 
 import android.content.Context
 import android.content.SharedPreferences

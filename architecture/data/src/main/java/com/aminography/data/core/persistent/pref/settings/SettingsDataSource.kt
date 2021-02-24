@@ -1,4 +1,4 @@
-package com.aminography.data.local.pref.settings
+package com.aminography.data.core.persistent.pref.settings
 
 /**
  * @author aminography

@@ -1,7 +1,7 @@
 package com.aminography.data.core.network
 
 import com.aminography.data.KEY_BASE_URL
-import com.aminography.data.local.pref.settings.SettingsDataSource
+import com.aminography.data.core.persistent.pref.settings.SettingsDataSource
 import com.aminography.scope.annotation.FoundationScope
 import dagger.Module
 import dagger.Provides

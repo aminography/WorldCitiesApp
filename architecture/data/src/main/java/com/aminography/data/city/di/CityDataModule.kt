@@ -31,47 +31,39 @@ import javax.inject.Named
 @Module
 class CityDataModule {
 
-    @FeatureScope
     @Provides
     @Named(KEY_FILE_NAME)
     internal fun providesFileName(): String = "cities.json"
 
-    @FeatureScope
     @Provides
     @Named(KEY_CONCURRENCY_LEVEL)
     internal fun providesConcurrencyLevel(): Int = 8
 
-    @FeatureScope
     @Provides
     @Named(KEY_PAGE_SIZE)
     internal fun providesPageSize(): Int = 40
 
-    @FeatureScope
     @Provides
     @Named(KEY_INITIAL_LOAD_SIZE)
     internal fun providesInitialLoadSize(): Int = 80
 
-    @FeatureScope
     @Provides
     internal fun providesPagingConfig(
         @Named(KEY_PAGE_SIZE) pageSize: Int,
         @Named(KEY_INITIAL_LOAD_SIZE) initialLoadSize: Int
     ): PagingConfig = PagingConfig(pageSize = pageSize, initialLoadSize = initialLoadSize)
 
-    @FeatureScope
     @Provides
     internal fun providesJsonRetriever(
         context: Context,
         gson: Gson
     ): JsonRetriever = JsonRetriever(context, gson)
 
-    @FeatureScope
     @Provides
     internal fun providesLineCounter(
         context: Context
     ): LineCounter = LineCounter(context)
 
-    @FeatureScope
     @Provides
     internal fun providesCityDataSource(
         jsonRetriever: JsonRetriever,
@@ -89,7 +81,6 @@ class CityDataModule {
         ioDispatcher
     )
 
-    @FeatureScope
     @Provides
     internal fun providesPagerFactory(
         pagingConfig: PagingConfig

@@ -16,13 +16,11 @@ import retrofit2.Retrofit
 @Module
 class UserDataModule {
 
-    @FeatureScope
     @Provides
     internal fun providesSearchUsersApi(
         retrofit: Retrofit
     ): SearchUsersApi = retrofit.create(SearchUsersApi::class.java)
 
-    @FeatureScope
     @Provides
     internal fun providesUserDataSource(
         searchUsersApi: SearchUsersApi
