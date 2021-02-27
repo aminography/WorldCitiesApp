@@ -3,7 +3,7 @@
 This example project demonstrates a clean way to architect an Android application. The explanation will be written in a
 [Medium Post](https://medium.com/@aminography/android-app-architecture-in-a-clean-way-91e8b86e4b6f).
 
-This app consists of tree screens with a simple flow of UI. The first screen shows a filterable list of world cities.
+This app consists of three screens with a simple flow of UI. The first screen shows a filterable list of world cities.
 The content is retrieved from a json-structured file.
 
 In terms of presentation layer architecture, common `MVVM` pattern is highly adaptable with the Android development environment
