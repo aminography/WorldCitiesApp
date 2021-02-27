@@ -94,7 +94,7 @@ The only reason for having a dependency between `app` and `data` is accessing to
 <br/>
 
 ## Module Dependencies
-Descriptions...
+The diagram below shows the dependency graph of gradle modules.
 
 <br/>
 
