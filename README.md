@@ -108,13 +108,13 @@ In order to establish `IoC` in architecture design of the project, `dagger2` is 
 Using scopes, we can manage better the lifetime of provided objects by dagger components.
 So, I have defined 3 level scopes for this aim.
 
-**App-level** scope (*i.e.* `AppScope`) is used for the objects whose lifetime is equal to the app.
+- **App-level** scope (*i.e.* `AppScope`) is used for the objects whose lifetime is equal to the app.
 So, they are instantiated once and used through whole app, like the `applicationContext`.
 
-**Foundation-level** scopes define the lifetime of the foundational objects, like the `Retrofit` object.
+- **Foundation-level** scopes define the lifetime of the foundational objects, like the `Retrofit` object.
 They can live as long as the app lives or shorter than that.
 
-**Feature-level** scope (*i.e.* `FeatureScope`) is used for specifying the lifetime of object that should live as long as a feature lives.
+- **Feature-level** scope (*i.e.* `FeatureScope`) is used for specifying the lifetime of object that should live as long as a feature lives.
 
 <br/>
 
