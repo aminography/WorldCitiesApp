@@ -11,6 +11,7 @@ import com.aminography.domain.base.onSuccess
 import com.aminography.domain.city.ClearCitiesCacheUseCase
 import com.aminography.domain.city.LoadCitiesUseCase
 import com.aminography.domain.city.SearchCitiesUseCase
+import com.aminography.domain.city.SelectCityUseCase
 import com.aminography.model.city.City
 import com.aminography.navigation.NavDirection
 import com.aminography.worldcities.citylist.adapter.CityItemDataHolder
@@ -40,6 +41,7 @@ class CityListViewModel(
     defaultDispatcher: CoroutineDispatcher,
     loadCitiesUseCase: LoadCitiesUseCase,
     searchCitiesUseCase: SearchCitiesUseCase,
+    private val selectCityUseCase: SelectCityUseCase,
     private val clearCitiesCacheUseCase: ClearCitiesCacheUseCase
 ) : ViewModel() {
 
@@ -98,11 +100,17 @@ class CityListViewModel(
      * @param city the [City] corresponding to the clicked item.
      */
     fun onCityClicked(city: City) {
-        _navigation.postValue(
-            NavDestinations.MapViewer.deepLinkWithArg(
-                city.toMapViewerNavArg()
-            )
-        )
+        selectCityUseCase(city)
+            .onSuccess {
+                _navigation.postValue(
+                    NavDestinations.MapViewer.deepLinkWithArg(
+                        city.toMapViewerNavArg()
+                    )
+                )
+            }
+            .onError {
+                _errorMessage.postValue(it?.message ?: it.toString())
+            }
     }
 
     /**
@@ -121,15 +129,15 @@ class CityListViewModel(
 
     init {
         loadCitiesJob = viewModelScope.launch(defaultDispatcher) {
-            loadCitiesUseCase(Unit).collect {
-                it.onLoading { _loading.postValue(true) }
+            loadCitiesUseCase(Unit).collect { result ->
+                result.onLoading { _loading.postValue(true) }
                     .onSuccess {
                         reloadLastQuery()
                         loadCitiesJob?.cancel()
                     }
-                    .onError { e ->
+                    .onError {
                         _loading.postValue(false)
-                        _errorMessage.postValue(e?.message ?: e.toString())
+                        _errorMessage.postValue(it?.message ?: it.toString())
                     }
             }
         }

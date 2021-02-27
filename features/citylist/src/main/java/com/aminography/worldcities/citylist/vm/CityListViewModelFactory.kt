@@ -6,6 +6,7 @@ import com.aminography.coroutine.di.DefaultDispatcher
 import com.aminography.domain.city.ClearCitiesCacheUseCase
 import com.aminography.domain.city.LoadCitiesUseCase
 import com.aminography.domain.city.SearchCitiesUseCase
+import com.aminography.domain.city.SelectCityUseCase
 import kotlinx.coroutines.CoroutineDispatcher
 import javax.inject.Inject
 
@@ -18,6 +19,7 @@ import javax.inject.Inject
 class CityListViewModelFactory @Inject constructor(
     private val loadCitiesUseCase: LoadCitiesUseCase,
     private val searchCitiesUseCase: SearchCitiesUseCase,
+    private val selectCityUseCase: SelectCityUseCase,
     private val clearCitiesCacheUseCase: ClearCitiesCacheUseCase,
     @DefaultDispatcher private val defaultDispatcher: CoroutineDispatcher
 ) : ViewModelProvider.Factory {
@@ -31,6 +33,7 @@ class CityListViewModelFactory @Inject constructor(
             defaultDispatcher,
             loadCitiesUseCase,
             searchCitiesUseCase,
+            selectCityUseCase,
             clearCitiesCacheUseCase
         ) as VM
     }
