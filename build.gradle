@@ -38,7 +38,7 @@ buildscript {
             'recyclerview'    : '1.1.0',
             'lifecycle'       : '2.2.0',
             'navigation'      : '2.3.3',
-            'paging'          : '3.0.0-alpha12',
+            'paging'          : '3.0.0-beta01',
             // ----- test -----
             'junit_jupiter'   : '5.7.1',
             'androidx_junit'  : '1.1.2',

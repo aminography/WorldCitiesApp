@@ -13,9 +13,8 @@ import com.aminography.data.city.datasource.CityDataSource
 import com.aminography.data.city.datasource.CityDataSourceImpl
 import com.aminography.data.city.datasource.reader.JsonRetriever
 import com.aminography.data.city.datasource.reader.LineCounter
-import com.aminography.data.city.paging.PagingFactory
+import com.aminography.data.city.paging.CityPagingFactory
 import com.aminography.domain.city.CityRepository
-import com.aminography.model.city.City
 import com.aminography.scope.annotation.FeatureScope
 import com.google.gson.Gson
 import dagger.Module
@@ -82,14 +81,14 @@ class CityDataModule {
     )
 
     @Provides
-    internal fun providesPagerFactory(
+    internal fun providesCityPagingFactory(
         pagingConfig: PagingConfig
-    ): PagingFactory<City> = PagingFactory(pagingConfig)
+    ): CityPagingFactory = CityPagingFactory(pagingConfig)
 
     @FeatureScope
     @Provides
     internal fun providesCityRepository(
         cityDataSource: CityDataSource,
-        pagingFactory: PagingFactory<City>
-    ): CityRepository = CityRepositoryImpl(cityDataSource, pagingFactory)
+        cityPagingFactory: CityPagingFactory
+    ): CityRepository = CityRepositoryImpl(cityDataSource, cityPagingFactory)
 }

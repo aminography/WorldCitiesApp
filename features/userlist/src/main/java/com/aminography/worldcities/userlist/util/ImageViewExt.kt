@@ -9,7 +9,7 @@ import com.bumptech.glide.request.RequestOptions
  * @author aminography
  */
 
-var ImageView.image: String
+var ImageView.imageUrl: String
     get() = ""
     set(value) {
         Glide.with(context)

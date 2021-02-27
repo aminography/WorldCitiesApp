@@ -26,12 +26,12 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.constraintlayout.helper.widget.Flow
-        android:id="@+id/emptyState"
+        android:id="@+id/listState"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:visibility="gone"
-        app:constraint_referenced_ids="emptyStateImageView,emptyStateTextView"
+        app:constraint_referenced_ids="listStateImageView,listStateTextView"
         app:flow_verticalGap="@dimen/margin_normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,15 +41,17 @@
         tools:visibility="visible" />
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/emptyStateImageView"
+        android:id="@+id/listStateImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_outline_explore_24" />
+        app:srcCompat="@drawable/ic_outline_explore" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/emptyStateTextView"
+        android:id="@+id/listStateTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingHorizontal="@dimen/margin_normal"
         android:text="@string/result_not_found"
         android:textAppearance="@style/TextAppearance.WorldCities.Normal"
         android:textColor="@color/empty_state_tint" />
@@ -76,7 +78,7 @@
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="@dimen/progress_size"
         android:layout_height="@dimen/progress_size"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

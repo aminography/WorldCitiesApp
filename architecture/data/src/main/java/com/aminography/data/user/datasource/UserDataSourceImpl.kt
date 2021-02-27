@@ -13,8 +13,10 @@ internal class UserDataSourceImpl @Inject internal constructor(
 ) : BaseRemoteDataSource(), UserDataSource {
 
     override suspend fun search(
-        location: String
+        location: String,
+        page: Int,
+        pageSize: Int
     ): Result<SearchUsersResponseModel> = wrapResponse {
-        api.search("location:$location", 0, 50)
+        api.search("location:$location", page, pageSize)
     }
 }

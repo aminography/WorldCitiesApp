@@ -3,6 +3,7 @@ package com.aminography.data.city.paging
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
+import com.aminography.model.city.City
 import com.aminography.radixtree.RadixTree
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
@@ -15,7 +16,7 @@ import javax.inject.Inject
  *
  * @author aminography
  */
-internal class PagingFactory<T : Any> @Inject constructor(
+internal class CityPagingFactory @Inject constructor(
     private val pagingConfig: PagingConfig
 ) {
 
@@ -25,6 +26,6 @@ internal class PagingFactory<T : Any> @Inject constructor(
      * @param tree the tree of data.
      * @param query the query that should be used for the prefix search on the tree.
      */
-    fun createPagingDataFlow(tree: RadixTree<T>, query: String): Flow<PagingData<T>> =
-        Pager(pagingConfig) { SearchTreePagingSource(tree, query) }.flow
+    fun createPagingDataFlow(tree: RadixTree<City>, query: String): Flow<PagingData<City>> =
+        Pager(pagingConfig) { SearchCityPagingSource(tree, query) }.flow
 }

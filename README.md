@@ -33,6 +33,7 @@ Main Characteristics
 - Layered architecture using Clean Architecture
 - Lifecycle-aware presentation architecture using MVVM
 - Indexing large amount of records using RadixTree
+- Pagination using paging3
 
 <br/>
 

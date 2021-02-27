@@ -3,7 +3,7 @@ package com.aminography.data
 import androidx.paging.PagingData
 import com.aminography.data.city.CityRepositoryImpl
 import com.aminography.data.city.datasource.CityDataSource
-import com.aminography.data.city.paging.PagingFactory
+import com.aminography.data.city.paging.CityPagingFactory
 import com.aminography.domain.city.util.key
 import com.aminography.model.city.City
 import com.aminography.test.CoroutineTest
@@ -28,7 +28,7 @@ import org.junit.jupiter.api.TestInstance
 class CityRepositoryImplTest : CoroutineTest() {
 
     private val cityDataSource: CityDataSource = mockk()
-    private val pagingFactory: PagingFactory<City> = mockk()
+    private val pagingFactory: CityPagingFactory = mockk()
 
     @Test
     fun `loading distinct cities should insert all of them into tree`() = runBlockingTest {

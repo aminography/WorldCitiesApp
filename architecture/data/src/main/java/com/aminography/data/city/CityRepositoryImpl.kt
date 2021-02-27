@@ -3,7 +3,7 @@ package com.aminography.data.city
 import androidx.annotation.VisibleForTesting
 import androidx.paging.PagingData
 import com.aminography.data.city.datasource.CityDataSource
-import com.aminography.data.city.paging.PagingFactory
+import com.aminography.data.city.paging.CityPagingFactory
 import com.aminography.domain.city.CityRepository
 import com.aminography.domain.city.util.key
 import com.aminography.model.city.City
@@ -19,13 +19,13 @@ import javax.inject.Inject
  * The concrete implementation of the [CityRepository].
  *
  * @param dataSource an instance of [CityDataSource].
- * @param pagingFactory an instance of [PagingFactory] which is responsible to produce [PagingData].
+ * @param pagingFactory an instance of [CityPagingFactory] which is responsible to produce [PagingData].
  *
  * @author aminography
  */
 internal class CityRepositoryImpl @Inject constructor(
     private val dataSource: CityDataSource,
-    private val pagingFactory: PagingFactory<City>
+    private val pagingFactory: CityPagingFactory
 ) : CityRepository {
 
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)

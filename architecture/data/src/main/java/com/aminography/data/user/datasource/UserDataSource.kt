@@ -9,6 +9,8 @@ import com.aminography.domain.base.Result
 interface UserDataSource {
 
     suspend fun search(
-        location: String
+        location: String,
+        page: Int,
+        pageSize: Int
     ): Result<SearchUsersResponseModel>
 }

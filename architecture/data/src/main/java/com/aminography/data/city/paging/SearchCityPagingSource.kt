@@ -2,6 +2,8 @@ package com.aminography.data.city.paging
 
 import androidx.paging.PagingData
 import androidx.paging.PagingSource
+import androidx.paging.PagingState
+import com.aminography.model.city.City
 import com.aminography.radixtree.RadixTree
 
 /**
@@ -13,14 +15,14 @@ import com.aminography.radixtree.RadixTree
  *
  * @author aminography
  */
-internal class SearchTreePagingSource<T : Any>(
-    private val tree: RadixTree<T>,
+internal class SearchCityPagingSource(
+    private val tree: RadixTree<City>,
     private val query: String
-) : PagingSource<Int, T>() {
+) : PagingSource<Int, City>() {
 
     override suspend fun load(
         params: LoadParams<Int>
-    ): LoadResult<Int, T> = try {
+    ): LoadResult<Int, City> = try {
         val pageNumber = params.key ?: 0
 
         val offset = pageNumber * params.loadSize
@@ -39,4 +41,10 @@ internal class SearchTreePagingSource<T : Any>(
     } catch (e: Exception) {
         LoadResult.Error(e)
     }
+
+    override fun getRefreshKey(state: PagingState<Int, City>): Int? =
+        state.anchorPosition?.let {
+            state.closestPageToPosition(it)?.prevKey?.plus(1)
+                ?: state.closestPageToPosition(it)?.nextKey?.minus(1)
+        }
 }
