@@ -4,8 +4,7 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 /**
- * The argument for the [MapViewerFragment], sent via
- * safe-args.
+ * The argument for the [MapViewerFragment], sent via deep-link.
  *
  * @param name the name of the target city.
  * @param country the country code of the target city.

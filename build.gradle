@@ -2,9 +2,9 @@
 buildscript {
     // semantic versioning
     ext.appVersion = [
-            'major': 1,
+            'major': 2,
             'minor': 0,
-            'patch': 1
+            'patch': 0
     ]
     ext.appVersionCode = appVersion.major * 1000000 + appVersion.minor * 1000 + appVersion.patch
     ext.appVersionName = "${appVersion.major}.${appVersion.minor}.${appVersion.patch}"
@@ -54,7 +54,6 @@ buildscript {
     dependencies {
         classpath "com.android.tools.build:gradle:${versions.android_gradle}"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
-        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:${versions.navigation}"
     }
 }
 
