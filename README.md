@@ -14,7 +14,7 @@ Table of Contents
 -----------------
 - [Main Characteristics](#main-characteristics)
 - [Architecture Overview](#architecture-overview)
-  - [Gradle Modules and their organization](#gradle-modules-and-their-organization)
+  - [Gradle Modules](#gradle-modules)
   - [Architecture Layers](#architecture-layers)
   - [Module Dependencies](#module-dependencies)
 - [Dependency Injection](#dependency-injection)
