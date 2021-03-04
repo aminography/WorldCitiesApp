@@ -10,7 +10,7 @@ This app consists of three screens with a simple flow of UI:
 
 <br/>
 
-### :warning: **DISCLAIMER:**
+### :warning: **DISCLAIMER**
 
 In case of large-scale project, for example containing dozens of features, the exact architecture of this project might not be efficient.
 It would be better to apply `Clean Architecture` to each feature independently, which leads to higher levels of cohesion and shorter compile-time.
