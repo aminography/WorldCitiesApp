@@ -53,7 +53,7 @@ The overall structure of the codebase is organized into 3 categories of gradle m
 
 Regardless of two test-related modules (*i.e.* `sharedTest` and `sharedAndroidTest`), there are 11 gradle modules. (4 pure `Kotlin` and 7 `Android` module)
 
-Each module has follows single responsibility to increase cohesion.
+Each module follows single responsibility principle, results in higher cohesion.
 In addition, modules are decoupled, so they know only each other's interface, which increases their maintainability and testability.
 
 <br/>
@@ -107,7 +107,7 @@ Dependency Injection
 --------------------
 `dagger2` is a powerful tool to establish Inversion of control (`IoC`) in the architecture design.
 Using scopes, we can manage the lifetime of objects provided by dagger components.
-For this aim, scopes are categorized into 3 levels:
+In this project, scopes are categorized into 3 levels:
 
 - **App-level** scope (*i.e.* `AppScope`) is used for the objects whose lifetime is equal to the app.
 So, they are instantiated once and used through whole app, like the `applicationContext`.
