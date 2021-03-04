@@ -8,6 +8,9 @@ This app consists of three screens with a simple flow of UI:
 - Viewing a city on map
 - Exploring github users of the city
 
+:warning: **DISCLAIMER:** In case of large-scale project, for example containing dozens of features, the exact architecture of this project might not be efficient.
+It would be better to apply `Clean Architecture` to each feature independently, which leads to higher levels of cohesion and shorter compile-time.
+
 <br/>
 
 Table of Contents
@@ -19,6 +22,7 @@ Table of Contents
   - [Module Dependencies](#module-dependencies)
 - [Dependency Injection](#dependency-injection)
 - [Third-Party Libraries](#third-party-libraries)
+- [License](#license)
 
 <br/>
 
@@ -135,3 +139,21 @@ Third-Party Libraries
 - [Google Maps](https://developers.google.com/maps/documentation/android-sdk/overview)
 - [JUnit 5](https://junit.org/junit5/docs/current/user-guide)
 - [MockK](https://mockk.io)
+
+License
+--------
+```
+Copyright 2021 Amin Hassani.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+```
