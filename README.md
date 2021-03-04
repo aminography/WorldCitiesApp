@@ -1,87 +1,137 @@
-# World Cities App
+# Android app architecture in a clean way
 
-This is a sample project which shows how to deal with prefix search for large amount of records, like cities of the world.
-To achieve this, I have implemented the [RadixTree](https://en.wikipedia.org/wiki/Radix_tree) data structure with the ability
-to retrieve data with `offset` and `limit` used for pagination. To gain more from separation of concerns, the whole app is
-organized by Clean Architecture. In this document I will explain some points about the data structure as well as the architecture.
+This example project demonstrates a clean way to architect an Android application.
+Further details will be explained in a [Medium Post](https://medium.com/@aminography/android-app-architecture-in-a-clean-way-91e8b86e4b6f).
+
+This app consists of three screens with a simple flow of UI:
+- A filterable list of world cities
+- Viewing a city on map
+- Exploring github users of the city
+
+<br/>
 
 Table of Contents
 -----------------
+- [Main Characteristics](#main-characteristics)
+- [Architecture Overview](#architecture-overview)
+  - [Gradle Modules and their organization](#gradle-modules-and-their-organization)
+  - [Architecture Layers](#architecture-layers)
+  - [Module Dependencies](#module-dependencies)
+- [Dependency Injection](#dependency-injection)
+- [Third-Party Libraries](#third-party-libraries)
 
-- [Data Structure and Algorithm](#data-structure-and-algorithm)
-  - [Why Radix Tree?](#why-radix-tree)
-  - [Implementation and Improvements](#implementation-and-improvements)
-- [App Architecture](#app-architecture)
-  - [Modules and their dependencies](#modules-and-their-dependencies)
-  - [Dependency Injection](#dependency-injection)
+<br/>
 
-Data Structure and Algorithm
-----------------------------
-According to the task description, the algorithm used for filtering items would be critical part of this project. Therefore,
-in this section I will elaborate on what approach is taken and how it could be beneficial.
+Main Characteristics
+--------------------
+- Layered architecture => `Clean Architecture`
+- Separation of concerns (`SoC`) => `Gradle` modularization
+- Lifecycle-aware presentation architecture => `MVVM` pattern
+- Single `Activity` pattern => `Jetpack Navigation Component`
+- Feature independence => `Dynamic Feature Module`
+- Dependency injection => `Dagger2`
+- Concurrent programming => `Coroutines`
+- Reactive programming => `Flow` and `LiveData`
+- Indexing large amount of records (~210k) for retrieving in few milliseconds => `RadixTree`
+- Pagination => `Paging3`
 
-###  Why Radix Tree?
-Based on research that I have done, `RadixTree` is the best data structure for indexing a large set of objects with string keys
-in order to retrieve them by a prefix search. `RadixTree` or compressed trie is the compact and space-optimized form of prefix tree
-which enables us to find all nodes starting with a prefix string by a `O(L + V)` complexity order, where `L` is the length of input
-prefix, and `V` stands for number of nodes containing the desired value. In case of this project dataset, the length of keys for
-cities are dramatically lower than number of cities, which means that the time complexity of this search is significantly better
-than linear search. To know more, please refer to the comments inside the `MinimalRadixTree` class.
+<br/>
 
-###  Implementation and Improvements
-The `RadixTree`, as the heart of the algorithm, is minimally implemented in `MinimalRadixTree` class.
-Thus, it is only involved basic functionality required for this project such as insert into and search in a tree.
-Other operations like delete a node are not implemented.
+Architecture Overview
+---------------------
+The architecture of the app follows the well-known `Clean Architecture` guidelines to make the business rules as separated as possible.
+It consists of 3 main layers: `Data`, `Domain`, and `Presentation` that will be explained in the following.
 
-#### Insert
-According to the assignment description, initial loading time of dataset does not matter. Therefore, insertion algorithm is
-implemented using a recursive approach.
+<br/>
 
-#### Search
-In case of searching the tree, I have used a combination of selective BFS and DFS traversals, which are both implemented
-iteratively to reduce the searching time as much as possible. The complexity analysis is available in the code comments.
+##  Gradle Modules and their organization
+The overall structure of the codebase is organized into 3 categories of gradle modules.
 
-App Architecture
-----------------
-The architecture of this application is based on well-known `Clean Architecture` consists of 5 gradle modules, to separate
-business rules as much as possible.  
-In terms of presentation architecture, common `MVVM` pattern is highly adaptable with the Android development environment
-and tools, such as `Jetpack` architectural components, so I have chosen `MVVM` for this aim.
+- `architecture`: modules that establish the `Clean Architecture` layers.
+- `common`: modules that provide common components and foundations for `architecture` modules.
+- `features`: modules that implement separate features of the application.
 
-###  Modules and their dependencies
-As it was mentioned before, the structure of codebase is consisted of 5 gradle modules, 3 pure `Kotlin` library and 2
-`Android` module (plus one module containing shared classes for the unit test).
+Regardless of two test-related modules (*i.e.* `sharedTest` and `sharedAndroidTest`), there are 11 gradle modules. (4 pure `Kotlin` and 7 `Android` module)
+
+Each module has follows single responsibility to increase cohesion.
+In addition, modules are decoupled, so they know only each other's interface, which increases their maintainability and testability.
+
+<br/>
 
 ![](/static/modules.png)
 
-#### 1. Scope
-`scope` is a pure `Kotlin` module and holds only scope `annotation` classes.
+<br/>
 
-#### 2. Model
-`model` is a pure `Kotlin` module and consists of business entities which should be accessible in whole codebase.
+##  Architecture Layers
+The overall architecture is organized into 3 main layers:
 
-#### 3. Domain
-`domain` is a pure `Kotlin` module. It provides business logic via use-case classes and defines abstraction of repositories to be
-implemented in `data` module. In addition, use-case objects work as a bridge between `app` and `data` modules which is the only
-possible way for the `app` to access provided data by the `data` module.
+<br/>
 
-#### 4. Data
-`data` is an `Android` library module. It collaborates with the `Android` framework to provide data. All of the concrete classes
-are `internal`, so they cannot be exposed to the `app` module. The concrete objects are created by `dagger` and delivered to the
-`domain` via the `app` dependency graph which is the reason for dependency between `app` and `data.`
+![](/static/layers.svg)
 
-#### 5. App
-`app` is an `Android` application module. It presents user interface and builds a dependency graph to flow objects through different
-layers of architecture.
+<br/>
 
-###  Dependency Injection
-In order to establish `IoC` in architecture design of the project, `dagger2` is used. There are 3 `dagger` components in the codebase.
+### 1. Presentation
+The presentation layer contains the `app` and features, which are all `Android` application modules.
+It presents user interface by navigating between different features provided by feature modules.
+Features are implemented in `Dynamic Feature Modules` and they will be delivered at install time.
+It allows us to separate their code and resources from the base `app` module.
+In fact, the `app` module aggregates architectural modules for the features, in addition holds base and navigation-related classes.
 
-![](/static/dagger.png)
+### 2. Domain
+The domain layer contains business rules and entities, which are pure `Kotlin` modules.
+The `domain` module provides the business logic via use-case classes and defines abstraction of repositories to be implemented by the `data` module.
+In addition, each use-case object can act as a bridge between `app` and `data` modules.
+So, this is the only possible way for the `app` and it descendant features to collaborate with the `data` module.
 
-- `AppComponent`: to provide app related concrete objects.
-- `CityListComponent`: to provide feature related concrete objects for the city-list feature.
-- `MapViewerComponent`: to provide feature related concrete objects for the map-viewer feature.
+### 3. Data
+As the aim of the data layer is to deal with local or remote sources of data, it needs to interact with the framework.
+Therefor, it is an `Android` library module.
+The concrete objects are created and delivered to the `domain` by the `dagger`.
+It is worth noting that all of the concrete classes in this module are `internal`, so they cannot be exposed to dependant modules, like the `app`.
 
-It is worth mentioning that feature-based components are sub-components of the `AppComponent`, so they can access to app-scoped objects
-like `applicationContext`.
+- The only reason for having a dependency between `app` and `data` is accessing to dagger modules and components located in the `data`, which is required for building the dependency graph by the dagger.
+
+<br/>
+
+## Module Dependencies
+The diagram below shows the dependency graph of gradle modules.
+
+<br/>
+
+![](/static/modules.svg)
+
+<br/>
+
+Dependency Injection
+--------------------
+`dagger2` is a powerful tool to establish Inversion of control (`IoC`) in the architecture design.
+Using scopes, we can manage the lifetime of objects provided by dagger components.
+For this aim, scopes are categorized into 3 levels:
+
+- **App-level** scope (*i.e.* `AppScope`) is used for the objects whose lifetime is equal to the app.
+So, they are instantiated once and used through whole app, like the `applicationContext`.
+
+- **Foundation-level** scopes define the lifetime of the foundational objects, like the `Retrofit` object.
+They can live as long as the app lives or shorter than that.
+
+- **Feature-level** scope (*i.e.* `FeatureScope`) is used for specifying the lifetime of object that should live as long as a feature lives.
+
+<br/>
+
+![](/static/scopes.svg)
+
+<br/>
+
+Third-Party Libraries
+-------------------
+- [Dagger2](https://dagger.dev)
+- [Navigation Component](https://developer.android.com/guide/navigation)
+- [Paging3](https://developer.android.com/topic/libraries/architecture/paging/v3-overview)
+- [Retrofit](https://square.github.io/retrofit)
+- [Gson](https://github.com/google/gson)
+- [RadixTree](https://github.com/aminography/RadixTree)
+- [Glide](https://bumptech.github.io/glide)
+- [Google Maps](https://developers.google.com/maps/documentation/android-sdk/overview)
+- [JUnit 5](https://junit.org/junit5/docs/current/user-guide)
+- [MockK](https://mockk.io)

@@ -40,7 +40,7 @@ android {
 dependencies {
     // ------- architecture
     implementation project(':architecture:domain')
-    implementation project(':common:app_core')
+    implementation project(':common:appCore')
 
     // ------- androidx
     implementation "androidx.core:core-ktx:${versions.androidx_core}"

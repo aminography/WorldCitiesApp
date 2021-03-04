@@ -48,8 +48,14 @@ class UserListFragment : BaseFragment<FragmentUserListBinding>(), OnListItemClic
         adapter.setOnListItemClickListener(this@UserListFragment)
         adapter.addLoadStateListener { loadState ->
             loadState.decide(
-                showEmptyState = { binding.emptyState.isVisible = it },
-                showError = { context?.toast(it) }
+                showLoading = {
+                    binding.progressBar.isVisible = it
+                },
+                showListState = { visible, text, image ->
+                    binding.listStateImageView.setImageResource(image)
+                    binding.listStateTextView.text = text
+                    binding.listState.isVisible = visible
+                }
             )
         }
 
@@ -66,25 +72,35 @@ class UserListFragment : BaseFragment<FragmentUserListBinding>(), OnListItemClic
         viewModel.cityName.observe(owner) { binding.toolbar.title = it }
         viewModel.searchResult.observe(owner) { adapter.submitData(lifecycle, it) }
         viewModel.errorMessage.observe(owner) { context?.toast(it) }
-        viewModel.loading.observe(owner) { binding.progressBar.isVisible = it }
     }
 
     override fun onItemClicked(dataHolder: BaseDataHolder?) {
     }
 
     private inline fun CombinedLoadStates.decide(
-        showEmptyState: (Boolean) -> Unit,
-        showError: (String) -> Unit
+        showLoading: (Boolean) -> Unit,
+        showListState: (Boolean, String, Int) -> Unit
     ) {
-        showEmptyState(
-            source.append is LoadState.NotLoading
-                    && source.append.endOfPaginationReached
-                    && adapter.itemCount == 0
-        )
-        val errorState = source.append as? LoadState.Error
-            ?: source.prepend as? LoadState.Error
-            ?: append as? LoadState.Error
-            ?: prepend as? LoadState.Error
-        errorState?.let { showError(it.error.toString()) }
+        showLoading(refresh is LoadState.Loading)
+
+        val empty = source.append is LoadState.NotLoading
+                && source.append.endOfPaginationReached
+                && adapter.itemCount == 0
+
+        val errorState = refresh as? LoadState.Error
+
+        when {
+            empty -> showListState(
+                true,
+                getString(R.string.result_not_found),
+                R.drawable.ic_outline_explore
+            )
+            errorState != null -> showListState(
+                true,
+                errorState.error.message ?: "",
+                R.drawable.ic_sad_cloud
+            )
+            else -> showListState(false, "", 0)
+        }
     }
 }

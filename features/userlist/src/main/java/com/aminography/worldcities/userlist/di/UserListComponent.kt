@@ -1,8 +1,7 @@
 package com.aminography.worldcities.userlist.di
 
 import com.aminography.coroutine.di.CoroutineComponent
-import com.aminography.data.di.NetworkComponent
-import com.aminography.data.user.di.UserDataModule
+import com.aminography.data.core.network.NetworkComponent
 import com.aminography.scope.annotation.FeatureScope
 import com.aminography.worldcities.userlist.UserListFragment
 import dagger.BindsInstance
@@ -20,8 +19,7 @@ import dagger.Component
         NetworkComponent::class
     ],
     modules = [
-        UserListModule::class,
-        UserDataModule::class
+        UserListModule::class
     ]
 )
 interface UserListComponent {
@@ -30,14 +28,11 @@ interface UserListComponent {
 
     @Component.Builder
     interface Builder {
-
         fun coroutineComponent(component: CoroutineComponent): Builder
-
         fun networkComponent(component: NetworkComponent): Builder
 
         @BindsInstance
         fun fragment(fragment: UserListFragment): Builder
-
         fun build(): UserListComponent
     }
 }

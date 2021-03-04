@@ -1,6 +1,7 @@
 package com.aminography.worldcities.userlist.di
 
 import android.view.LayoutInflater
+import com.aminography.data.user.di.UserDataModule
 import com.aminography.scope.annotation.FeatureScope
 import com.aminography.worldcities.ui.util.createViewModel
 import com.aminography.worldcities.userlist.UserListFragment
@@ -15,7 +16,11 @@ import dagger.Provides
  *
  * @author aminography
  */
-@Module
+@Module(
+    includes = [
+        UserDataModule::class
+    ]
+)
 class UserListModule {
 
     @FeatureScope

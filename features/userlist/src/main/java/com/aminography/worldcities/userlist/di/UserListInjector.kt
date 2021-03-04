@@ -1,7 +1,7 @@
 package com.aminography.worldcities.userlist.di
 
 import com.aminography.coroutine.di.CoroutineComponent
-import com.aminography.data.di.NetworkComponent
+import com.aminography.data.core.network.NetworkComponent
 import com.aminography.worldcities.userlist.UserListFragment
 
 /**

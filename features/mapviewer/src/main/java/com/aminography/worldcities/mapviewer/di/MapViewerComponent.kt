@@ -22,10 +22,8 @@ interface MapViewerComponent {
 
     @Component.Builder
     interface Builder {
-
         @BindsInstance
         fun fragment(fragment: MapViewerFragment): Builder
-
         fun build(): MapViewerComponent
     }
 }

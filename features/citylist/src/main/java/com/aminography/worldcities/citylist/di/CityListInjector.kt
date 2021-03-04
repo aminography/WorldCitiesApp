@@ -2,7 +2,7 @@ package com.aminography.worldcities.citylist.di
 
 import com.aminography.core.di.AppComponent
 import com.aminography.coroutine.di.CoroutineComponent
-import com.aminography.data.di.GsonComponent
+import com.aminography.data.core.gson.GsonComponent
 import com.aminography.worldcities.citylist.CityListFragment
 
 /**

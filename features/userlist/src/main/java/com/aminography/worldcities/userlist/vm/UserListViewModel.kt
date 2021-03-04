@@ -13,7 +13,6 @@ import com.aminography.worldcities.ui.util.UniqueLiveData
 import com.aminography.worldcities.userlist.adapter.UserItemDataHolder
 import com.aminography.worldcities.userlist.model.toUserItemDataHolder
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
@@ -32,32 +31,20 @@ class UserListViewModel(
     private val _cityName = MutableLiveData<String>()
     val cityName: LiveData<String> = _cityName
 
-    private var searchJob: Job = Job()
-
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
     val queryLiveData = UniqueLiveData<String>()
-
-    private val _loading = MutableLiveData<Boolean>()
-    val loading: LiveData<Boolean> = _loading
 
     private val _errorMessage = SingleLiveEvent<String>()
     val errorMessage: LiveData<String> = _errorMessage
 
     val searchResult: LiveData<PagingData<UserItemDataHolder>> =
         queryLiveData.switchMap { query ->
-            // cancels previous uncompleted search, if any
-            if (searchJob.isActive) {
-                searchJob.cancel()
-                searchJob = Job()
-            }
             liveData(defaultDispatcher) {
-                _loading.postValue(true)
                 searchUsersUseCase(query)
                     .map { pagingData -> pagingData.map { it.toUserItemDataHolder() } }
                     .cachedIn(viewModelScope)
                     .flowOn(defaultDispatcher)
                     .collect {
-                        _loading.postValue(false)
                         emit(it)
                     }
             }
@@ -74,10 +61,5 @@ class UserListViewModel(
 
     fun onNavigateUpClicked() {
         _navigation.postValue(NavDirection.Up)
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        searchJob.cancel()
     }
 }

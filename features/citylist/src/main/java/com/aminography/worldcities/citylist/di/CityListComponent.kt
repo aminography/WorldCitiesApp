@@ -2,8 +2,7 @@ package com.aminography.worldcities.citylist.di
 
 import com.aminography.core.di.AppComponent
 import com.aminography.coroutine.di.CoroutineComponent
-import com.aminography.data.city.di.CityDataModule
-import com.aminography.data.di.GsonComponent
+import com.aminography.data.core.gson.GsonComponent
 import com.aminography.scope.annotation.FeatureScope
 import com.aminography.worldcities.citylist.CityListFragment
 import dagger.BindsInstance
@@ -22,8 +21,7 @@ import dagger.Component
         GsonComponent::class
     ],
     modules = [
-        CityListModule::class,
-        CityDataModule::class
+        CityListModule::class
     ]
 )
 interface CityListComponent {
@@ -32,16 +30,12 @@ interface CityListComponent {
 
     @Component.Builder
     interface Builder {
-
         fun appComponent(component: AppComponent): Builder
-
         fun coroutineComponent(component: CoroutineComponent): Builder
-
         fun gsonComponent(component: GsonComponent): Builder
 
         @BindsInstance
         fun fragment(fragment: CityListFragment): Builder
-
         fun build(): CityListComponent
     }
 }

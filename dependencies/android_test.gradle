@@ -1,6 +1,6 @@
 dependencies {
     // ------- shared utils
-    testImplementation project(':common:shared_android_test')
+    testImplementation project(':common:sharedAndroidTest')
 
     // ------- instrumentation
     androidTestImplementation "androidx.test.ext:junit:${versions.androidx_junit}"
