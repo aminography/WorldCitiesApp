@@ -108,8 +108,8 @@ class CityListViewModel(
                     )
                 )
             }
-            .onError {
-                _errorMessage.postValue(it?.message ?: it.toString())
+            .onError { e ->
+                _errorMessage.postValue(e?.message ?: e.toString())
             }
     }
 
