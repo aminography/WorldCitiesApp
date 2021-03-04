@@ -44,7 +44,7 @@ It consists of 3 main layers: `Data`, `Domain`, and `Presentation` that will be 
 
 <br/>
 
-##  Gradle Modules and their organization
+##  Gradle Modules
 The overall structure of the codebase is organized into 3 categories of gradle modules.
 
 - `architecture`: modules that establish the `Clean Architecture` layers.
