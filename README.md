@@ -35,12 +35,12 @@ Main Characteristics
 - Layered architecture => `Clean Architecture`
 - Separation of concerns (`SoC`) => `Gradle` modularization
 - Lifecycle-aware presentation architecture => `MVVM` pattern
-- Single `Activity` pattern => `Jetpack Navigation Component`
+- Navigation => `Jetpack Navigation Component`
 - Feature independence => `Dynamic Feature Module`
-- Dependency injection => `Dagger2`
+- Inversion on control (`IoC`) => `Dagger2`
 - Concurrent programming => `Coroutines`
 - Reactive programming => `Flow` and `LiveData`
-- Indexing large amount of records (~210k) for retrieving in few milliseconds => `RadixTree`
+- Indexing a large amount of records (~210k) + retrieval time **<** 10ms => `RadixTree`
 - Pagination => `Paging3`
 
 <br/>
