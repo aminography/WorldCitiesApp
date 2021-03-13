@@ -70,6 +70,7 @@ In addition, modules are decoupled, so they know only each other's interface, wh
 <br/>
 
 ![](/static/modules.png)
+
 <br/>
 
 ##  Architecture Layers
