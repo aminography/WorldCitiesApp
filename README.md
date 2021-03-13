@@ -32,16 +32,19 @@ Table of Contents
 
 Main Characteristics
 --------------------
-- Layered architecture => `Clean Architecture`
-- Separation of concerns (`SoC`) => `Gradle` modularization
-- Lifecycle-aware presentation architecture => `MVVM` pattern
-- Navigation => `Jetpack Navigation Component`
-- Feature independence => `Dynamic Feature Module`
-- Inversion on control (`IoC`) => `Dagger2`
-- Concurrent programming => `Coroutines`
-- Reactive programming => `Flow` and `LiveData`
-- Indexing a large amount of records (~210k) + retrieval time **<** 10ms => `RadixTree`
-- Pagination => `Paging3`
+
+| What | With |
+| --- | :---: |
+| Layered architecture | `Clean Architecture` |
+| Separation of concerns ([`SoC`](https://en.wikipedia.org/wiki/Separation_of_concerns)) | `Gradle` modularization |
+| Lifecycle-aware presentation architecture | `MVVM` pattern |
+| Navigation | `Jetpack Navigation Component` |
+| Feature independence | `Dynamic Feature Module` |
+| Inversion on control ([`IoC`](https://en.wikipedia.org/wiki/Inversion_of_control)) | `Dagger2` |
+| Concurrent programming | `Coroutines` |
+| Reactive programming | `Flow` and `LiveData` |
+| Indexing a large amount of records (~210k) + retrieval time **<** 10ms | `RadixTree` |
+| Pagination | `Paging3` |
 
 <br/>
 
@@ -67,7 +70,6 @@ In addition, modules are decoupled, so they know only each other's interface, wh
 <br/>
 
 ![](/static/modules.png)
-
 <br/>
 
 ##  Architecture Layers
