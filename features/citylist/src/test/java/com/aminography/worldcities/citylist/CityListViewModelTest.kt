@@ -6,6 +6,7 @@ import com.aminography.domain.base.Result
 import com.aminography.domain.city.ClearCitiesCacheUseCase
 import com.aminography.domain.city.LoadCitiesUseCase
 import com.aminography.domain.city.SearchCitiesUseCase
+import com.aminography.domain.city.SelectCityUseCase
 import com.aminography.test.CoroutineTest
 import com.aminography.worldcities.citylist.vm.CityListViewModel
 import io.mockk.every
@@ -30,6 +31,7 @@ class CityListViewModelTest : CoroutineTest() {
     private val defaultDispatcher: CoroutineDispatcher = testDispatcher
     private val loadCitiesUseCase: LoadCitiesUseCase = mockk()
     private val searchCitiesUseCase: SearchCitiesUseCase = mockk()
+    private val selectCityUseCase: SelectCityUseCase = mockk()
     private val clearCitiesCacheUseCase: ClearCitiesCacheUseCase = mockk()
 
     @Test
@@ -109,6 +111,7 @@ class CityListViewModelTest : CoroutineTest() {
         defaultDispatcher,
         loadCitiesUseCase,
         searchCitiesUseCase,
+        selectCityUseCase,
         clearCitiesCacheUseCase
     )
 }
