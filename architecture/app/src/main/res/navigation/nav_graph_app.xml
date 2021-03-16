@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_app.xml"
+    app:startDestination="@id/startFragment"
+    tools:ignore="UnusedNavigation">
+
+    <fragment
+        android:id="@+id/startFragment"
+        android:name="com.aminography.worldcities.ui.start.StartFragment"
+        tools:layout="@layout/fragment_start" />
+
+    <!-- Use `include-dynamic` instead, when the deepLink navigation between feature modules gets
+    possible: https://developer.android.com/guide/navigation/navigation-dynamic#limitations -->
+
+    <include app:graph="@navigation/nav_graph_city_list" />
+
+    <include app:graph="@navigation/nav_graph_map_viewer" />
+
+    <include app:graph="@navigation/nav_graph_user_list" />
+
+</navigation>

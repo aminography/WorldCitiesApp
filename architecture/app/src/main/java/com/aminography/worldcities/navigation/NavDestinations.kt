@@ -11,9 +11,9 @@ import com.aminography.worldcities.navigation.model.UserListNavArg
  */
 sealed class NavDestinations<T : Parcelable>(link: String) : BaseNavDestination<T>(link) {
 
-    object TestDestinationWithNoArg : NavDestinations<Nothing>("worldcities://test_no_arg")
-
     object TestDestinationWithBundleArg : NavDestinations<Bundle>("worldcities://test_bundle_arg")
+
+    object CityList : NavDestinations<Nothing>("worldcities://city_list")
 
     object MapViewer : NavDestinations<MapViewerNavArg>("worldcities://map_viewer")
 
