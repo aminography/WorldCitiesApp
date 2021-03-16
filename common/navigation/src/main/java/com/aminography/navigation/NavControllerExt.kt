@@ -14,15 +14,8 @@ import com.aminography.navigation.argument.DeepLinkNavArgLazy
  */
 
 fun NavController.navigateDeepLink(deepLink: NavDirection.DeepLink) {
-    navigate(deepLink.uri, navOptions)
+    navigate(deepLink.uri, deepLink.navOptions)
 }
-
-private val navOptions = NavOptions.Builder()
-    .setEnterAnim(R.anim.slide_in_right)
-    .setExitAnim(R.anim.slide_out_left)
-    .setPopEnterAnim(R.anim.slide_in_left)
-    .setPopExitAnim(R.anim.slide_out_right)
-    .build()
 
 fun <T : NavDirection> Fragment.observeNavigation(liveData: LiveData<T>) {
     liveData.observe(viewLifecycleOwner) {
@@ -38,3 +31,10 @@ inline fun <reified T : Parcelable> Fragment.deepLinkNavArg() =
     DeepLinkNavArgLazy(T::class) {
         arguments ?: throw IllegalStateException("Fragment $this has null arguments!")
     }
+
+internal val defaultNavOptions = NavOptions.Builder()
+    .setEnterAnim(R.anim.slide_in_right)
+    .setExitAnim(R.anim.slide_out_left)
+    .setPopEnterAnim(R.anim.slide_in_left)
+    .setPopExitAnim(R.anim.slide_out_right)
+    .build()

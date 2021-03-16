@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph_map_viewer.xml"
-    app:startDestination="@+id/mapViewerFragment"
+    app:startDestination="@id/mapViewerFragment"
     tools:ignore="UnusedNavigation">
 
     <fragment
