@@ -12,9 +12,6 @@ import androidx.paging.cachedIn
 import androidx.paging.map
 import com.aminography.coroutine.SingleRunningJob
 import com.aminography.coroutine.util.cancelIfActive
-import com.aminography.domain.base.onError
-import com.aminography.domain.base.onLoading
-import com.aminography.domain.base.onSuccess
 import com.aminography.domain.city.ClearCitiesCacheUseCase
 import com.aminography.domain.city.LoadCitiesUseCase
 import com.aminography.domain.city.SearchCitiesUseCase
@@ -28,6 +25,7 @@ import com.aminography.worldcities.navigation.NavDestinations
 import com.aminography.worldcities.ui.util.SingleLiveEvent
 import com.aminography.worldcities.ui.util.UniqueLiveData
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flowOn
@@ -102,17 +100,19 @@ class CityListViewModel(
      * @param city the [City] corresponding to the clicked item.
      */
     fun onCityClicked(city: City) {
-        selectCityUseCase(city)
-            .onSuccess {
-                _navigation.postValue(
-                    NavDestinations.MapViewer.deepLinkWithArg(
-                        city.toMapViewerNavArg()
-                    )
+        viewModelScope.launch {
+            selectCityUseCase(city)
+                .fold(
+                    onSuccess = {
+                        _navigation.postValue(
+                            NavDestinations.MapViewer.deepLinkWithArg(
+                                city.toMapViewerNavArg()
+                            )
+                        )
+                    },
+                    onFailure = { _errorMessage.postValue(it.message ?: it.toString()) }
                 )
-            }
-            .onError { e ->
-                _errorMessage.postValue(e?.message ?: e.toString())
-            }
+        }
     }
 
     /**
@@ -126,22 +126,23 @@ class CityListViewModel(
     override fun onCleared() {
         super.onCleared()
         searchCitiesJob.cancelIfActive()
-        clearCitiesCacheUseCase(Unit)
+        GlobalScope.launch { clearCitiesCacheUseCase(Unit) }
     }
 
     init {
-        loadCitiesJob = viewModelScope.launch(defaultDispatcher) {
-            loadCitiesUseCase(Unit).collect { result ->
-                result.onLoading { _loading.postValue(true) }
-                    .onSuccess {
+        loadCitiesJob = viewModelScope.launch {
+            _loading.postValue(true)
+            loadCitiesUseCase(Unit)
+                .fold(
+                    onSuccess = {
                         reloadLastQuery()
                         loadCitiesJob.cancel()
-                    }
-                    .onError {
+                    },
+                    onFailure = {
                         _loading.postValue(false)
-                        _errorMessage.postValue(it?.message ?: it.toString())
+                        _errorMessage.postValue(it.message ?: it.toString())
                     }
-            }
+                )
         }
     }
 }

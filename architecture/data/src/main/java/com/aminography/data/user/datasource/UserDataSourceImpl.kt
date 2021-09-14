@@ -2,7 +2,6 @@ package com.aminography.data.user.datasource
 
 import com.aminography.data.core.remote.BaseRemoteDataSource
 import com.aminography.data.user.datasource.model.SearchUsersResponseModel
-import com.aminography.domain.base.Result
 import javax.inject.Inject
 
 /**
