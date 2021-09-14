@@ -14,20 +14,12 @@ android {
 
     defaultConfig {
         minSdkVersion versions.minSdk
-        targetSdkVersion versions.targetSdk
-
-        applicationId "com.aminography.worldcities.userlist"
-
-        versionCode appVersionCode
-        versionName appVersionName
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         debug {
             minifyEnabled false
-            debuggable true
         }
         release {
             minifyEnabled false
