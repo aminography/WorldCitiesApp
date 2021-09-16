@@ -1,9 +1,8 @@
 package com.aminography.worldcities.mapviewer
 
-import com.aminography.model.city.Coordination
+import com.aminography.androidtest.InstantExecutorExtension
+import com.aminography.androidtest.getOrAwaitValue
 import com.aminography.test.CoroutineTest
-import com.aminography.worldcities.InstantExecutorExtension
-import com.aminography.worldcities.getOrAwaitValue
 import com.aminography.worldcities.navigation.model.MapViewerNavArg
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -19,7 +18,7 @@ import org.junit.jupiter.api.extension.ExtendWith
 @ExtendWith(InstantExecutorExtension::class)
 class MapViewerViewModelTest : CoroutineTest() {
 
-    private val mapViewerArg = MapViewerNavArg("city", "country", Coordination(0.0, 0.0))
+    private val mapViewerArg = MapViewerNavArg("city", "country", 0.0, 0.0)
 
     @Test
     fun `calling initMap should post city name on proper live-data`() {
@@ -54,7 +53,10 @@ class MapViewerViewModelTest : CoroutineTest() {
         mapViewerViewModel.init(mapViewerArg)
 
         // Then
-        assertEquals(mapViewerViewModel.coordination.getOrAwaitValue(), mapViewerArg.coord)
+        mapViewerViewModel.coordination.getOrAwaitValue().let {
+            assertEquals(it.latitude, mapViewerArg.latitude)
+            assertEquals(it.longitude, mapViewerArg.longitude)
+        }
     }
 
     private fun createViewModel() = com.aminography.worldcities.mapviewer.vm.MapViewerViewModel()
