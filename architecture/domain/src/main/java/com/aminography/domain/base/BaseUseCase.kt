@@ -1,41 +1,46 @@
 package com.aminography.domain.base
 
-import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.withContext
+import kotlin.Result
 
 /**
- * The base class to define the behavior of [Flow] provider use-cases.
+ * The base class to define the behavior of use-cases.
  *
  * @param P the type of the input parameter.
- * @param R the type of the generic type foe the returned [Result].
- *
- * @author aminography
+ * @param R the type of the output wrapped by [Result].
+ * @param dispatcher the [CoroutineDispatcher] that execution should be done on.
  */
-abstract class BaseUseCase<in P, R> {
+abstract class BaseUseCase<in P, out R>(
+    private val dispatcher: CoroutineDispatcher
+) where R : Any {
 
     /**
-     * Produces a [Result] by executing [execute] method.
+     * Produces a [Result] by executing the [execute] method.
      *
-     * @param parameter the parameter needed by the use-case.
+     * @param param the parameter needed by the use-case.
      *
-     * @return the [Result] that of the execution.
+     * @return the [Result] of the execution.
      */
-    operator fun invoke(parameter: P): Result<R> =
-        try {
-            execute(parameter)
-        } catch (e: Exception) {
-            Result.Error(e)
+    suspend operator fun invoke(param: P): Result<R> =
+        withContext(dispatcher) {
+            try {
+                execute(param)
+            } catch (t: Throwable) {
+                Result.failure(t)
+            }
         }
 
     /**
-     * The function that should be implemented in concrete child classes, which defines the
-     * behaviour of the use-case.
+     * This function should be implemented in concrete child classes, which defines the behavior of
+     * the use-case.
      *
-     * @param parameter the parameter needed by the use-case.
+     * @param param the parameter needed by the use-case.
      *
-     * @return the [Result] that of the execution.
+     * @return the [Result] of the execution.
      *
-     * @throws RuntimeException if any exceptions occur during the execution of method.
+     * @throws Throwable if any exceptions occurs during the execution of method.
      */
-    @Throws(RuntimeException::class)
-    protected abstract fun execute(parameter: P): Result<R>
+    @Throws(Throwable::class)
+    protected abstract suspend fun execute(param: P): Result<R>
 }

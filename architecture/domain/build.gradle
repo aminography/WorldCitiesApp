@@ -5,6 +5,7 @@ plugins {
 }
 
 apply from: '../../dependencies/shared.gradle'
+apply from: '../../dependencies/dagger.gradle'
 apply from: '../../dependencies/unit_test.gradle'
 
 compileKotlin {
@@ -19,15 +20,16 @@ compileTestKotlin {
     }
 }
 
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
 dependencies {
     // ------- architecture
     api project(':architecture:model')
     api project(':common:scope')
     api project(':common:coroutine')
-
-    // ------- dagger
-    implementation "com.google.dagger:dagger:${versions.dagger}"
-    kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
 
     // ------- paging
     implementation "androidx.paging:paging-common:${versions.paging}"

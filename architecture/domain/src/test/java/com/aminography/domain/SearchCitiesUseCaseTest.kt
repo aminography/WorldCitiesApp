@@ -34,7 +34,7 @@ class SearchCitiesUseCaseTest : CoroutineTest() {
 
         every { cityRepository.searchCities(queryLowerCase) } returns flowOf(expected)
 
-        val useCase = SearchCitiesUseCase(cityRepository, testDispatcher)
+        val useCase = SearchCitiesUseCase(testDispatcher, cityRepository)
 
         // When
         val result = useCase(queryMixedCase).toList()

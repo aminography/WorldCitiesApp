@@ -7,7 +7,7 @@ import com.aminography.model.city.City
 import com.aminography.scope.annotation.FeatureScope
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
-import java.util.*
+import java.util.Locale
 import javax.inject.Inject
 
 /**
@@ -20,12 +20,12 @@ import javax.inject.Inject
  */
 @FeatureScope
 class SearchCitiesUseCase @Inject constructor(
-    private val cityRepository: CityRepository,
-    @DefaultDispatcher dispatcher: CoroutineDispatcher
+    @DefaultDispatcher dispatcher: CoroutineDispatcher,
+    private val cityRepository: CityRepository
 ) : BaseFlowUseCase<String, PagingData<City>>(dispatcher) {
 
-    override fun execute(parameter: String): Flow<PagingData<City>> =
-        parameter.toLowerCase(Locale.getDefault()).let { query ->
+    override fun execute(param: String): Flow<PagingData<City>> =
+        param.lowercase(Locale.getDefault()).let { query ->
             cityRepository.searchCities(query)
         }
 }

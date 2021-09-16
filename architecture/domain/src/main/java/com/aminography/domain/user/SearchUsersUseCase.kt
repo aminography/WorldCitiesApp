@@ -7,20 +7,25 @@ import com.aminography.model.user.GithubUser
 import com.aminography.scope.annotation.FeatureScope
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
-import java.util.*
+import java.util.Locale
 import javax.inject.Inject
 
 /**
+ * The use-case of searching users.
+ *
+ * @param dispatcher the [CoroutineDispatcher] that the job should be executed on.
+ * @param userRepository an instance of [UserRepository].
+ *
  * @author aminography
  */
 @FeatureScope
 class SearchUsersUseCase @Inject constructor(
-    private val userRepository: UserRepository,
-    @IoDispatcher dispatcher: CoroutineDispatcher
+    @IoDispatcher dispatcher: CoroutineDispatcher,
+    private val userRepository: UserRepository
 ) : BaseFlowUseCase<String, PagingData<GithubUser>>(dispatcher) {
 
-    override fun execute(parameter: String): Flow<PagingData<GithubUser>> =
-        parameter.toLowerCase(Locale.getDefault()).let { query ->
+    override fun execute(param: String): Flow<PagingData<GithubUser>> =
+        param.lowercase(Locale.getDefault()).let { query ->
             userRepository.search(query)
         }
 }

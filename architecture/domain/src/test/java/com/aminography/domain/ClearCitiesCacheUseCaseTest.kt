@@ -22,7 +22,7 @@ class ClearCitiesCacheUseCaseTest : CoroutineTest() {
         // Given
         coEvery { cityRepository.clearCache() } just Runs
 
-        val useCase = ClearCitiesCacheUseCase(cityRepository)
+        val useCase = ClearCitiesCacheUseCase(testDispatcher, cityRepository)
 
         // When
         useCase(Unit)

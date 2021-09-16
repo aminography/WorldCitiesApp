@@ -18,6 +18,11 @@ compileTestKotlin {
     }
 }
 
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
 dependencies {
     // ------- dagger
     implementation "com.google.dagger:dagger:${versions.dagger}"

@@ -2,19 +2,17 @@ package com.aminography.worldcities.citylist
 
 import com.aminography.androidtest.InstantExecutorExtension
 import com.aminography.androidtest.getOrAwaitValue
-import com.aminography.domain.base.Result
 import com.aminography.domain.city.ClearCitiesCacheUseCase
 import com.aminography.domain.city.LoadCitiesUseCase
 import com.aminography.domain.city.SearchCitiesUseCase
 import com.aminography.domain.city.SelectCityUseCase
 import com.aminography.test.CoroutineTest
 import com.aminography.worldcities.citylist.vm.CityListViewModel
-import io.mockk.every
+import io.mockk.coEvery
+import io.mockk.coVerifySequence
 import io.mockk.mockk
-import io.mockk.verifySequence
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.flowOf
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
@@ -35,11 +33,9 @@ class CityListViewModelTest : CoroutineTest() {
     private val clearCitiesCacheUseCase: ClearCitiesCacheUseCase = mockk()
 
     @Test
-    fun `load cities should cause showing loading`() {
+    fun `load cities should cause showing loading`() = runBlockingTest {
         // Given
-        every {
-            loadCitiesUseCase(any())
-        } returns flowOf(Result.Loading, Result.Success(Unit))
+        coEvery { loadCitiesUseCase(any()) } returns Result.success(Unit)
 
         // When
         val cityListViewModel = createViewModel()
@@ -47,7 +43,7 @@ class CityListViewModelTest : CoroutineTest() {
         // Then
         assertEquals(cityListViewModel.loading.getOrAwaitValue(), true)
 
-        verifySequence {
+        coVerifySequence {
             loadCitiesUseCase(any())
         }
     }
@@ -55,9 +51,7 @@ class CityListViewModelTest : CoroutineTest() {
     @Test
     fun `load cities successfully should show empty query`() {
         // Given
-        every {
-            loadCitiesUseCase(any())
-        } returns flowOf(Result.Loading, Result.Success(Unit))
+        coEvery { loadCitiesUseCase(any()) } returns Result.success(Unit)
 
         // When
         val cityListViewModel = createViewModel()
@@ -65,7 +59,7 @@ class CityListViewModelTest : CoroutineTest() {
         // Then
         assertEquals(cityListViewModel.queryLiveData.getOrAwaitValue(), "")
 
-        verifySequence {
+        coVerifySequence {
             loadCitiesUseCase(any())
         }
     }
@@ -74,9 +68,7 @@ class CityListViewModelTest : CoroutineTest() {
     fun `load cities with error should hide loading and show error message`() {
         // Given
         val expected = "test"
-        every {
-            loadCitiesUseCase(any())
-        } returns flowOf(Result.Loading, Result.Error(Exception(expected)))
+        coEvery { loadCitiesUseCase(any()) } returns Result.failure(Exception(expected))
 
         // When
         val cityListViewModel = createViewModel()
@@ -85,7 +77,7 @@ class CityListViewModelTest : CoroutineTest() {
         assertEquals(cityListViewModel.loading.getOrAwaitValue(), false)
         assertEquals(cityListViewModel.errorMessage.getOrAwaitValue(), expected)
 
-        verifySequence {
+        coVerifySequence {
             loadCitiesUseCase(any())
         }
     }
@@ -94,9 +86,7 @@ class CityListViewModelTest : CoroutineTest() {
     fun `calling setQuery should post query value on queryLiveData`() {
         // Given
         val expected = "test"
-        every {
-            loadCitiesUseCase(any())
-        } returns flowOf(Result.Loading, Result.Success(Unit))
+        coEvery { loadCitiesUseCase(any()) } returns Result.success(Unit)
 
         val cityListViewModel = createViewModel()
 
