@@ -4,7 +4,6 @@ import androidx.paging.PagingData
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.aminography.data.user.datasource.UserDataSource
-import com.aminography.domain.base.Result
 import com.aminography.model.user.GithubUser
 
 /**
@@ -27,25 +26,20 @@ internal class SearchUserPagingSource(
         val pageNumber = params.key ?: 1
         val pageSize = params.loadSize
 
-        when (val response = dataSource.search(location, pageNumber, pageSize)) {
-            is Result.Success -> {
-                val data = response.data!!
-                val prevKey = if (pageNumber > 1) pageNumber - 1 else null
-                val nextKey = if (data.items.size == pageSize) pageNumber + 1 else null
+        dataSource.search(location, pageNumber, pageSize)
+            .fold(
+                onSuccess = {
+                    val prevKey = if (pageNumber > 1) pageNumber - 1 else null
+                    val nextKey = if (it.items.size == pageSize) pageNumber + 1 else null
 
-                LoadResult.Page(
-                    data = data.items,
-                    prevKey = prevKey,
-                    nextKey = nextKey
-                )
-            }
-            is Result.Error -> LoadResult.Error(response.cause ?: Exception("Unknown Error!"))
-            else -> LoadResult.Page(
-                data = listOf(),
-                prevKey = null,
-                nextKey = null
+                    LoadResult.Page(
+                        data = it.items,
+                        prevKey = prevKey,
+                        nextKey = nextKey
+                    )
+                },
+                onFailure = { LoadResult.Error(it) }
             )
-        }
     } catch (e: Exception) {
         LoadResult.Error(e)
     }

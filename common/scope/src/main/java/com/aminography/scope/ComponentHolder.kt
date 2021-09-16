@@ -10,12 +10,8 @@ abstract class ComponentHolder<T> {
 
     protected abstract fun createComponent(): T
 
-    fun get(): T = when {
-        component != null -> component!!
-        else -> synchronized(this) {
-            if (component == null) component = createComponent()
-            component!!
-        }
+    fun get(): T = component ?: synchronized(this) {
+        component ?: createComponent().also { component = it }
     }
 
     fun clear() {

@@ -5,6 +5,8 @@ plugins {
 }
 
 apply from: '../../dependencies/shared.gradle'
+apply from: '../../dependencies/dagger.gradle'
+apply from: '../../dependencies/lifecycle.gradle'
 apply from: '../../dependencies/unit_test.gradle'
 apply from: '../../dependencies/android_test.gradle'
 
@@ -14,20 +16,12 @@ android {
 
     defaultConfig {
         minSdkVersion versions.minSdk
-        targetSdkVersion versions.targetSdk
-
-        applicationId "com.aminography.worldcities.citylist"
-
-        versionCode appVersionCode
-        versionName appVersionName
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         debug {
             minifyEnabled false
-            debuggable true
         }
         release {
             minifyEnabled false
@@ -62,16 +56,6 @@ dependencies {
     implementation "androidx.fragment:fragment-ktx:${versions.fragment_ktx}"
     implementation "androidx.constraintlayout:constraintlayout:${versions.constraintlayout}"
     implementation "androidx.recyclerview:recyclerview:${versions.recyclerview}"
-
-    // ------- dagger
-    implementation "com.google.dagger:dagger:${versions.dagger}"
-    kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
-
-    // ------- lifecycle
-    implementation "androidx.lifecycle:lifecycle-extensions:${versions.lifecycle}"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.lifecycle}"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:${versions.lifecycle}"
-    implementation "androidx.lifecycle:lifecycle-runtime-ktx:${versions.lifecycle}"
 
     // ------- paging
     implementation "androidx.paging:paging-runtime-ktx:${versions.paging}"

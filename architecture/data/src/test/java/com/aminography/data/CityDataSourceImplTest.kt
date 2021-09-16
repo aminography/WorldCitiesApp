@@ -7,7 +7,11 @@ import com.aminography.data.city.datasource.reader.LineCounter
 import com.aminography.model.city.City
 import com.aminography.test.CoroutineTest
 import com.aminography.test.testCities
-import io.mockk.*
+import io.mockk.CapturingSlot
+import io.mockk.coEvery
+import io.mockk.coVerifySequence
+import io.mockk.mockk
+import io.mockk.slot
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test

@@ -2,6 +2,7 @@ package com.aminography.data.city.datasource.reader
 
 import android.content.Context
 import com.aminography.data.city.datasource.adapter.Inserter
+import com.aminography.data.util.fromJson
 import com.aminography.data.util.openAsset
 import com.aminography.data.util.toInputStreamReader
 import com.aminography.data.util.toJsonReader
@@ -43,7 +44,7 @@ internal class JsonRetriever @Inject constructor(
 
             var count = 0
             while (it.hasNext() && count < limit) {
-                val city: City = gson.fromJson(it, City::class.java)
+                val city = gson.fromJson<City>(it)
                 inserter.insert(city)
                 count++
             }
