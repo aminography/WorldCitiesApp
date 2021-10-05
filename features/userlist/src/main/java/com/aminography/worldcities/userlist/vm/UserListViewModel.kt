@@ -1,7 +1,12 @@
 package com.aminography.worldcities.userlist.vm
 
 import androidx.annotation.VisibleForTesting
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.liveData
+import androidx.lifecycle.switchMap
+import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.paging.map
@@ -40,7 +45,7 @@ class UserListViewModel(
     val searchResult: LiveData<PagingData<UserItemDataHolder>> =
         queryLiveData.switchMap { query ->
             liveData(defaultDispatcher) {
-                searchUsersUseCase(query)
+                searchUsersUseCase(SearchUsersUseCase.Param(query))
                     .map { pagingData -> pagingData.map { it.toUserItemDataHolder() } }
                     .cachedIn(viewModelScope)
                     .flowOn(defaultDispatcher)

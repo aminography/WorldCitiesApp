@@ -12,6 +12,7 @@ import androidx.paging.cachedIn
 import androidx.paging.map
 import com.aminography.coroutine.SingleRunningJob
 import com.aminography.coroutine.util.cancelIfActive
+import com.aminography.domain.base.UseCase
 import com.aminography.domain.city.ClearCitiesCacheUseCase
 import com.aminography.domain.city.LoadCitiesUseCase
 import com.aminography.domain.city.SearchCitiesUseCase
@@ -27,6 +28,7 @@ import com.aminography.worldcities.ui.util.UniqueLiveData
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
@@ -71,9 +73,10 @@ class CityListViewModel(
             searchCitiesJob = Job()
             liveData(defaultDispatcher + searchCitiesJob) {
                 _loading.postValue(true)
-                searchCitiesUseCase(query)
+                searchCitiesUseCase(SearchCitiesUseCase.Param(query))
                     .map { pagingData -> pagingData.map { it.toCityItemDataHolder() } }
                     .cachedIn(viewModelScope)
+                    .catch { it.message?.let { msg -> _errorMessage.postValue(msg) } } // TODO
                     .flowOn(defaultDispatcher)
                     .collect {
                         // posts the result if loading of the cities has been completed
@@ -101,7 +104,7 @@ class CityListViewModel(
      */
     fun onCityClicked(city: City) {
         viewModelScope.launch {
-            selectCityUseCase(city)
+            selectCityUseCase(SelectCityUseCase.Param(city))
                 .fold(
                     onSuccess = {
                         _navigation.postValue(
@@ -126,13 +129,13 @@ class CityListViewModel(
     override fun onCleared() {
         super.onCleared()
         searchCitiesJob.cancelIfActive()
-        GlobalScope.launch { clearCitiesCacheUseCase(Unit) }
+        GlobalScope.launch { clearCitiesCacheUseCase(UseCase.NoParam) }
     }
 
     init {
         loadCitiesJob = viewModelScope.launch {
             _loading.postValue(true)
-            loadCitiesUseCase(Unit)
+            loadCitiesUseCase(UseCase.NoParam)
                 .fold(
                     onSuccess = {
                         reloadLastQuery()

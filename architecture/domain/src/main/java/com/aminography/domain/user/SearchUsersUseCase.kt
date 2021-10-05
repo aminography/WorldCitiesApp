@@ -3,6 +3,7 @@ package com.aminography.domain.user
 import androidx.paging.PagingData
 import com.aminography.coroutine.di.IoDispatcher
 import com.aminography.domain.base.BaseFlowUseCase
+import com.aminography.domain.base.UseCase
 import com.aminography.model.user.GithubUser
 import com.aminography.scope.annotation.FeatureScope
 import kotlinx.coroutines.CoroutineDispatcher
@@ -22,10 +23,14 @@ import javax.inject.Inject
 class SearchUsersUseCase @Inject constructor(
     @IoDispatcher dispatcher: CoroutineDispatcher,
     private val userRepository: UserRepository
-) : BaseFlowUseCase<String, PagingData<GithubUser>>(dispatcher) {
+) : BaseFlowUseCase<SearchUsersUseCase.Param, PagingData<GithubUser>>(dispatcher) {
 
-    override fun execute(param: String): Flow<PagingData<GithubUser>> =
-        param.lowercase(Locale.getDefault()).let { query ->
+    override fun execute(param: Param): Flow<PagingData<GithubUser>> =
+        param.city.lowercase(Locale.getDefault()).let { query ->
             userRepository.search(query)
         }
+
+    class Param(
+        val city: String
+    ) : UseCase.Param
 }

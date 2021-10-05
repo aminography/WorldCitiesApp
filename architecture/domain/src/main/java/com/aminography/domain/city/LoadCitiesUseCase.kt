@@ -2,6 +2,7 @@ package com.aminography.domain.city
 
 import com.aminography.coroutine.di.IoDispatcher
 import com.aminography.domain.base.BaseUseCase
+import com.aminography.domain.base.UseCase
 import com.aminography.scope.annotation.FeatureScope
 import kotlinx.coroutines.CoroutineDispatcher
 import javax.inject.Inject
@@ -18,9 +19,9 @@ import javax.inject.Inject
 class LoadCitiesUseCase @Inject constructor(
     @IoDispatcher dispatcher: CoroutineDispatcher,
     private val cityRepository: CityRepository
-) : BaseUseCase<Unit, Unit>(dispatcher) {
+) : BaseUseCase<UseCase.NoParam, Unit>(dispatcher) {
 
-    override suspend fun execute(param: Unit): Result<Unit> =
+    override suspend fun execute(param: UseCase.NoParam): Result<Unit> =
         runCatching {
             cityRepository.loadCities()
             Result.success(Unit)

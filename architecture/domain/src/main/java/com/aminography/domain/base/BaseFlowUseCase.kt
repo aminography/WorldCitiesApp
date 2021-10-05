@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.flowOn
  */
 abstract class BaseFlowUseCase<in P, out R>(
     private val dispatcher: CoroutineDispatcher
-) where R : Any {
+) : UseCase<P, R> where P : UseCase.Param, R : Any {
 
     /**
      * Produces a [Flow] by executing [execute] method on the [dispatcher].
