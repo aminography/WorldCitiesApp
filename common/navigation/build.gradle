@@ -41,4 +41,7 @@ dependencies {
     api "androidx.navigation:navigation-fragment-ktx:${versions.navigation}"
     api "androidx.navigation:navigation-ui-ktx:${versions.navigation}"
     api "androidx.navigation:navigation-dynamic-features-fragment:${versions.navigation}"
+
+    // ------- androidx
+    implementation "androidx.fragment:fragment-ktx:${versions.fragment_ktx}"
 }
