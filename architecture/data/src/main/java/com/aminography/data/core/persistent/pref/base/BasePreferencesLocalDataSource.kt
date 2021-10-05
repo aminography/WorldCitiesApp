@@ -9,7 +9,7 @@ import androidx.core.content.edit
  */
 internal open class BasePreferencesLocalDataSource(context: Context, fileName: String) {
 
-    protected val pref: Lazy<SharedPreferences> = lazy {
+    internal val pref: Lazy<SharedPreferences> = lazy {
         context.getSharedPreferences(fileName, Context.MODE_PRIVATE)
     }
 

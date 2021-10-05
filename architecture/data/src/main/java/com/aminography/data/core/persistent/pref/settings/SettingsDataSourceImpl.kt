@@ -9,13 +9,9 @@ import javax.inject.Inject
  * @author aminography
  */
 internal class SettingsDataSourceImpl @Inject constructor(
-    context: Context
-) : BasePreferencesLocalDataSource(context, PREF_FILE_NAME), SettingsDataSource {
+    context: Context,
+    fileName: String
+) : BasePreferencesLocalDataSource(context, fileName), SettingsDataSource {
 
-    override var baseUrl by StringPreference(pref, KEY_BASE_URL, "https://api.github.com/")
-
-    companion object {
-        private const val PREF_FILE_NAME = "settings-pref"
-        private const val KEY_BASE_URL = "BASE_URL"
-    }
+    override var baseUrl by StringPreference("BASE_URL", "https://api.github.com/")
 }

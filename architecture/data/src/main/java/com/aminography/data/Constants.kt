@@ -11,3 +11,4 @@ internal const val KEY_INITIAL_LOAD_SIZE = "INITIAL_LOAD_SIZE"
 
 internal const val ACCEPT_HEADER = "Accept: application/vnd.github.v3+json"
 internal const val KEY_BASE_URL = "BASE_URL"
+internal const val KEY_SETTINGS_PREF = "SETTINGS_PREF"
