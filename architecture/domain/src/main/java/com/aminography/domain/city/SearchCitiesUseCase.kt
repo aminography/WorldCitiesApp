@@ -3,6 +3,7 @@ package com.aminography.domain.city
 import androidx.paging.PagingData
 import com.aminography.coroutine.di.DefaultDispatcher
 import com.aminography.domain.base.BaseFlowUseCase
+import com.aminography.domain.base.UseCase
 import com.aminography.model.city.City
 import com.aminography.scope.annotation.FeatureScope
 import kotlinx.coroutines.CoroutineDispatcher
@@ -22,10 +23,14 @@ import javax.inject.Inject
 class SearchCitiesUseCase @Inject constructor(
     @DefaultDispatcher dispatcher: CoroutineDispatcher,
     private val cityRepository: CityRepository
-) : BaseFlowUseCase<String, PagingData<City>>(dispatcher) {
+) : BaseFlowUseCase<SearchCitiesUseCase.Param, PagingData<City>>(dispatcher) {
 
-    override fun execute(param: String): Flow<PagingData<City>> =
-        param.lowercase(Locale.getDefault()).let { query ->
+    override fun execute(param: Param): Flow<PagingData<City>> =
+        param.query.lowercase(Locale.getDefault()).let { query ->
             cityRepository.searchCities(query)
         }
+
+    class Param(
+        val query: String
+    ) : UseCase.Param
 }

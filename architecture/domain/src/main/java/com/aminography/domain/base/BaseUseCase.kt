@@ -2,7 +2,6 @@ package com.aminography.domain.base
 
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
-import kotlin.Result
 
 /**
  * The base class to define the behavior of use-cases.
@@ -13,7 +12,7 @@ import kotlin.Result
  */
 abstract class BaseUseCase<in P, out R>(
     private val dispatcher: CoroutineDispatcher
-) where R : Any {
+) : UseCase<P, R> where P : UseCase.Param, R : Any {
 
     /**
      * Produces a [Result] by executing the [execute] method.
